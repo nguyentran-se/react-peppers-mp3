@@ -1,10 +1,13 @@
 import React from "react";
+import PublicLayout from "./hoc/PublicLayout/PublicLayout";
 
 const App = () => {
    return (
-      <div>
-         <h1>Peppers mp3</h1>
-      </div>
+      <PublicLayout>
+         <div>
+            <h1>[APP]Peppers mp3</h1>
+         </div>
+      </PublicLayout>
    );
 };
 
