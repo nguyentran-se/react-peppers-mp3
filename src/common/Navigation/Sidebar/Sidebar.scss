@@ -11,10 +11,9 @@
    }
 }
 .sidebar__navbar--scroll {
-   height: 100%;
-   overflow-y: auto;
    padding-top: 14px;
-
+   flex: 1;
+   overflow-y: auto;
    &::-webkit-scrollbar {
       width: 4px;
       background-color: transparent;
