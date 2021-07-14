@@ -1,0 +1,11 @@
+.layout {
+   display: flex;
+   height: 100vh;
+   &__left {
+      background-color: var(--bg-sidebar);
+   }
+   &__right {
+      flex: 1;
+      background-color: var(--bg-main);
+   }
+}

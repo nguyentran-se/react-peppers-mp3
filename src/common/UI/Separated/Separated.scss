@@ -1,0 +1,16 @@
+.separated {
+   height: 1px;
+   background-color: var(--cl-border-primary);
+   margin: 15px 20px 0;
+   &.separated--before {
+      position: relative;
+      &::before {
+         position: absolute;
+         content: "";
+         height: 15px;
+         width: 100%;
+         top: 1px;
+         background-color: var(--bg-sidebar);
+      }
+   }
+}

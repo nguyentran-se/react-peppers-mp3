@@ -12,7 +12,16 @@ header
 ## `Sidebar`(aside) ~ fixed left
 
 ```
-aside
+aside - sidebar
+   div - sidebar__wrapper
+      div - sidebar__logo
+         logo
+      nav - navbar-main -- component - navbar
+         ul navbar-menu
+            li navbar-item
+               icon text
+      div separated
+      div - sidebar-playlist
 
 ```
 

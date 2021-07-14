@@ -1,0 +1,28 @@
+.navbar {
+   &-menu__item {
+      & a {
+         padding: var(--pd-content-sidebar);
+         font-size: 13px;
+         font-weight: 700;
+         display: block;
+         color: var(--cl-text-nav);
+         height: 38px;
+         user-select: none;
+         display: flex;
+         align-items: center;
+         &:hover {
+            color: var(--cl-hover-nav);
+         }
+         &:hover > .icon {
+            color: var(--cl-hover-nav);
+         }
+      }
+   }
+}
+.navbar-playlist {
+   // margin-bottom: 10px;
+   height: 100%;
+   & .navbar-menu__item a {
+      font-weight: 500;
+   }
+}

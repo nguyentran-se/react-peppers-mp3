@@ -1,0 +1,21 @@
+.add-playlist {
+   min-height: 54px;
+   padding: 0 28px;
+   margin-top: auto;
+
+   border-top: 1px solid var(--cl-border-primary);
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   font-size: 14px;
+   color: var(--cl-text-nav);
+   font-weight: 700;
+   cursor: pointer;
+   user-select: none;
+   &:hover i,
+   &:hover span {
+      color: var(--cl-hover-nav);
+   }
+}

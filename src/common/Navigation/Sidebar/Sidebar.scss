@@ -1,0 +1,26 @@
+.sidebar {
+   height: 100%;
+   &-wrapper {
+      width: 240px;
+      height: 100%;
+
+      display: flex;
+      flex-flow: column;
+
+      position: relative;
+   }
+}
+.sidebar__navbar--scroll {
+   height: 100%;
+   overflow-y: auto;
+   padding-top: 14px;
+
+   &::-webkit-scrollbar {
+      width: 4px;
+      background-color: transparent;
+   }
+   &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--cl-text-nav);
+   }
+}

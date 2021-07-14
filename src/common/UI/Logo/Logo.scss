@@ -1,0 +1,16 @@
+.logo {
+   text-align: center;
+   min-height: 70px;
+   display: flex;
+   align-items: center;
+   & h4 {
+      width: fit-content;
+      margin-left: 25px;
+      padding: 5px 0;
+
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+   }
+}
