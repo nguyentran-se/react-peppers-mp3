@@ -1,0 +1,46 @@
+@import "assets/styles/mixins";
+
+.toolbar-item {
+   position: relative;
+   width: 40px;
+   height: 40px;
+   margin-left: 10px;
+   border-radius: 50%;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   cursor: pointer;
+   transition: all 0.1s linear;
+   background-color: hsla(0, 0%, 100%, 0.1);
+   user-select: none;
+   &:hover {
+      opacity: 0.8;
+   }
+}
+
+.toolbar-item:nth-child(1)::before {
+   @include tooltip("Chủ đề");
+}
+.toolbar-item:nth-child(1):hover::before {
+   @include tooltipVisible();
+}
+.toolbar-item:nth-child(2)::before {
+   @include tooltip("Tải lên");
+}
+.toolbar-item:nth-child(2):hover::before {
+   @include tooltipVisible();
+}
+.toolbar-item:nth-child(3)::before {
+   @include tooltip("Settings");
+}
+.toolbar-item:nth-child(3):hover::before {
+   @include tooltipVisible();
+}
+.toolbar-item:nth-child(4)::before {
+   @include tooltip("User");
+}
+.toolbar-item:nth-child(4):hover::before {
+   @include tooltipVisible();
+}

@@ -1,0 +1,26 @@
+@mixin iconSize($width, $height, $fontSize) {
+   width: $width;
+   height: $height;
+   font-size: $fontSize;
+}
+@mixin tooltip($content) {
+   content: $content;
+   position: absolute;
+   top: 110%;
+   width: max-content;
+   padding: 5px;
+   border-radius: 4px;
+
+   font-size: 12px;
+   background-color: #333;
+
+   pointer-events: none;
+   cursor: default;
+   transition: all 0.1s linear;
+   visibility: hidden;
+   opacity: 0;
+}
+@mixin tooltipVisible {
+   visibility: visible;
+   opacity: 1;
+}

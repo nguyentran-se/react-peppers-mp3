@@ -1,9 +1,14 @@
 import React from "react";
-
+import "./Header.scss";
+import HeaderLeft from "./HeaderLeft/HeaderLeft";
+import Toolbar from "./Toolbar/Toolbar";
 const Header = () => {
    return (
       <header className="header">
-         <h3>header</h3>
+         <div className="header-wrapper">
+            <HeaderLeft />
+            <Toolbar />
+         </div>
       </header>
    );
 };

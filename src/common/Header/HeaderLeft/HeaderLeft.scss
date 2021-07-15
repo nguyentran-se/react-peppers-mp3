@@ -1,0 +1,12 @@
+.header-left {
+   display: flex;
+   align-items: center;
+   flex: 1;
+}
+.btn-group--nav {
+   display: flex;
+   & a {
+      margin-right: 20px;
+      cursor: pointer;
+   }
+}

@@ -1,3 +1,4 @@
+@import "./mixins";
 @font-face {
    font-family: "mp3-zing";
    src: url(../fonts/mp3-zing.eot);
@@ -8,16 +9,26 @@
    font-weight: 400;
    font-style: normal;
 }
-@mixin iconSize($width, $height, $fontSize) {
-   width: $width;
-   height: $height;
-   font-size: $fontSize;
-}
+
 .icon {
    @include iconSize(24px, 24px, 24px);
    color: var(--cl-text-nav);
    margin-right: 10px;
    border-radius: 4px;
+}
+.icon.icon--header-nav {
+   margin-right: 0;
+}
+.icon--large-size {
+   @extend .icon;
+   @include iconSize(20px, 20px, 20px);
+}
+.icon-toolbar {
+   margin-right: 0;
+}
+.icon--large-size.icon--search-custom {
+   margin-right: 0;
+   cursor: pointer;
 }
 .icon--medium-size {
    @extend .icon;

@@ -1,12 +1,10 @@
 import React from "react";
 import "./NavItem.scss";
+import MyIcon from "common/UI/MyIcon/MyIcon";
 const NavItem = ({ title, link, icon = null }) => {
    return (
       <li className="navbar-menu__item">
-         <a href={link} className="navbar-item__link">
-            {icon && <i className={`icon ${icon}`}></i>}
-            <span>{title}</span>
-         </a>
+         <MyIcon listIcon={[icon]} link={link} title={title} />
       </li>
    );
 };

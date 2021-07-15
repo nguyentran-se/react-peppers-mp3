@@ -1,0 +1,7 @@
+@import "assets/styles/mixins";
+.my-icon {
+   &__link {
+      display: flex;
+      align-items: center;
+   }
+}
