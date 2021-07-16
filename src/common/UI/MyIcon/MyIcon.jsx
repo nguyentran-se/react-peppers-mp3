@@ -1,6 +1,7 @@
 import React from "react";
 import Proptypes from "prop-types";
 import "./MyIcon.scss";
+import { NavLink } from "react-router-dom";
 
 const propTypes = {
    listIcon: Proptypes.array,
@@ -13,7 +14,7 @@ const propTypes = {
 const MyIcon = ({
    listIcon = [],
    customIcon = "icon",
-   link,
+   link = "",
    title,
    typeWrapper = null,
 }) => {
@@ -23,10 +24,10 @@ const MyIcon = ({
             <i className={`${customIcon} ${icon}`}></i>
          </div>
       ) : (
-         <a href={link} className="my-icon__link" key={icon}>
+         <NavLink to={link} exact className="my-icon__link" key={icon}>
             {icon && <i className={`${customIcon} ${icon}`}></i>}
             {title && <span>{title}</span>}
-         </a>
+         </NavLink>
       )
    );
    return <>{transformedListIcon}</>;

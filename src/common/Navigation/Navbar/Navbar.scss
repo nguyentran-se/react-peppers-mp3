@@ -1,24 +1,41 @@
 .navbar {
    &-menu__item {
       & a {
+         height: 38px;
          padding: var(--pd-content-sidebar);
+
          font-size: 13px;
          font-weight: 700;
          color: var(--cl-text-nav);
-         height: 38px;
-         user-select: none;
 
-         &:hover {
+         transition: all 0.1s linear;
+         user-select: none;
+         &:hover,
+         &:active {
             color: var(--cl-hover-nav);
+            & > .icon {
+               color: var(--cl-hover-nav);
+            }
          }
-         &:hover > .icon {
+      }
+   }
+}
+//navbar-main active link
+.navbar-main {
+   & .navbar-menu__item {
+      & a.active {
+         padding: 7px 22px;
+         border-left: 3px solid var(--cl-primary);
+
+         color: var(--cl-hover-nav);
+         background-color: var(--bg-alpha);
+         & > .icon {
             color: var(--cl-hover-nav);
          }
       }
    }
 }
 .navbar-playlist {
-   // margin-bottom: 10px;
    height: 100%;
    & .navbar-menu__item a {
       font-weight: 500;

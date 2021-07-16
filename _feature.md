@@ -21,8 +21,23 @@
 }
 ```
 
-## routes file
-
 ## normalize
 
 `@import "~@csstools/normalize.css";`
+
+## routes file. Thường đi với 2 files: PublicLayout, PublicRoute
+
+-  PublicLayout: chứa layout
+-  PublicRoute: bọc layout với route
+-  PublicRoute(C) bọc PublicLayout(C) bọc C
+
+```js
+const routes = [
+   {
+      path: "/",
+      exact: true,
+      layout: PublicLayout,
+      component: Home,
+   },...
+];
+```

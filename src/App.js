@@ -1,13 +1,14 @@
 import React from "react";
-import PublicLayout from "./hoc/PublicLayout/PublicLayout";
-
+import routes from "routes/routes";
+import PublicRoute from "hoc/PublicRoute/PublicRoute";
+import { Switch } from "react-router";
 const App = () => {
    return (
-      <PublicLayout>
-         <div>
-            <h1>[APP]Peppers mp3</h1>
-         </div>
-      </PublicLayout>
+      <Switch>
+         {routes.map((route, index) => (
+            <PublicRoute {...route} key={index} />
+         ))}
+      </Switch>
    );
 };
 
