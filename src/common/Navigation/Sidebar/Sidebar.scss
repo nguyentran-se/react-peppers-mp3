@@ -1,13 +1,16 @@
 .sidebar {
    height: 100%;
+   width: 240px;
+   position: relative;
    &-wrapper {
+      position: fixed;
+
       width: 240px;
       height: 100%;
 
       display: flex;
       flex-flow: column;
-
-      position: relative;
+      z-index: 100;
    }
 }
 .sidebar__navbar--scroll {
@@ -20,6 +23,6 @@
    }
    &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--cl-text-nav);
+      background-color: var(--bg-scroll-thumb);
    }
 }

@@ -9,6 +9,8 @@ const propTypes = {
    link: Proptypes.string,
    title: Proptypes.string,
    typeWrapper: Proptypes.string,
+   iconLeft: Proptypes.bool,
+   customClass: Proptypes.string,
 };
 
 const MyIcon = ({
@@ -17,6 +19,8 @@ const MyIcon = ({
    link = "",
    title,
    typeWrapper = null,
+   iconLeft = true,
+   customClass,
 }) => {
    const transformedListIcon = listIcon.map((icon) =>
       typeWrapper === "div" ? (
@@ -24,9 +28,14 @@ const MyIcon = ({
             <i className={`${customIcon} ${icon}`}></i>
          </div>
       ) : (
-         <NavLink to={link} exact className="my-icon__link" key={icon}>
-            {icon && <i className={`${customIcon} ${icon}`}></i>}
+         <NavLink
+            to={link}
+            exact
+            className={`my-icon__link ${customClass}`}
+            key={icon}>
+            {iconLeft && icon && <i className={`${customIcon} ${icon}`}></i>}
             {title && <span>{title}</span>}
+            {!iconLeft && icon && <i className={`${customIcon} ${icon}`}></i>}
          </NavLink>
       )
    );

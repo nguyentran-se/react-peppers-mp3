@@ -1,4 +1,8 @@
 @import "@csstools/normalize.css";
-@import "./assets/styles/setup";
 @import "./assets/styles/global";
+@import "./assets/styles/variables";
+@import "./assets/styles/setup";
+@import "./assets/styles/responsive/responsive";
+@import "./assets/styles/mixins";
 @import "./assets/styles/icon";
+@import "./assets/styles/ultility";

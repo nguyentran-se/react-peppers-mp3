@@ -1,0 +1,58 @@
+.card {
+   //media tablet
+   padding: 0 15px;
+   transition: all 0.3s linear;
+   user-select: none;
+   &-wrapper {
+      cursor: pointer;
+   }
+   &-img {
+      position: relative;
+      height: 0;
+      padding-bottom: 100%;
+      overflow: hidden;
+      & img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 100%;
+      }
+   }
+   &-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 8px 0 3px;
+   }
+   &-artist {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.33;
+      color: var(--cl-text-card-artist);
+      & a {
+         color: inherit;
+      }
+   }
+   &-title,
+   &-artist {
+      transition: all 0.1s linear;
+      &:hover {
+         color: var(--cl-hover-link-text);
+      }
+   }
+}
+//5-items-square
+.card.card--square {
+   flex: 0 0 20%;
+   & .card-img {
+      padding-bottom: 100%;
+      border-radius: 5px;
+   }
+}
+//3-items-rec
+.card.card--rectangle {
+   flex: 0 0 33.33%;
+   & .card-img {
+      padding-bottom: 56.25%;
+      border-radius: 8px;
+   }
+}

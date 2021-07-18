@@ -6,10 +6,10 @@ import "./PublicLayout.scss";
 const PublicLayout = (props) => {
    return (
       <div className="layout">
-         <div className="layout__left">
+         <div className="layout-left">
             <Sidebar />
          </div>
-         <div className="layout__right">
+         <div className="layout-right">
             <Header />
             <main>{props.children}</main>
          </div>

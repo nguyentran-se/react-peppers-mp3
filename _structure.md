@@ -1,5 +1,7 @@
 # 1. Layout
 
+-  wrapper: fixed, outside: relative + width
+
 ## `Header`(header) ~ fixed top
 
 ```

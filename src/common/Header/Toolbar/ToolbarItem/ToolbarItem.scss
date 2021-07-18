@@ -24,23 +24,23 @@
    @include tooltip("Chủ đề");
 }
 .toolbar-item:nth-child(1):hover::before {
-   @include tooltipVisible();
+   @include tooltip-visible();
 }
 .toolbar-item:nth-child(2)::before {
    @include tooltip("Tải lên");
 }
 .toolbar-item:nth-child(2):hover::before {
-   @include tooltipVisible();
+   @include tooltip-visible();
 }
 .toolbar-item:nth-child(3)::before {
    @include tooltip("Settings");
 }
 .toolbar-item:nth-child(3):hover::before {
-   @include tooltipVisible();
+   @include tooltip-visible();
 }
 .toolbar-item:nth-child(4)::before {
    @include tooltip("User");
 }
 .toolbar-item:nth-child(4):hover::before {
-   @include tooltipVisible();
+   @include tooltip-visible();
 }

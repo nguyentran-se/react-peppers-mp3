@@ -13,4 +13,10 @@
       cursor: pointer;
       user-select: none;
    }
+   &-img {
+      width: 45px;
+      height: 45px;
+      background-image: url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.2.10/static/media/icon_zing_mp3_60.f6b51045.svg);
+      display: none;
+   }
 }

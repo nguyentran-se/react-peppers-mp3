@@ -1,4 +1,4 @@
-@mixin iconSize($width, $height, $fontSize) {
+@mixin icon-size($width, $height, $fontSize) {
    width: $width;
    height: $height;
    font-size: $fontSize;
@@ -20,7 +20,13 @@
    visibility: hidden;
    opacity: 0;
 }
-@mixin tooltipVisible {
+@mixin tooltip-visible {
    visibility: visible;
    opacity: 1;
+}
+@mixin line-clamp($line-clamp) {
+   display: -webkit-box;
+   -webkit-line-clamp: $line-clamp;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
 }

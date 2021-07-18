@@ -6,6 +6,7 @@ const Logo = () => {
          <h4>
             <span>Peppers</span> <span>MP3</span>
          </h4>
+         <div className="logo-img"></div>
       </div>
    );
 };

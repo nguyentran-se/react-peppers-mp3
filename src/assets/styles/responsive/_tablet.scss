@@ -1,0 +1,81 @@
+@media screen and (max-width: 1024px) {
+   body {
+      //decrease padding btw cards
+      & .list-card {
+         margin: 0 -12px;
+      }
+      & .card {
+         padding: 0 12px;
+      }
+
+      //fake banner card-rectangle
+      & .banner {
+         padding-top: 5px;
+         & .card.card--rectangle {
+            flex: 0 0 50%;
+            &:nth-child(3) {
+               flex: 0;
+            }
+         }
+      }
+      // fake card-square
+      & .card.card--square {
+         flex: 0 0 25%;
+         &:nth-child(5) {
+            flex: 0;
+            & .card-title,
+            .card-artist {
+               display: none;
+            }
+         }
+      }
+      //config sidebar
+      & .sidebar {
+         width: 70px;
+
+         &-wrapper {
+            width: 70px;
+            overflow-x: hidden;
+         }
+         & .logo {
+            justify-content: center;
+            & h4 {
+               display: none;
+            }
+            &-img {
+               display: inline-block;
+            }
+         }
+         & .navbar-main {
+            & .navbar-menu__item a {
+               padding: 7px 22px;
+               &.active {
+                  padding: 7px 19px;
+               }
+            }
+            & span {
+               display: none;
+            }
+         }
+         & .separated.separated--before::before {
+            left: -15px;
+            width: 60px;
+         }
+         &__navbar--scroll {
+            overflow-x: hidden;
+            & .navbar-menu__item a {
+               padding: 7px 8px;
+            }
+         }
+         & .add-playlist {
+            & span {
+               display: none;
+            }
+         }
+      }
+      //config header
+      .header-wrapper {
+         left: 70px;
+      }
+   }
+}
