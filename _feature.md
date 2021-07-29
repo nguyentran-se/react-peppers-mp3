@@ -58,3 +58,27 @@ const routes = [
 
 -  ví dụ như sidebar fixed, main ko cần phải `margin-left: $width-sidebar`
 -  Giúp content flexible hơn
+
+## case lạ
+
+-  lazy load làm thay đổi thứ tự của useEffect
+-  ví dụ:
+
+```js
+//Home.jsx
+return <child />;
+//bình thường thì child sẽ useEffect trước. nếu có lazy thì Home sẽ useEffect trước
+```
+
+## User change link nhanh khi đang call api
+
+-  lúc này đag call api mà user change link thì component unmounted dẫn tới việc ngắt call api -> memory leak
+-  giải quyết case này bằng cách `mountedRef=useRef(true)`, trong clean useEffect nếu unmounted thì set `mountedRef.current = false` để ngắt việc setState khi unmounted
+
+## some hooks and cases in react-router
+
+-  params: `/:id`
+-  case: path: a/b/c/:slug
+   -  location.pathname: a/b/c/someslug
+   -  match.path: path in router
+   -  match.url: = match.path. useful for

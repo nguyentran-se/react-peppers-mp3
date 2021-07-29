@@ -3,7 +3,8 @@
    padding: 0 15px;
    transition: all 0.3s linear;
    user-select: none;
-   &-wrapper {
+   overflow: hidden;
+   &-wrapper a {
       cursor: pointer;
    }
    &-img {
@@ -38,6 +39,11 @@
       &:hover {
          color: var(--cl-hover-link-text);
       }
+   }
+   &-description {
+      @extend .card-artist;
+      pointer-events: none;
+      cursor: default;
    }
 }
 //5-items-square

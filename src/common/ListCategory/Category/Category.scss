@@ -1,4 +1,4 @@
-.topic {
+.category {
    user-select: none;
    &-header {
       display: flex;
@@ -24,7 +24,7 @@
          }
       }
    }
-   & a[class*="topic-title"] {
+   & a[class*="category-title"] {
       transition: all 0.1s linear;
       display: flex;
       align-items: center;
@@ -45,7 +45,7 @@
       font-size: 20px;
       font-weight: 700;
    }
-   & + .topic {
+   & + .category {
       margin-top: 30px;
    }
 }

@@ -24,7 +24,8 @@
          &:nth-child(5) {
             flex: 0;
             & .card-title,
-            .card-artist {
+            .card-artist,
+            .card-description {
                display: none;
             }
          }

@@ -1,8 +1,9 @@
 export const NAV_MENU = [
    { title: "Cá nhân", icon: "ic-library", link: "/my-music" },
    { title: "Trang chủ", icon: "ic-mn-home", link: "/" },
+   { title: "Thể loại", icon: "ic-mn-catalogue", link: "/categories" },
    { title: "Bài hát đã thích", icon: "ic-mn-top100", link: "/favorite-songs" },
-   { title: "Playlist", icon: "ic-mn-song", link: "/playlist" },
+   { title: "Something", icon: "ic-mn-song", link: "/something" },
 ];
 
 export const NAV_PLAYLIST = [
