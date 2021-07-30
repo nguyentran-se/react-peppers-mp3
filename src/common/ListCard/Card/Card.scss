@@ -17,6 +17,7 @@
          top: 0;
          left: 0;
          height: 100%;
+         transition: all 0.3s linear;
       }
    }
    &-title {
@@ -46,6 +47,7 @@
       cursor: default;
    }
 }
+
 //5-items-square
 .card.card--square {
    flex: 0 0 20%;

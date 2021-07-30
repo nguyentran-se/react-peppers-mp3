@@ -59,6 +59,10 @@ const routes = [
 -  ví dụ như sidebar fixed, main ko cần phải `margin-left: $width-sidebar`
 -  Giúp content flexible hơn
 
+## camelize
+
+access_token -> accessToken
+
 ## case lạ
 
 -  lazy load làm thay đổi thứ tự của useEffect
@@ -82,3 +86,10 @@ return <child />;
    -  location.pathname: a/b/c/someslug
    -  match.path: path in router
    -  match.url: = match.path. useful for
+
+## lỗi findDomNode của CSSTransition
+
+-  fix bằng cách gắn ref cho csstransition và cho first-child của nó. Việc này giúp nó tìm dom(findDom) nhanh hơn. ko bị predecated
+-  ví dụ:
+   `<CSSTransition noderef={someref}><FirstChild ref={someref}/></CSSTransition>`
+-  [about-issue](https://github.com/reactjs/react-transition-group/issues/668)

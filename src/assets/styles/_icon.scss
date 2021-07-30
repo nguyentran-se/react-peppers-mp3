@@ -33,6 +33,15 @@
    @extend .icon;
    @include icon-size(18px, 18px, 18px);
 }
+.icon.action-play {
+   width: 45px;
+   height: 45px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #fff;
+   border-radius: 50%;
+}
 
 [data-icon]:before {
    content: attr(data-icon);
@@ -58,7 +67,9 @@
    height: 12px;
    display: inline-block;
 }
-
+.icon.ic-svg-play-circle {
+   background-image: url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/play.81e7696e.svg);
+}
 .ic-addfriend:before {
    content: "\68";
 }

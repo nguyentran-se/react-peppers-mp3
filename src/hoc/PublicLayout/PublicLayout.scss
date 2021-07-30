@@ -8,5 +8,6 @@
    &-right {
       flex: 1;
       background-color: var(--bg-main);
+      width: calc(100% - 240px);
    }
 }

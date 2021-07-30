@@ -1,0 +1,42 @@
+.button {
+   display: block;
+   border: none;
+   outline: none;
+   background-color: transparent;
+   cursor: pointer;
+}
+.button--card {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0;
+   border-radius: 50%;
+   transition: background-color 0.3s linear;
+   &:not(:nth-child(2)) {
+      width: 30px;
+      height: 30px;
+   }
+   & i {
+      color: #fff;
+      font-size: 20px;
+      margin-right: 0;
+      width: 20px;
+      height: 20px;
+   }
+   &:nth-child(2) {
+      width: 45px;
+      height: 45px;
+      display: block;
+      & i {
+         width: 45px;
+         height: 45px;
+      }
+   }
+   &:hover {
+      filter: brightness(0.9);
+      background-color: hsla(0, 0%, 100%, 0.3);
+   }
+   // & + .button--card {
+   //    margin-left: 10px;
+   // }
+}

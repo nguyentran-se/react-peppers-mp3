@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import srcImg from "assets/images/test.jpg";
+import CardModal from "../CardModal/CardModal";
 import "./Card.scss";
+
 const Card = ({
    cardImage,
    cardId,
@@ -11,11 +12,25 @@ const Card = ({
    cardShape,
    cardType,
 }) => {
+   const [onHover, setOnHover] = useState(false);
+
+   const onMouseOverHandler = () => {
+      setOnHover(true);
+   };
+
+   const onMouseOutHandler = () => {
+      setOnHover(false);
+   };
+
    return (
       <div className={`card card--${cardShape}`}>
          <div className="card-wrapper">
             <Link to={`/${cardType}/${cardId}`}>
-               <div className="card-img">
+               <div
+                  className="card-img"
+                  onMouseEnter={onMouseOverHandler}
+                  onMouseLeave={onMouseOutHandler}>
+                  <CardModal onHover={onHover} />
                   <img src={cardImage} alt="card song" />
                </div>
                <h4 className="card-title line-clamp--1">{cardName}</h4>

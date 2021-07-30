@@ -1,0 +1,64 @@
+@mixin fade-effect($vi, $op) {
+   visibility: $vi;
+   opacity: $op;
+}
+.card-modal {
+   transition: all linear 0.2s;
+   &__backdrop,
+   &__control {
+      position: absolute;
+   }
+   &__backdrop {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 0.1s linear;
+      @include fade-effect(hidden, 0);
+   }
+   &__control {
+      top: 50%;
+      left: 50%;
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      @include fade-effect(hidden, 0);
+   }
+}
+.card-img:hover > .card-modal {
+   & > .card-modal__backdrop,
+   & > .card-modal__control {
+      @include fade-effect(visible, 1);
+   }
+}
+
+.card-modal--hover {
+   &-enter {
+      & + img {
+         transform: scale(1);
+      }
+      &-done {
+         & + img {
+            transform: scale(1.1);
+         }
+      }
+   }
+   &-exit {
+      & + img {
+         transform: scale(1.1);
+      }
+      &-done {
+         & + img {
+            transform: scale(1);
+         }
+      }
+   }
+}
