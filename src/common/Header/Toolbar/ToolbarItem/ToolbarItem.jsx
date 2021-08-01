@@ -1,17 +1,11 @@
-import MyIcon from "common/UI/MyIcon/MyIcon";
+import Button from "common/UI/Button/Button";
 import React from "react";
 import "./ToolbarItem.scss";
-const ToolbarItem = ({ icon, specificIcon, customIcon }) => {
+const ToolbarItem = ({ icon, specificIcon }) => {
    return (
-      <div className="toolbar-item">
-         {specificIcon || (
-            <MyIcon
-               customIcon={customIcon}
-               listIcon={[icon]}
-               typeWrapper="div"
-            />
-         )}
-      </div>
+      <Button icon={icon} custom="toolbar-item">
+         {specificIcon}
+      </Button>
    );
 };
 

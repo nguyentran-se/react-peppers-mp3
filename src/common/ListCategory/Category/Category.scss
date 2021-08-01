@@ -9,12 +9,12 @@
          display: flex;
          transform: translateY(1px);
          margin-left: auto;
-         & .icon-wrapper {
+         & button {
             padding: 0 5px;
             & i {
                margin: 0;
             }
-            & + .icon-wrapper {
+            & + button {
                margin-left: 20px;
             }
             &:hover {
@@ -31,7 +31,6 @@
 
       & i {
          margin: 0 0 0 2px;
-         transform: translateY(1px);
       }
 
       &:hover {

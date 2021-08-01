@@ -1,15 +1,11 @@
-import MyIcon from "common/UI/MyIcon/MyIcon";
+import Button from "common/UI/Button/Button";
 import React from "react";
 import "./SearchBar.scss";
 const SearchBar = () => {
    return (
       <div className="search-bar">
          <div className="search-bar__wrapper">
-            <MyIcon
-               listIcon={["ic-search"]}
-               customIcon="icon--large-size icon--search-custom"
-               typeWrapper="div"
-            />
+            <Button icon="ic-search icon--large-size icon--search-custom" />
             <div style={{ width: "10px" }}></div>
             <div className="input-wrapper">
                <input

@@ -1,8 +1,8 @@
 import React from "react";
 import ListCard from "common/ListCard/ListCard";
 import "./Category.scss";
-import MyIcon from "common/UI/MyIcon/MyIcon";
 import { Link } from "react-router-dom";
+import Button from "common/UI/Button/Button";
 
 const Category = ({
    categoryName,
@@ -26,11 +26,8 @@ const Category = ({
                         <h3 className="category-title">{categoryName}</h3>
                      )}
                      <div className="category-header__icons">
-                        <MyIcon
-                           listIcon={["ic-go-left", "ic-go-right"]}
-                           customIcon="icon--medium-size"
-                           typeWrapper="div"
-                        />
+                        <Button icon="icon--medium-size ic-go-left" />
+                        <Button icon="icon--medium-size ic-go-right" />
                      </div>
                   </div>
                )}

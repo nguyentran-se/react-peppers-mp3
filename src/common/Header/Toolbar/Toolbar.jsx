@@ -8,14 +8,8 @@ const Toolbar = () => {
       <section className="toolbar">
          <div className="toolbar-wrapper">
             <ToolbarItem specificIcon={<ThemeIcon />} />
-            <ToolbarItem
-               customIcon="icon--large-size icon-toolbar"
-               icon="ic-upload"
-            />
-            <ToolbarItem
-               customIcon="icon--large-size icon-toolbar"
-               icon="ic-settings"
-            />
+            <ToolbarItem icon="ic-upload icon--large-size icon-toolbar" />
+            <ToolbarItem icon="ic-settings icon--large-size icon-toolbar" />
             <ToolbarItem specificIcon={<UserPhoto />} />
          </div>
       </section>

@@ -12,9 +12,10 @@
    justify-content: center;
 
    cursor: pointer;
-   transition: all 0.1s linear;
-   background-color: hsla(0, 0%, 100%, 0.1);
    user-select: none;
+   transition: all 0.1s linear;
+   color: #fff;
+   background-color: hsla(0, 0%, 100%, 0.1);
    &:hover {
       opacity: 0.8;
    }

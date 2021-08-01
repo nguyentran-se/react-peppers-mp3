@@ -15,9 +15,12 @@ const CardModal = ({ onHover }) => {
          <div ref={nodeRef} className="card-modal">
             <div className="card-modal__backdrop"></div>
             <div className="card-modal__control">
-               <Button icon="ic-like" />
-               <Button icon="action-play ic-svg-play-circle" />
-               <Button icon="ic-more" />
+               <Button icon="ic-like" custom="button--card" />
+               <Button
+                  icon="action-play ic-svg-play-circle"
+                  custom="button--card"
+               />
+               <Button icon="ic-more" custom="button--card" />
             </div>
          </div>
       </CSSTransition>

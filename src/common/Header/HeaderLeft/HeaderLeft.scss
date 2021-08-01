@@ -5,8 +5,15 @@
 }
 .btn-group--nav {
    display: flex;
-   & a {
-      margin-right: 20px;
+   margin-right: 20px;
+
+   & button {
       cursor: pointer;
+      &:first-child {
+         padding-right: 10px;
+      }
+      &:nth-child(2) {
+         padding-left: 10px;
+      }
    }
 }
