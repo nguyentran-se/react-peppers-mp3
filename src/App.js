@@ -2,11 +2,11 @@ import authorApi from "api/authorApi";
 import camelize from "camelize";
 import { PEPPERS } from "constant/localStorage";
 import { setLocalStorage } from "helper";
+import PublicLayout from "hoc/PublicLayout/PublicLayout";
 import PublicRoute from "hoc/PublicRoute/PublicRoute";
 import React, { useEffect } from "react";
 import { Switch } from "react-router";
 import routes from "routes/routes";
-
 const App = () => {
    useEffect(() => {
       const requestAuthorization = async () => {
@@ -22,11 +22,16 @@ const App = () => {
    }, []);
 
    return (
-      <Switch>
-         {routes.map((route, index) => (
-            <PublicRoute {...route} key={index} />
-         ))}
-      </Switch>
+      <PublicLayout>
+         <Switch>
+            {routes.map(
+               (route, index) =>
+                  route.layout === "PublicLayout" && (
+                     <PublicRoute {...route} key={index} />
+                  )
+            )}
+         </Switch>
+      </PublicLayout>
    );
 };
 

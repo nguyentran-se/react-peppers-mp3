@@ -93,3 +93,17 @@ return <child />;
 -  ví dụ:
    `<CSSTransition noderef={someref}><FirstChild ref={someref}/></CSSTransition>`
 -  [about-issue](https://github.com/reactjs/react-transition-group/issues/668)
+
+## có nên bỏ layout trong routes files ?
+
+-  Không. vì khi change route thì sẽ render lại layout luôn @@. ví như: header, sidebar
+
+## flow make back - forward
+
+-  `history.listen`: listen change url của browser
+   -  `location.key`: unique key of element in stack url;
+   -  `action`: PUSH: user click navigation, POP: user click back - forward
+-  when action-push: disabled forward, enable back, save stack of locationKeys
+-  when action-pop:
+   if location.key === undefined. disable back
+   if(locationKeys[lastItem] === presentKeyOfPage) disabled forward

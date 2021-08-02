@@ -5,7 +5,8 @@ export const getLocalStorage = (key) => {
    try {
       let result = localStorage.getItem(key);
       if (!result) {
-         throw new Error(`${key} NOT EXIST!`);
+         // throw new Error(`${key} NOT EXIST!`);
+         return null;
       }
       return JSON.parse(result);
    } catch (error) {
@@ -16,7 +17,11 @@ export const getLocalStorage = (key) => {
 export const setLocalStorage = (key, value) => {
    try {
       let stringifyValue = JSON.stringify(value);
-      if (key === PEPPERS || localStorage.getItem(key) === null)
+      if (
+         key === PEPPERS ||
+         key === "LOCATION_KEYS" ||
+         localStorage.getItem(key) === null
+      )
          localStorage.setItem(key, stringifyValue);
       else throw new Error(`${key} HAS ALREADY EXIST`);
    } catch (error) {

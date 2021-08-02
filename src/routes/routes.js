@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import PublicLayout from "hoc/PublicLayout/PublicLayout";
+// import PublicLayout from "hoc/PublicLayout/PublicLayout";
 
 const Home = lazy(() => import("containers/Home/Home"));
 const MyMusic = lazy(() => import("containers/MyMusic/MyMusic"));
@@ -9,25 +9,25 @@ const routes = [
    {
       path: "/",
       exact: true,
-      layout: PublicLayout,
+      layout: "PublicLayout",
       component: Home,
    },
    {
       path: "/my-music",
       exact: true,
-      layout: PublicLayout,
+      layout: "PublicLayout",
       component: MyMusic,
    },
    {
       path: "/categories",
       exact: true,
-      layout: PublicLayout,
+      layout: "PublicLayout",
       component: Cate,
    },
    {
       path: "/playlist/:slug",
       exact: true,
-      layout: PublicLayout,
+      layout: "PublicLayout",
       component: Playlist,
    },
 ];
