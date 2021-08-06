@@ -4,3 +4,15 @@
 .line-clamp--1 {
    @include line-clamp(1);
 }
+.artist-hover {
+   transition: all 0.3s linear;
+   &:hover {
+      color: var(--cl-primary);
+      text-decoration: underline;
+   }
+   &--nocolor {
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}

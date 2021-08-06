@@ -1,12 +1,15 @@
+$height-with-player: calc(100% - 90px);
 .sidebar {
-   height: 100%;
-   width: 240px;
    position: relative;
+   width: 240px;
+   height: 100%;
+   // height: $height-with-player;
    &-wrapper {
       position: fixed;
 
       width: 240px;
-      height: 100%;
+      // height: 100%;
+      height: $height-with-player;
 
       display: flex;
       flex-flow: column;

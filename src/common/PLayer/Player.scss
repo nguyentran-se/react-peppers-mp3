@@ -1,0 +1,39 @@
+$player-height: 90px;
+.player {
+   position: relative;
+   height: 90px;
+   width: 100%;
+   &-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      width: 100%;
+      height: $player-height;
+      padding: 0 20px;
+      border-top: 1px solid var(--cl-border-primary);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background-color: var(--bg-player);
+      z-index: 999;
+   }
+   & button {
+      & i {
+         margin-right: 0;
+      }
+      &:hover {
+         filter: brightness(0.9);
+         background-color: var(--bg-hover-control);
+      }
+   }
+   &-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+   }
+}

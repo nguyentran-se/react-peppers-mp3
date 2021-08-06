@@ -14,14 +14,15 @@ body {
    padding: 0;
    font-family: "Inter", sans-serif;
    color: #fff;
-   &::-webkit-scrollbar {
-      width: 4px;
-      background-color: var(--bg-main);
-   }
-   &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: var(--bg-scroll-thumb);
-   }
+   // &::-webkit-scrollbar {
+   //    width: 4px;
+   //    background-color: var(--bg-main);
+   // }
+   // &::-webkit-scrollbar-thumb {
+   //    border-radius: 10px;
+   //    background-color: var(--bg-scroll-thumb);
+   // }
+   overflow: hidden;
 }
 ol,
 ul {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ListCategory from "common/ListCategory/ListCategory";
 import musicApi from "api/musicApi";
+import "./Cate.scss";
 const Cate = (props) => {
    const [listCategory, setListCategory] = useState(null);
    const [playlists, setPlaylists] = useState([]);

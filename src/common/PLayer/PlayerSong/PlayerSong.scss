@@ -1,0 +1,40 @@
+.player-song {
+   display: flex;
+   align-items: center;
+   &__thumbnail {
+      margin-right: 10px;
+      width: 64px;
+      height: 64px;
+      border: 2px solid var(--cl-border-thumbnail);
+      border-radius: 50%;
+
+      & img {
+         border-radius: inherit;
+         height: 100%;
+      }
+   }
+   &__info {
+      margin-right: 15px;
+      max-width: 100px;
+      & a {
+         // display: block;
+         text-align: left;
+      }
+   }
+   &__name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+   }
+   &__artist {
+      font-size: 12px;
+   }
+   &__control {
+      display: flex;
+   }
+   & button {
+      & + button {
+         margin-left: 10px;
+      }
+   }
+}

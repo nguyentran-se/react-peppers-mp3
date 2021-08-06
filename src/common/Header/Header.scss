@@ -9,10 +9,12 @@
       left: 240px;
       right: 0;
 
+      width: calc(100% - 244px);
+      padding: 15px 26px 15px 30px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 30px;
 
       background-color: inherit;
       z-index: 100;

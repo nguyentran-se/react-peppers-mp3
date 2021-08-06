@@ -15,17 +15,29 @@
 .button.button--flex {
    display: flex;
    align-items: center;
-}
-.button--card {
-   display: flex;
-   align-items: center;
    justify-content: center;
+}
+
+.button--hover {
+   width: 30px;
+   height: 30px;
    border-radius: 50%;
    transition: background-color 0.3s linear;
-   &:not(:nth-child(2)) {
-      width: 30px;
-      height: 30px;
+
+   &:hover {
+      filter: brightness(0.9);
+      background-color: var(--bg-hover-control);
    }
+   & i {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+   }
+}
+//custom
+.button--card {
+   border-radius: 50%;
+   transition: background-color 0.3s linear;
    & i {
       color: #fff;
       font-size: 20px;
@@ -42,11 +54,4 @@
          height: 45px;
       }
    }
-   &:hover {
-      filter: brightness(0.9);
-      background-color: hsla(0, 0%, 100%, 0.3);
-   }
-   // & + .button--card {
-   //    margin-left: 10px;
-   // }
 }
