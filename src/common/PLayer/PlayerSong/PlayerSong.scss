@@ -1,6 +1,7 @@
 .player-song {
    display: flex;
    align-items: center;
+   flex: 0 0 30%;
    &__thumbnail {
       margin-right: 10px;
       width: 64px;
@@ -15,7 +16,8 @@
    }
    &__info {
       margin-right: 15px;
-      max-width: 100px;
+      max-width: 190px;
+      // width: 100%;
       & a {
          // display: block;
          text-align: left;

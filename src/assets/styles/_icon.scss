@@ -1,14 +1,27 @@
+// @font-face {
+//    font-family: "mp3-zing";
+//    src: url(../fonts/mp3-zing.eot);
+//    src: url(../fonts/mp3-zing.eot) format("embedded-opentype"),
+//       url(../fonts//mp3-zing.woff) format("woff"),
+//       url(../fonts/mp3-zing.ttf) format("truetype"),
+//       url(../fonts/mp3-zing.svg) format("svg");
+//    font-weight: 400;
+//    font-style: normal;
+// }
 @font-face {
    font-family: "mp3-zing";
-   src: url(../fonts/mp3-zing.eot);
-   src: url(../fonts/mp3-zing.eot) format("embedded-opentype"),
-      url(../fonts//mp3-zing.woff) format("woff"),
-      url(../fonts/mp3-zing.ttf) format("truetype"),
-      url(../fonts/mp3-zing.svg) format("svg");
+   src: url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/mp3-zing.61823322.eot);
+   src: url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/mp3-zing.61823322.eot)
+         format("embedded-opentype"),
+      url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/mp3-zing.8e6ac619.woff)
+         format("woff"),
+      url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/mp3-zing.a844ef07.ttf)
+         format("truetype"),
+      url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/mp3-zing.90ab94ad.svg)
+         format("svg");
    font-weight: 400;
    font-style: normal;
 }
-
 .icon {
    @include icon-size(24px, 24px, 24px);
    color: var(--cl-text-nav);
@@ -69,6 +82,13 @@
 }
 .icon.ic-svg-play-circle {
    background-image: url(https://zjs.zadn.vn/zmp3-desktop/releases/v1.3.1/static/media/play.81e7696e.svg);
+}
+.ic-scale-1:before {
+   content: "\e900";
+}
+
+.ic-scale-2:before {
+   content: "\e901";
 }
 .ic-addfriend:before {
    content: "\68";

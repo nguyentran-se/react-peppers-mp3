@@ -9,12 +9,21 @@ const propTypes = {
    disabled: PropTypes.bool,
 };
 
-const Button = ({ clicked, icon, custom, disabled, children, hover }) => {
+const Button = ({
+   clicked,
+   icon,
+   custom,
+   disabled,
+   children,
+   hover,
+   hoverSquare,
+}) => {
    const buttonClasses = ["button"];
    if (custom) buttonClasses.push(custom);
    if (icon) buttonClasses.push("button--flex");
    if (disabled) buttonClasses.push("disabled");
    if (hover) buttonClasses.push("button--hover");
+   if (hoverSquare) buttonClasses.push("button--hover-square");
    return (
       <button
          onClick={(e) => {
