@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Logo from "common/UI/Logo/Logo";
 import "./Sidebar.scss";
 import Navbar from "common/Navigation/Navbar/Navbar";
@@ -19,4 +19,4 @@ const Sidebar = () => {
    );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

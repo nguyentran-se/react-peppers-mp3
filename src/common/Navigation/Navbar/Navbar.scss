@@ -10,6 +10,9 @@
 
          transition: all 0.1s linear;
          user-select: none;
+         & i {
+            margin-right: 10px;
+         }
          &:hover,
          &:active {
             color: var(--cl-hover-nav);

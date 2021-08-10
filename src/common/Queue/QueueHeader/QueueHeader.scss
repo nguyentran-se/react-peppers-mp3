@@ -1,0 +1,51 @@
+.queue-header {
+   &__wrapper {
+      // position: fixed;
+      height: 70px;
+      padding: 14px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      & button {
+         margin-left: 6px;
+         width: 32px;
+         height: 32px;
+         &:nth-child(2) {
+            background-color: var(--cl-primary);
+         }
+      }
+   }
+   &__options {
+      padding: 3px;
+
+      display: flex;
+      align-items: center;
+
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+
+      border-radius: 20px;
+      background-color: var(--bg-alpha);
+      flex: 1;
+   }
+   &__option {
+      padding: 5px 0px;
+      cursor: pointer;
+      text-align: center;
+      user-select: none;
+      transition: all 0.2s linear;
+      flex-grow: 1;
+      &:first-child {
+         background-color: #6a6475;
+         border-radius: 999px;
+         font-weight: 600;
+      }
+      &:nth-child(2) {
+         color: #dadada;
+         &:hover {
+            color: #fff;
+         }
+      }
+   }
+}

@@ -1,0 +1,16 @@
+.queue-list {
+   height: calc(100% - 70px);
+   overflow: auto;
+   &::-webkit-scrollbar {
+      width: 4px;
+      background-color: var(--bg-main);
+   }
+   &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--bg-scroll-thumb);
+   }
+   &__wrapper {
+      height: 100%;
+      padding: 0 8px;
+   }
+}

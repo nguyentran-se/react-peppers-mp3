@@ -25,7 +25,7 @@
 .icon {
    @include icon-size(24px, 24px, 24px);
    color: var(--cl-text-nav);
-   margin-right: 10px;
+   // margin-right: 10px;
    border-radius: 4px;
 }
 .icon.icon--header-nav {

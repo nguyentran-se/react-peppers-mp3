@@ -1,0 +1,22 @@
+.queue {
+   position: fixed;
+   right: 0;
+   top: 0;
+   bottom: 90px;
+   z-index: 999;
+   width: 320px;
+   background-color: var(--bg-queue);
+   transition: all 0.4s linear;
+   &-enter {
+      transform: translateX(100%);
+   }
+   &-enter-active {
+      transform: translateX(0);
+   }
+   &-exit {
+      transform: translateX(0);
+   }
+   &-exit-active {
+      transform: translateX(100%);
+   }
+}

@@ -4,7 +4,7 @@ import "./Player.scss";
 import PlayerActions from "./PlayerActions/PlayerActions";
 import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerSong from "./PlayerSong/PlayerSong";
-const Player = () => {
+const Player = ({ clicked }) => {
    return (
       <div className="player">
          <div className="player-wrapper">
@@ -13,7 +13,7 @@ const Player = () => {
                <PlayerControls />
                <ProgressBar hasTime />
             </div>
-            <PlayerActions />
+            <PlayerActions clicked={clicked} />
          </div>
       </div>
    );

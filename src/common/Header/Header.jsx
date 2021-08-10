@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./Header.scss";
 import HeaderLeft from "./HeaderLeft/HeaderLeft";
 import Toolbar from "./Toolbar/Toolbar";
@@ -13,4 +13,4 @@ const Header = () => {
    );
 };
 
-export default Header;
+export default memo(Header);

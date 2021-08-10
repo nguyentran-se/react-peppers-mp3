@@ -107,3 +107,8 @@ return <child />;
 -  when action-pop:
    if location.key === undefined. disable back
    if(locationKeys[lastItem] === presentKeyOfPage) disabled forward
+
+## QUESTION: Case lạ về re-render
+
+-  các child <Component> đều re-render. Thằng `{prop.children}` thì ko re-render???
+-  Như trong case Home hay Cate đều ko re-render

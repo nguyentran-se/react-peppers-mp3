@@ -22,7 +22,7 @@
    width: 30px;
    height: 30px;
    border-radius: 50%;
-   transition: background-color 0.3s linear;
+   transition: background-color 0.2s linear;
 
    &:hover {
       background-color: var(--cl-border-primary);
@@ -42,6 +42,22 @@
 
    &:hover {
       background-color: hsla(0, 0%, 100%, 0.2);
+   }
+}
+.button--hover-circle {
+   @extend .button--hover;
+   background-color: var(--bg-alpha);
+   &:hover {
+      filter: brightness(0.9);
+      background-color: var(--bg-alpha);
+   }
+}
+.button--hover-no-shape {
+   @extend .button--hover;
+   border-radius: unset;
+   &:hover {
+      background-color: unset;
+      filter: brightness(0.9);
    }
 }
 

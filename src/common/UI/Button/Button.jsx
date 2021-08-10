@@ -7,6 +7,9 @@ const propTypes = {
    icon: PropTypes.string,
    custom: PropTypes.string,
    disabled: PropTypes.bool,
+   hover: PropTypes.bool,
+   hoverSquare: PropTypes.bool,
+   hoverCircle: PropTypes.bool,
 };
 
 const Button = ({
@@ -17,6 +20,8 @@ const Button = ({
    children,
    hover,
    hoverSquare,
+   hoverCircle,
+   hoverNoShape,
 }) => {
    const buttonClasses = ["button"];
    if (custom) buttonClasses.push(custom);
@@ -24,6 +29,8 @@ const Button = ({
    if (disabled) buttonClasses.push("disabled");
    if (hover) buttonClasses.push("button--hover");
    if (hoverSquare) buttonClasses.push("button--hover-square");
+   if (hoverCircle) buttonClasses.push("button--hover-circle");
+   if (hoverNoShape) buttonClasses.push("button--hover-no-shape");
    return (
       <button
          onClick={(e) => {
