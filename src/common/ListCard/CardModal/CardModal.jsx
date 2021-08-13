@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./CardModal.scss";
 import Button from "common/UI/Button/Button";
-const CardModal = ({ onHover }) => {
+const CardModal = ({ onHover, children, defaultButton = true }) => {
    const nodeRef = useRef(null);
    return (
       <CSSTransition
@@ -15,13 +15,18 @@ const CardModal = ({ onHover }) => {
          <div ref={nodeRef} className="card-modal">
             <div className="card-modal__backdrop"></div>
             <div className="card-modal__control">
-               <Button icon="ic-like" custom="button--card" hover />
-               <Button
-                  icon="action-play ic-svg-play-circle"
-                  custom="button--card"
-                  hover
-               />
-               <Button icon="ic-more" custom="button--card" hover />
+               {defaultButton && (
+                  <>
+                     <Button icon="ic-like" custom="button--card" hover />
+                     <Button
+                        icon="action-play ic-svg-play-circle"
+                        custom="button--card"
+                        hover
+                     />
+                     <Button icon="ic-more" custom="button--card" hover />
+                  </>
+               )}
+               {children}
             </div>
          </div>
       </CSSTransition>

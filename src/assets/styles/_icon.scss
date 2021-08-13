@@ -46,6 +46,10 @@
    @extend .icon;
    @include icon-size(18px, 18px, 18px);
 }
+.icon--mini-size {
+   @extend .icon;
+   @include icon-size(14px, 14px, 14px);
+}
 .icon.action-play {
    width: 45px;
    height: 45px;

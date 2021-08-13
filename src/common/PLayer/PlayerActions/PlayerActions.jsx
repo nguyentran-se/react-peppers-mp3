@@ -2,7 +2,7 @@ import ProgressBar from "common/ProgressBar/ProgressBar";
 import Button from "common/UI/Button/Button";
 import React from "react";
 import "./PlayerActions.scss";
-const PlayerActions = ({ clicked }) => {
+const PlayerActions = ({ clicked, toggleQueue }) => {
    return (
       <div className="player-actions">
          <Button icon="ic-mv" hover />
@@ -13,7 +13,12 @@ const PlayerActions = ({ clicked }) => {
          </div>
          <Button icon="ic-scale-1" hover />
          <div></div>
-         <Button icon="ic-list-music" hoverSquare clicked={clicked} />
+         <Button
+            icon="ic-list-music"
+            hoverSquare
+            clicked={clicked}
+            activeSquare={toggleQueue}
+         />
       </div>
    );
 };

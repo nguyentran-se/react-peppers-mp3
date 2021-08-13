@@ -39,6 +39,19 @@
       @include fade-effect(visible, 1);
    }
 }
+.card-img {
+   position: relative;
+   height: 0;
+   padding-bottom: 100%;
+   overflow: hidden;
+   & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      transition: all 0.3s linear;
+   }
+}
 
 .card-modal--hover {
    &-enter {

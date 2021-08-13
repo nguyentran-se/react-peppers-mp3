@@ -1,0 +1,15 @@
+.playlist-container {
+   margin-top: 35px;
+}
+.playlist {
+   &-main {
+      display: flex;
+   }
+   &-content {
+      flex: 1;
+      &__description {
+         font-size: 14px;
+         padding-bottom: 10px;
+      }
+   }
+}

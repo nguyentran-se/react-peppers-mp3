@@ -5,9 +5,9 @@ import Player from "common/PLayer/Player";
 import "./PublicLayout.scss";
 import Queue from "common/Queue/Queue";
 const PublicLayout = (props) => {
-   const [openQueue, setOpenQueue] = useState(false);
+   const [toggleQueue, setToogleQueue] = useState(false);
    const clickedHandler = () => {
-      setOpenQueue((prevOpen) => !prevOpen);
+      setToogleQueue((prevOpen) => !prevOpen);
    };
    return (
       <div className="layout">
@@ -18,10 +18,10 @@ const PublicLayout = (props) => {
             <div className="layout-right">
                <Header />
                <main>{props.children}</main>
-               <Queue openQueue={openQueue} />
+               <Queue toggleQueue={toggleQueue} />
             </div>
          </div>
-         <Player clicked={clickedHandler} />
+         <Player clicked={clickedHandler} toggleQueue={toggleQueue} />
       </div>
    );
 };

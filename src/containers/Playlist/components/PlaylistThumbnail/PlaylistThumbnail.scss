@@ -1,0 +1,16 @@
+.playlist-img {
+   width: 300px;
+   height: 300px !important;
+   position: relative;
+   padding-bottom: 0 !important;
+   margin-right: 30px;
+   border-radius: 8px;
+   & img {
+      border-radius: inherit;
+      height: 100%;
+   }
+   & button {
+      width: 45px;
+      height: 45px;
+   }
+}

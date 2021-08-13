@@ -3,13 +3,13 @@ import { CSSTransition } from "react-transition-group";
 import "./Queue.scss";
 import QueueHeader from "./QueueHeader/QueueHeader";
 import QueueList from "./QueueList/QueueList";
-const Queue = ({ openQueue }) => {
+const Queue = ({ toggleQueue }) => {
    const nodeRef = useRef(null);
    return (
       <CSSTransition
          nodeRef={nodeRef}
          timeout={400}
-         in={openQueue}
+         in={toggleQueue}
          mountOnEnter
          unmountOnExit
          classNames="queue">

@@ -4,7 +4,7 @@ import "./Player.scss";
 import PlayerActions from "./PlayerActions/PlayerActions";
 import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerSong from "./PlayerSong/PlayerSong";
-const Player = ({ clicked }) => {
+const Player = ({ clicked, toggleQueue }) => {
    return (
       <div className="player">
          <div className="player-wrapper">
@@ -13,7 +13,7 @@ const Player = ({ clicked }) => {
                <PlayerControls />
                <ProgressBar hasTime />
             </div>
-            <PlayerActions clicked={clicked} />
+            <PlayerActions clicked={clicked} toggleQueue={toggleQueue} />
          </div>
       </div>
    );

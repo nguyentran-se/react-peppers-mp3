@@ -1,0 +1,35 @@
+.playlist-songs {
+   &__list {
+      display: flex;
+      flex-flow: column;
+   }
+   &__header {
+      display: flex;
+      width: calc(100% - 44px);
+      padding: 10px 0;
+      margin-left: 34px;
+      & span {
+         font-size: 12px;
+         font-weight: 500;
+         line-height: 18px;
+         text-transform: uppercase;
+         color: var(--text-secondary);
+         user-select: none;
+      }
+      & span:first-child {
+         flex: 0 0 40%;
+      }
+      & span:nth-child(2) {
+         flex: 0 0 20%;
+      }
+      & span:nth-child(3) {
+         flex: 0 0 16%;
+      }
+      & span:nth-child(4) {
+         // flex: 0 0 24%;
+         // padding-left: 70px;
+         margin-right: 38px;
+         margin-left: auto;
+      }
+   }
+}

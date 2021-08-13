@@ -7,19 +7,19 @@
    &-wrapper a {
       cursor: pointer;
    }
-   &-img {
-      position: relative;
-      height: 0;
-      padding-bottom: 100%;
-      overflow: hidden;
-      & img {
-         position: absolute;
-         top: 0;
-         left: 0;
-         height: 100%;
-         transition: all 0.3s linear;
-      }
-   }
+   // &-img {
+   //    position: relative;
+   //    height: 0;
+   //    padding-bottom: 100%;
+   //    overflow: hidden;
+   //    & img {
+   //       position: absolute;
+   //       top: 0;
+   //       left: 0;
+   //       height: 100%;
+   //       transition: all 0.3s linear;
+   //    }
+   // }
    &-title {
       font-size: 15px;
       font-weight: 700;

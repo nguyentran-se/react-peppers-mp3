@@ -3,7 +3,7 @@ import React from "react";
 import "./Home.scss";
 import Banner from "./components/Banner/Banner";
 const Home = (props) => {
-   console.log("HOME");
+   // console.log("HOME");
    return (
       <div className="home">
          <div className="container home-container">

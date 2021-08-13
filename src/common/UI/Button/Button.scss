@@ -44,6 +44,12 @@
       background-color: hsla(0, 0%, 100%, 0.2);
    }
 }
+.button--hover-square.button--active-square {
+   background-color: var(--cl-primary);
+   &:hover {
+      filter: brightness(0.9);
+   }
+}
 .button--hover-circle {
    @extend .button--hover;
    background-color: var(--bg-alpha);
