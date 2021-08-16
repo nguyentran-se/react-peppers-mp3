@@ -1,5 +1,6 @@
 import Button from "common/UI/Button/Button";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./QueueItem.scss";
 const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
    let transformedArtist;
@@ -8,12 +9,12 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
    if (artists) {
       let length = artists.length - 1;
       transformedArtist = artists.map((art, index) => (
-         <a
-            href={`#${art.id}`}
+         <Link
+            to={`/artist/${art.id}`}
             key={art.id}
             className="queue-song__artist artist-hover">
             {length === index ? art.name : `${art.name}, `}
-         </a>
+         </Link>
       ));
    }
    return (
@@ -27,11 +28,6 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
                </div>
                <div className="queue-song">
                   <div className="queue-song__name line-clamp--1">{name}</div>
-                  {/* <a
-                     href="#artist"
-                     className="queue-song__artist artist-hover line-clamp--1">
-                     {artist}
-                  </a> */}
                   <div className="queue-song__artists line-clamp--1">
                      {transformedArtist}
                   </div>

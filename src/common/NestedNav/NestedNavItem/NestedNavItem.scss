@@ -1,0 +1,26 @@
+.nested-nav__item {
+   cursor: pointer;
+   text-align: center;
+   user-select: none;
+   transition: all 0.2s linear;
+   flex-grow: 1;
+   color: #dadada;
+   display: inline-block;
+   min-width: 120px;
+
+   &:hover {
+      color: #fff;
+   }
+   & a {
+      padding: 4px 25px;
+      display: inline-block;
+   }
+   & .active {
+      background-color: #6a6475;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #fff;
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 7/100);
+      min-width: 120px;
+   }
+}

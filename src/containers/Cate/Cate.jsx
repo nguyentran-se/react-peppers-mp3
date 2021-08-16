@@ -41,15 +41,16 @@ const Cate = (props) => {
             limit: 5,
             offset: 0,
          };
-         const requestGetPlaylists = () => {
+         const requestGetPlaylists = async () => {
             try {
-               listCategory.items.map(async (item) => {
-                  const { playlists } = await musicApi.getPlaylistsOfCategory(
-                     item.id,
-                     params
-                  );
-                  // console.log(playlists);
-                  mountedRef.current &&
+               // solution 2:
+               const requests = listCategory.items.map(async (item) => {
+                  //return array of promises
+                  return musicApi.getPlaylistsOfCategory(item.id, params);
+               });
+               // const results = await Promise.all(requests); chậm hơn
+               Promise.all(requests).then((results) =>
+                  results.map(({ playlists }) =>
                      setPlaylists((prevPlaylists) => [
                         ...prevPlaylists,
                         {
@@ -57,8 +58,9 @@ const Cate = (props) => {
                            next: playlists.next,
                            previous: playlists.previous,
                         },
-                     ]);
-               });
+                     ])
+                  )
+               );
             } catch (error) {
                console.log(error);
             }

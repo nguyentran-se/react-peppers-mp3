@@ -33,10 +33,13 @@ const Playlist = () => {
          <div className="container playlist-container">
             <div className="playlist-main">
                <div className="playlist-info">
-                  <PlaylistThumbnail image={playlist?.images[0]} />
-                  <div className="playlist-info__name">{playlist?.name}</div>
-                  <div className="playlist-info__follower">
-                     {playlist?.followers.total}
+                  <PlaylistThumbnail image={playlist?.images[0].url} />
+                  <div className="playlist-info__song">
+                     <h3 className="playlist-info__name">{playlist?.name}</h3>
+                     <h5 className="playlist-info__follower">
+                        {playlist?.followers.total.toLocaleString("vi-VN")}{" "}
+                        người yêu thích
+                     </h5>
                   </div>
                </div>
                <div className="playlist-content">

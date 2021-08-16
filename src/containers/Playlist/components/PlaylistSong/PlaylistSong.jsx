@@ -2,6 +2,10 @@ import QueueItem from "common/Queue/QueueItem/QueueItem";
 import React from "react";
 import Button from "common/UI/Button/Button";
 import "./PlaylistSong.scss";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/vi";
+import { Link } from "react-router-dom";
 const PlaylistSong = ({
    src,
    name,
@@ -11,6 +15,10 @@ const PlaylistSong = ({
    ago,
    time,
 }) => {
+   dayjs.extend(relativeTime);
+   dayjs.locale("vi");
+   // console.log(dayjs(ago).fromNow());
+   // console.log(Math.ceil(dayjs().diff(dayjs(ago), "hours") / 24));
    return (
       <div className="playlist-song">
          <div className="checkbox">
@@ -23,12 +31,14 @@ const PlaylistSong = ({
             custom={"playlist-song__item"}
             buttons={
                <>
-                  <a
-                     href={`#${albumId}`}
+                  <Link
+                     to={`/album/${albumId}`}
                      className="playlist-song__album artist-hover line-clamp--2">
                      {albumName}
-                  </a>
-                  <div className="playlist-song__day">{ago}</div>
+                  </Link>
+                  <div className="playlist-song__day">
+                     {dayjs(ago).fromNow()}
+                  </div>
                   <div className="playlist-song__buttons">
                      <Button icon="ic-karaoke" hover />
                      <Button icon="ic-like" hover />

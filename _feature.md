@@ -112,3 +112,71 @@ return <child />;
 
 -  các child <Component> đều re-render. Thằng `{prop.children}` thì ko re-render???
 -  Như trong case Home hay Cate đều ko re-render
+
+## dayjs lib
+
+-  func xử lí day như from(). tính toán liên quan tới day
+
+## call api in `map` loop ?
+
+-  error:
+
+```js
+listCategory.items.map(async (item) => {
+  const { playlists } = await musicApi.getPlaylistsOfCategory(
+     item.id,
+     params
+  );
+  //do something...
+}
+```
+
+> explain: Việc call api trong map nó sẽ ko await (It will not pause its loop for an await) [explaining detail about this case](https://stackoverflow.com/questions/64411060/execute-async-request-inside-map-loop-in-correct-order) -> Tham khảo 2 solution ở dưới
+
+-  xem các cách call trong /Cate.jsx
+
+```js
+//solution 1: for loop -> sequentially
+for (const item of listCategory.items) {
+   const { playlists } = await musicApi.getPlaylistsOfCategory(item.id, params);
+   mountedRef.current &&
+      setPlaylists((prevPlaylists) => [
+         ...prevPlaylists,
+         {
+            items: playlists.items,
+            next: playlists.next,
+            previous: playlists.previous,
+         },
+      ]);
+}
+```
+
+```js
+//solution 2: Promise.all() -> paralell
+// Cách này nhanh nhất <= 5.03 ms.//
+const requests = listCategory.items.map(async (item) => {
+   //return array of promises
+   return musicApi.getPlaylistsOfCategory(item.id, params);
+});
+Promise.all(requests).then((results) =>
+   results.map(({ playlists }) =>
+      setPlaylists((prevPlaylists) => [
+         ...prevPlaylists,
+         {
+            items: playlists.items,
+            next: playlists.next,
+            previous: playlists.previous,
+         },
+      ])
+   )
+);
+```
+
+## Promise.all([promise1,promise2]) -> đợi có kết quả hết rồi show
+
+-  case 1: Ví dụ trong loop có call api1 và api2 thì Promise.all sẽ call hết api1(có thể có nhiều element của api1) rồi mới tới api2
+
+## await object Promise vs await func(return object Promise)
+
+-  vì khi await object thì các timer của các object đã chạy đồng thời trước đó -> concurrent
+-  Còn khi await func thì ngay tại thời điểm await thì timer mới bắt đầu chạy, nên sẽ sequentially

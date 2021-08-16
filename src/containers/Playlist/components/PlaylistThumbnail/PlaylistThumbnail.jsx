@@ -24,7 +24,7 @@ const PlaylistThumbnail = ({ image }) => {
                hover
             />
          </CardModal>
-         <img src={image?.url} alt="" />
+         <img src={image} alt="" />
       </div>
    );
 };

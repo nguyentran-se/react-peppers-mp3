@@ -2,7 +2,7 @@ import React from "react";
 import "./QueueList.scss";
 import srcImg from "assets/images/test.jpg";
 import QueueItem from "../QueueItem/QueueItem";
-const queueList = [
+const queueListTest = [
    { src: srcImg, songName: "test1", songArtist: "artist1" },
    { src: srcImg, songName: "test1", songArtist: "artist1" },
    { src: srcImg, songName: "test1", songArtist: "artist1" },
@@ -17,7 +17,7 @@ const queueList = [
    { src: srcImg, songName: "test1", songArtist: "artist1" },
    { src: srcImg, songName: "test1", songArtist: "artist1" },
 ];
-const QueueList = () => {
+const QueueList = ({ queueList = queueListTest }) => {
    let transformedQueue = queueList.map((item, index) => (
       <QueueItem
          src={item.src}

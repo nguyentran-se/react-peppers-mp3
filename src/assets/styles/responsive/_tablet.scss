@@ -81,6 +81,16 @@
       }
    }
 }
+@media screen and (max-width: 1200px) {
+   .nested-nav {
+      &__item {
+         min-width: fit-content !important;
+         & a {
+            min-width: fit-content !important;
+         }
+      }
+   }
+}
 @media screen and (max-width: 1290px) {
    .playlist {
       &-main {
@@ -88,6 +98,12 @@
          & .playlist-img {
             width: 200px !important;
             height: 200px !important;
+         }
+      }
+      &-info {
+         display: flex;
+         &__song {
+            text-align: left !important;
          }
       }
    }

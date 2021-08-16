@@ -16,8 +16,8 @@
       align-items: center;
       justify-content: space-between;
 
-      background-color: inherit;
       z-index: 100;
+      transition: all 0.2 linear;
       // box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
    }
 }

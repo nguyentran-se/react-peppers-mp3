@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "camelize": "^1.0.0",
+    "dayjs": "^1.10.6",
+    "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

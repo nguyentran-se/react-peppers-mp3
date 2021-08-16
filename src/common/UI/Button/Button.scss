@@ -6,6 +6,18 @@
    cursor: pointer;
    padding: 0;
 }
+.button.button--normal {
+   color: #fff;
+   padding: 10px 20px;
+   border-radius: 20px;
+   & i {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      color: #fff;
+      margin-right: 4px;
+   }
+}
 .button.disabled {
    opacity: 0.3;
    cursor: none;

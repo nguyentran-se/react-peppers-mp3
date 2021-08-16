@@ -40,9 +40,6 @@ const Button = ({
             clicked && clicked();
          }}
          className={buttonClasses.join(" ")}>
-         {/* className={`button ${custom ?? ""} ${disabled ? "disabled" : ""} ${
-            icon && "button--flex"
-         }`}> */}
          {icon && <i className={`icon ${icon}`}></i>}
          {children}
       </button>
