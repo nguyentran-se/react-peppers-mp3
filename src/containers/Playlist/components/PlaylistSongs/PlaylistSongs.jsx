@@ -8,19 +8,21 @@ const PlaylistSongs = ({ songs, customInstance }) => {
       // console.log(songs[0].track.artists);
       transformedSongs = songs.map((s) => {
          let song;
-         if (s.track) song = s.track;
+         if (s.track || s.track === null) song = s.track;
          else song = s;
          return (
-            <PlaylistSong
-               src={song?.album.images[0].url}
-               name={song?.name}
-               artists={song?.artists}
-               albumName={song?.album.name}
-               albumId={song?.album.id}
-               ago={s.addedAt || song?.album.releaseDate}
-               time={song?.durationMs}
-               key={song?.id}
-            />
+            song !== null && (
+               <PlaylistSong
+                  src={song?.album?.images[0].url}
+                  name={song?.name}
+                  artists={song?.artists}
+                  albumName={song?.album?.name}
+                  albumId={song?.album?.id}
+                  ago={s.addedAt || song?.album.releaseDate}
+                  time={song?.durationMs}
+                  key={song?.id}
+               />
+            )
          );
       });
    }

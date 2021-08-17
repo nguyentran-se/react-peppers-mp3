@@ -14,6 +14,9 @@ const musicApi = {
       const url = `/playlists/${playlistId}`;
       return axiosClient.get(url, { params });
    },
+   getNext: (url) => {
+      return axiosClient.get(url);
+   },
 };
 
 export default musicApi;

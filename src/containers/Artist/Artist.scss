@@ -65,13 +65,13 @@
 }
 .artist-section {
    margin-top: 30px;
-   overflow-x: auto;
-   &::-webkit-scrollbar {
-      background-color: var(--bg-main);
-      height: 4px;
-   }
-   &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: var(--bg-scroll-thumb);
-   }
+   // overflow-x: auto;
+   // &::-webkit-scrollbar {
+   //    background-color: var(--bg-main);
+   //    height: 4px;
+   // }
+   // &::-webkit-scrollbar-thumb {
+   //    border-radius: 10px;
+   //    background-color: var(--bg-scroll-thumb);
+   // }
 }

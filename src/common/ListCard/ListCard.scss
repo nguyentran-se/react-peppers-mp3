@@ -2,4 +2,13 @@
    display: flex;
    align-items: stretch;
    margin: 0 -15px;
+   overflow-x: auto;
+   &::-webkit-scrollbar {
+      background-color: var(--bg-main);
+      height: 4px;
+   }
+   &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--bg-scroll-thumb);
+   }
 }

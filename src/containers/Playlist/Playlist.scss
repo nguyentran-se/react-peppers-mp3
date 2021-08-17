@@ -1,9 +1,10 @@
 .playlist-container {
-   margin-top: 35px;
+   padding-top: 35px;
 }
 .playlist {
    &-main {
       display: flex;
+      user-select: none;
    }
    &-content {
       flex: 1;

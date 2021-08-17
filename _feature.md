@@ -180,3 +180,14 @@ Promise.all(requests).then((results) =>
 
 -  vì khi await object thì các timer của các object đã chạy đồng thời trước đó -> concurrent
 -  Còn khi await func thì ngay tại thời điểm await thì timer mới bắt đầu chạy, nên sẽ sequentially
+
+## client - scroll height ...
+
+[detail about client/scroll height ...](https://javascript.info/size-and-scroll-window#width-height-of-the-document)
+
+-  NOTE: thằng nào có scroll thì thằng đấy mới có scrollTop
+-  `scrollHeight = scrollTop + clientHeight`
+
+## build infinite scroll
+
+inital loadMore = true -> callApi at first -> scroll(event) to end and hasNextLink -> setLoadMore=true -> call api next, after done setLoadmore=false -> if next = null, can not set loadMore in step 3 -> cancel call api
