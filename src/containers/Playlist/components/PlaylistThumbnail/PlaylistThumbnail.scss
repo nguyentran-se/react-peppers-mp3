@@ -1,6 +1,4 @@
-.playlist-img {
-   width: 300px;
-   height: 300px !important;
+.card-img--common {
    position: relative;
    padding-bottom: 0 !important;
    margin-right: 30px;
@@ -13,4 +11,8 @@
       width: 45px;
       height: 45px;
    }
+}
+.playlist-img {
+   width: 300px;
+   height: 300px !important;
 }

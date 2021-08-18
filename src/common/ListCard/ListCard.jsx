@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card/Card";
 import "./ListCard.scss";
 
-const ListCard = ({ cards, cardShape = "square" }) => {
+const ListCard = ({ cards, cardShape = "square", oneButton }) => {
    // console.log(cards);
    let transformedCards;
    if (cards) {
@@ -16,6 +16,8 @@ const ListCard = ({ cards, cardShape = "square" }) => {
             cardShape={cardShape}
             cardType={c.type}
             key={c.id}
+            cardFollowers={c?.followers?.total}
+            oneButton={oneButton}
          />
       ));
    }

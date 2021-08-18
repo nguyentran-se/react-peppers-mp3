@@ -8,12 +8,13 @@
    display: inline-block;
    min-width: 120px;
 
-   &:hover {
-      color: #fff;
-   }
    & a {
       padding: 4px 25px;
       display: inline-block;
+      color: #dadada;
+   }
+   &:hover a {
+      color: #fff;
    }
    & .active {
       background-color: #6a6475;

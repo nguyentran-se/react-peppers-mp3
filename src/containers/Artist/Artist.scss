@@ -1,7 +1,7 @@
 .artist {
    position: relative;
    &-container {
-      padding-bottom: 100px;
+      padding-bottom: 50px;
    }
    &-bg {
       content: "";
@@ -32,6 +32,16 @@
          font-weight: 700;
          text-transform: capitalize;
       }
+      & .list-category {
+         margin-top: 30px;
+         & .card-title,
+         .card-description {
+            text-align: center;
+         }
+         & .card-description {
+            margin-bottom: 10px;
+         }
+      }
    }
 }
 .artist-container {
@@ -44,7 +54,7 @@
 
    &__wrapper {
       display: flex;
-      & > .card-img {
+      & > .artist-img {
          flex-shrink: 0;
          width: 230px;
          height: 230px !important;
@@ -65,13 +75,4 @@
 }
 .artist-section {
    margin-top: 30px;
-   // overflow-x: auto;
-   // &::-webkit-scrollbar {
-   //    background-color: var(--bg-main);
-   //    height: 4px;
-   // }
-   // &::-webkit-scrollbar-thumb {
-   //    border-radius: 10px;
-   //    background-color: var(--bg-scroll-thumb);
-   // }
 }

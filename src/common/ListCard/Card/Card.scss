@@ -64,3 +64,11 @@
       border-radius: 8px;
    }
 }
+
+.card.card--circle {
+   flex: 0 0 20%;
+   & .card-img {
+      padding-bottom: 100%;
+      border-radius: 50%;
+   }
+}

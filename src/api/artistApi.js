@@ -12,6 +12,10 @@ const artistApi = {
       const url = `artists/${artistId}/albums`;
       return axiosClient.get(url, { params });
    },
+   getArtistsRelatedArtist: (artistId, params) => {
+      const url = `artists/${artistId}/related-artists`;
+      return axiosClient.get(url, { params });
+   },
 };
 
 export default artistApi;

@@ -33,7 +33,10 @@ const Playlist = () => {
          <div className="container playlist-container">
             <div className="playlist-main">
                <div className="playlist-info">
-                  <PlaylistThumbnail image={playlist?.images[0].url} />
+                  <PlaylistThumbnail
+                     image={playlist?.images[0].url}
+                     custom={"playlist-img"}
+                  />
                   <div className="playlist-info__song">
                      <h3 className="playlist-info__name">{playlist?.name}</h3>
                      <h5 className="playlist-info__follower">

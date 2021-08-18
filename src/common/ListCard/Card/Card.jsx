@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CardModal from "../CardModal/CardModal";
 import "./Card.scss";
+import { numberFormatter } from "helper";
 
 const Card = ({
    cardImage,
@@ -11,6 +12,8 @@ const Card = ({
    cardDescription,
    cardShape,
    cardType,
+   cardFollowers,
+   oneButton,
 }) => {
    const [onHover, setOnHover] = useState(false);
 
@@ -30,7 +33,7 @@ const Card = ({
                   className="card-img"
                   onMouseEnter={onMouseOverHandler}
                   onMouseLeave={onMouseOutHandler}>
-                  <CardModal onHover={onHover} />
+                  <CardModal onHover={onHover} oneButton={oneButton} />
                   <img src={cardImage} alt="card song" />
                </div>
                <h4 className="card-title line-clamp--1">{cardName}</h4>
@@ -41,7 +44,9 @@ const Card = ({
                </h5>
             ) : (
                <h5 className="card-description line-clamp--2 ">
-                  {cardDescription}
+                  {cardDescription ||
+                     (cardFollowers &&
+                        `${numberFormatter(cardFollowers)} Followers`)}
                </h5>
             )}
          </div>

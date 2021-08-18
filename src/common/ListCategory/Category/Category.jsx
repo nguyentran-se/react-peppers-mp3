@@ -10,6 +10,7 @@ const Category = ({
    cards,
    cardShape,
    isBanner,
+   oneButton,
 }) => {
    return (
       <>
@@ -31,7 +32,11 @@ const Category = ({
                      </div>
                   </div>
                )}
-               <ListCard cards={cards} cardShape={cardShape} />
+               <ListCard
+                  cards={cards}
+                  cardShape={cardShape}
+                  oneButton={oneButton}
+               />
             </div>
          )}
       </>

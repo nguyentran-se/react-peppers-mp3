@@ -1,5 +1,6 @@
 import artistApi from "api/artistApi";
-import Category from "common/ListCategory/Category/Category";
+// import Category from "common/ListCategory/Category/Category";
+import ListCategory from "common/ListCategory/ListCategory";
 import NestedNav from "common/NestedNav/NestedNav";
 import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
 import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
@@ -15,6 +16,7 @@ const Artist = () => {
    const [artist, setArtist] = useState();
    const [topTracks, setTopTracks] = useState([]);
    const [artistAlbums, setArtistAlbums] = useState();
+   const [relatedArtist, setRelatedArtist] = useState([]);
    // const slugRef = useRef(slug);
    const nestedNavList = [
       { name: "TỔNG QUAN", href: matchPath },
@@ -50,18 +52,23 @@ const Artist = () => {
                topTracksParams
             );
             const artistAlbums = artistApi.getArtistAlbums(slug);
-            Promise.all([artist, artistTopTracks, artistAlbums]).then(
-               (results) => {
-                  console.log(results);
-                  setArtist(results[0]);
-                  setTopTracks(results[1].tracks);
-                  setArtistAlbums({
-                     items: results[2].items,
-                     previous: results[2].previous,
-                     next: results[2].next,
-                  });
-               }
-            );
+            const relatedArtist = artistApi.getArtistsRelatedArtist(slug);
+            Promise.all([
+               artist,
+               artistTopTracks,
+               artistAlbums,
+               relatedArtist,
+            ]).then((results) => {
+               console.log(results[3].artists);
+               setArtist(results[0]);
+               setTopTracks(results[1].tracks);
+               setArtistAlbums({
+                  items: results[2].items,
+                  previous: results[2].previous,
+                  next: results[2].next,
+               });
+               setRelatedArtist(results[3].artists);
+            });
          } catch (error) {
             console.log(error);
          }
@@ -71,8 +78,33 @@ const Artist = () => {
 
    // console.log(artist);
    // console.log(topTracks);
-   console.log(artistSingle);
-   console.log(artistAlbums);
+   // console.log(artistSingle);
+   // console.log(artistAlbums);
+   const listSection = [
+      {
+         name: "Single",
+         href: `${matchPath}/discography/single`,
+         cards: artistSingle,
+         sectionClass: "artist-single",
+         id: 1,
+      },
+      {
+         name: "Album",
+         href: `${matchPath}/discography/album`,
+         cards: artistAlbum,
+         sectionClass: "artist-album",
+         id: 2,
+      },
+      {
+         name: "Bạn có thể thích",
+         href: null,
+         cards: relatedArtist,
+         sectionClass: "artist-artists",
+         shape: "circle",
+         oneButton: true,
+         id: 3,
+      },
+   ];
    return (
       <div className="artist">
          <div
@@ -95,6 +127,7 @@ const Artist = () => {
                   <div className="artist-outstanding__wrapper">
                      <PlaylistThumbnail
                         image={topTracks?.[0]?.album.images[0].url}
+                        custom={"artist-img"}
                      />
                      <PlaylistSongs
                         songs={topTracks}
@@ -105,7 +138,7 @@ const Artist = () => {
                      />
                   </div>
                </div>
-               <div className="artist-single artist-section">
+               {/* <div className="artist-single artist-section">
                   {artistSingle?.length !== 0 && (
                      <Category
                         categoryName="Single"
@@ -114,15 +147,29 @@ const Artist = () => {
                      />
                   )}
                </div>
+
                <div className="artist-album artist-section">
                   {artistAlbum?.length !== 0 && (
                      <Category
                         categoryName="Album"
-                        categoryHref={`${matchPath}/discography/single`}
+                        categoryHref={`${matchPath}/discography/album`}
                         cards={artistAlbum}
                      />
                   )}
                </div>
+               <div className="artist-artists artist-section">
+                  {relatedArtist?.length !== 0 && (
+                     <Category
+                        categoryName="Bạn có thể thích"
+                        cards={relatedArtist}
+                        cardShape={"circle"}
+                        oneButton
+                     />
+                  )}
+               </div> */}
+               {listSection[0].cards && (
+                  <ListCategory listCategory={listSection} />
+               )}
             </div>
          </div>
       </div>

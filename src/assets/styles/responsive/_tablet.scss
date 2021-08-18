@@ -19,16 +19,17 @@
          }
       }
       // fake card-square
-      & .card.card--square {
+      & .card.card--square,
+      .card.card--circle {
          flex: 0 0 25%;
-         &:nth-child(5) {
-            flex: 0;
-            & .card-title,
-            .card-artist,
-            .card-description {
-               display: none;
-            }
-         }
+         // &:nth-child(5) {
+         //    flex: 0;
+         //    & .card-title,
+         //    .card-artist,
+         //    .card-description {
+         //       display: none;
+         //    }
+         // }
       }
       //config sidebar
       & .sidebar {

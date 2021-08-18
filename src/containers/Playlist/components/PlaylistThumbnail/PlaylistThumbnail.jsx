@@ -3,7 +3,7 @@ import Button from "common/UI/Button/Button";
 import React, { useState } from "react";
 // import srcImg from "assets/images/test.jpg";
 import "./PlaylistThumbnail.scss";
-const PlaylistThumbnail = ({ image }) => {
+const PlaylistThumbnail = ({ image, custom }) => {
    const [onHover, setOnHover] = useState(false);
    const onMouseEnterHandler = () => {
       setOnHover(true);
@@ -14,7 +14,7 @@ const PlaylistThumbnail = ({ image }) => {
    };
    return (
       <div
-         className="card-img playlist-img"
+         className={`card-img card-img--common ${custom ? custom : ""}`}
          onMouseEnter={onMouseEnterHandler}
          onMouseLeave={onMouseLeaveHandler}>
          <CardModal onHover={onHover} defaultButton={false}>
