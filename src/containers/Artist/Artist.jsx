@@ -1,5 +1,4 @@
 import artistApi from "api/artistApi";
-// import Category from "common/ListCategory/Category/Category";
 import ListCategory from "common/ListCategory/ListCategory";
 import NestedNav from "common/NestedNav/NestedNav";
 import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
@@ -28,6 +27,7 @@ const Artist = () => {
       { name: "TIN TỨC", href: matchPath + "/news" },
    ];
    let artistSingle, artistAlbum;
+   //filter artistAlbums from api into single and album
    if (artistAlbums) {
       artistSingle = artistAlbums.items.filter(
          (album) => album.albumType === "single"
@@ -38,10 +38,11 @@ const Artist = () => {
       );
       artistAlbum = uniqBy(artistAlbum, "name");
    }
+   // call api: artist, top-tracks, albums, relatedArtists
    useEffect(() => {
       const layoutRight = document.querySelector(".layout-right");
       layoutRight.scrollTop = 0;
-      const requestGetSepecificArtist = async () => {
+      const requestData = async () => {
          try {
             const topTracksParams = {
                market: "VN",
@@ -59,7 +60,7 @@ const Artist = () => {
                artistAlbums,
                relatedArtist,
             ]).then((results) => {
-               console.log(results[3].artists);
+               console.log(results);
                setArtist(results[0]);
                setTopTracks(results[1].tracks);
                setArtistAlbums({
@@ -73,13 +74,14 @@ const Artist = () => {
             console.log(error);
          }
       };
-      requestGetSepecificArtist();
+      requestData();
    }, [slug]);
 
    // console.log(artist);
    // console.log(topTracks);
    // console.log(artistSingle);
    // console.log(artistAlbums);
+   // render listSection, pass to ListCategory
    const listSection = [
       {
          name: "Single",
@@ -138,35 +140,6 @@ const Artist = () => {
                      />
                   </div>
                </div>
-               {/* <div className="artist-single artist-section">
-                  {artistSingle?.length !== 0 && (
-                     <Category
-                        categoryName="Single"
-                        categoryHref={`${matchPath}/discography/single`}
-                        cards={artistSingle}
-                     />
-                  )}
-               </div>
-
-               <div className="artist-album artist-section">
-                  {artistAlbum?.length !== 0 && (
-                     <Category
-                        categoryName="Album"
-                        categoryHref={`${matchPath}/discography/album`}
-                        cards={artistAlbum}
-                     />
-                  )}
-               </div>
-               <div className="artist-artists artist-section">
-                  {relatedArtist?.length !== 0 && (
-                     <Category
-                        categoryName="Bạn có thể thích"
-                        cards={relatedArtist}
-                        cardShape={"circle"}
-                        oneButton
-                     />
-                  )}
-               </div> */}
                {listSection[0].cards && (
                   <ListCategory listCategory={listSection} />
                )}

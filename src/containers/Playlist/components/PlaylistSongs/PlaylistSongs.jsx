@@ -1,11 +1,12 @@
 import React from "react";
 import PlaylistSong from "../PlaylistSong/PlaylistSong";
 import "./PlaylistSongs.scss";
-const PlaylistSongs = ({ songs, customInstance }) => {
-   // console.log(songs);
+const PlaylistSongs = ({ songs, customInstance, album }) => {
+   console.log(songs);
    let transformedSongs;
    if (songs) {
       // console.log(songs[0].track.artists);
+      // component render ListSong for playlist, album, artist
       transformedSongs = songs.map((s) => {
          let song;
          if (s.track || s.track === null) song = s.track;
@@ -13,12 +14,17 @@ const PlaylistSongs = ({ songs, customInstance }) => {
          return (
             song !== null && (
                <PlaylistSong
-                  src={song?.album?.images[0].url}
+                  src={song?.album?.images[0].url || album.images[0].url}
                   name={song?.name}
                   artists={song?.artists}
-                  albumName={song?.album?.name}
-                  albumId={song?.album?.id}
-                  ago={s.addedAt || song?.album.releaseDate}
+                  albumName={song?.album?.name || album.name}
+                  albumId={song?.album?.id || album.id}
+                  ago={
+                     s.addedAt ||
+                     song?.album?.releaseDate ||
+                     album.releaseDate ||
+                     null
+                  }
                   time={song?.durationMs}
                   key={song?.id}
                />

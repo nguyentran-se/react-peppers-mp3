@@ -103,8 +103,10 @@
       }
       &-info {
          display: flex;
+         position: static !important;
          &__song {
             text-align: left !important;
+            width: 100%;
          }
       }
    }

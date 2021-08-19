@@ -14,8 +14,14 @@ const musicApi = {
       const url = `/playlists/${playlistId}`;
       return axiosClient.get(url, { params });
    },
+
    getNext: (url) => {
       return axiosClient.get(url);
+   },
+
+   getSpecificAlbum: (albumId, params) => {
+      const url = `/albums/${albumId}`;
+      return axiosClient.get(url, { params });
    },
 };
 

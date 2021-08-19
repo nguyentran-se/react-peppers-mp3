@@ -6,6 +6,7 @@ const MyMusic = lazy(() => import("containers/MyMusic/MyMusic"));
 const Cate = lazy(() => import("containers/Cate/Cate"));
 const Playlist = lazy(() => import("containers/Playlist/Playlist"));
 const Artist = lazy(() => import("containers/Artist/Artist"));
+
 const routes = [
    {
       path: "/",
@@ -36,6 +37,12 @@ const routes = [
       exact: false,
       layout: "PublicLayout",
       component: Artist,
+   },
+   {
+      path: "/album/:slug",
+      exact: true,
+      layout: "PublicLayout",
+      component: Playlist,
    },
 ];
 

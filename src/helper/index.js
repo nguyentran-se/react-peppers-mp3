@@ -5,3 +5,4 @@ export {
 } from "./localStorage";
 
 export { numberFormatter } from "./numberFormatter";
+export { msToTime } from "./msToTime";
