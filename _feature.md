@@ -191,3 +191,7 @@ Promise.all(requests).then((results) =>
 ## build infinite scroll
 
 inital loadMore = true -> callApi at first -> scroll(event) to end and hasNextLink -> setLoadMore=true -> call api next, after done setLoadmore=false -> if next = null, can not set loadMore in step 3 -> cancel call api
+
+## sticky position
+
+-  khi scroll thì sẽ cách 1 khoảng top đã set.

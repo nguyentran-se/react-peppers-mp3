@@ -85,21 +85,21 @@ const Artist = () => {
    const listSection = [
       {
          name: "Single",
-         href: `${matchPath}/discography/single`,
+         customHref: `${matchPath}/discography/single`,
          cards: artistSingle,
          sectionClass: "artist-single",
          id: 1,
       },
       {
          name: "Album",
-         href: `${matchPath}/discography/album`,
+         customHref: `${matchPath}/discography/album`,
          cards: artistAlbum,
          sectionClass: "artist-album",
          id: 2,
       },
       {
          name: "Bạn có thể thích",
-         href: null,
+         customHref: null,
          cards: relatedArtist,
          sectionClass: "artist-artists",
          shape: "circle",

@@ -11,7 +11,9 @@ const ListCategory = ({ playlists, listCategory, match }) => {
          <Category
             categoryName={category.name}
             categoryHref={
-               category.href ? category.href : `${match.path}/${category.id}`
+               category.customHref
+                  ? category.customHref
+                  : `${match.path}/${category.id}`
             }
             cards={category.cards || playlists[index]?.items}
             cardShape={category.shape}
