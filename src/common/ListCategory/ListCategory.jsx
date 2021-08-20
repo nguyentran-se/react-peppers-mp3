@@ -10,11 +10,7 @@ const ListCategory = ({ playlists, listCategory, match }) => {
       transformedListCategory = listCategory.map((category, index) => (
          <Category
             categoryName={category.name}
-            categoryHref={
-               category.customHref
-                  ? category.customHref
-                  : `${match.path}/${category.id}`
-            }
+            categoryHref={category.customHref ?? `${match.path}/${category.id}`}
             cards={category.cards || playlists[index]?.items}
             cardShape={category.shape}
             // isBanner={category.isBanner}

@@ -3,10 +3,11 @@ import { lazy } from "react";
 
 const Home = lazy(() => import("containers/Home/Home"));
 const MyMusic = lazy(() => import("containers/MyMusic/MyMusic"));
-const Cate = lazy(() => import("containers/Cate/Cate"));
+const Cates = lazy(() => import("containers/Cates/Cates"));
 const Playlist = lazy(() => import("containers/Playlist/Playlist"));
 const Artist = lazy(() => import("containers/Artist/Artist"));
-
+const Notfound = lazy(() => import("containers/Notfound/Notfound"));
+const Cate = lazy(() => import("containers/Cate/Cate"));
 const routes = [
    {
       path: "/",
@@ -22,6 +23,12 @@ const routes = [
    },
    {
       path: "/categories",
+      exact: true,
+      layout: "PublicLayout",
+      component: Cates,
+   },
+   {
+      path: "/categories/:slug",
       exact: true,
       layout: "PublicLayout",
       component: Cate,
@@ -43,6 +50,12 @@ const routes = [
       exact: true,
       layout: "PublicLayout",
       component: Playlist,
+   },
+   {
+      path: "*",
+      exact: true,
+      layout: "PublicLayout",
+      component: Notfound,
    },
 ];
 

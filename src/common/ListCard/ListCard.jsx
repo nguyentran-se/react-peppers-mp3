@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card/Card";
 import "./ListCard.scss";
 
-const ListCard = ({ cards, cardShape = "square", oneButton }) => {
+const ListCard = ({ cards, cardShape = "square", oneButton, wrapItems }) => {
    // console.log(cards);
    let transformedCards;
    if (cards) {
@@ -21,7 +21,11 @@ const ListCard = ({ cards, cardShape = "square", oneButton }) => {
          />
       ));
    }
-   return <div className="list-card">{transformedCards}</div>;
+   return (
+      <div className={`list-card ${wrapItems ? "list-card--wrap" : ""}`}>
+         {transformedCards}
+      </div>
+   );
 };
 
 export default ListCard;

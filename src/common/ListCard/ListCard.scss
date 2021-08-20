@@ -11,4 +11,11 @@
       border-radius: 10px;
       background-color: var(--bg-scroll-thumb);
    }
+   &.list-card--wrap {
+      flex-wrap: wrap;
+      overflow-x: hidden;
+      & .card {
+         margin-bottom: 26px;
+      }
+   }
 }

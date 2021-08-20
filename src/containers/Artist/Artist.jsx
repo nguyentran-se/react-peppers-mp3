@@ -99,7 +99,7 @@ const Artist = () => {
       },
       {
          name: "Bạn có thể thích",
-         customHref: null,
+         customHref: false,
          cards: relatedArtist,
          sectionClass: "artist-artists",
          shape: "circle",

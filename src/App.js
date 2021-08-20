@@ -1,13 +1,11 @@
 import authorApi from "api/authorApi";
 import camelize from "camelize";
 import { PEPPERS } from "constant/localStorage";
-import Notfound from "containers/Notfound/Notfound";
 import { setLocalStorage } from "helper";
 import PublicLayout from "hoc/PublicLayout/PublicLayout";
 import PublicRoute from "hoc/PublicRoute/PublicRoute";
 import React, { useEffect } from "react";
 import { Switch } from "react-router";
-import { Route } from "react-router-dom";
 import routes from "routes/routes";
 const App = () => {
    useEffect(() => {
@@ -32,7 +30,6 @@ const App = () => {
                      <PublicRoute {...route} key={index} />
                   )
             )}
-            <Route path="/" component={Notfound} />
          </Switch>
       </PublicLayout>
    );
