@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import ListCategory from "common/ListCategory/ListCategory";
 import musicApi from "api/musicApi";
 import "./Cates.scss";
+/**
+ * Cates: get listCategory then fetch playlists for each category.
+ * update cates and playlists(add more) for each scroll to end.
+ */
 const Cates = (props) => {
    const [listCategory, setListCategory] = useState({
       items: [],
@@ -64,6 +68,7 @@ const Cates = (props) => {
             });
             // const results = await Promise.all(requests); SLOWER
             // handle all promises in Promise.all and update into state playlists
+            // update Playlists (add more)
             Promise.all(requests).then((results) =>
                results.map(
                   ({ playlists }) =>
@@ -84,7 +89,7 @@ const Cates = (props) => {
                previous: categories.previous,
             };
 
-            mountedRef.current && setLoadMore(false);
+            // mountedRef.current && setLoadMore(false);
             mountedRef.current && setListCategory(updatedListCategory);
          } catch (error) {
             console.log(error);
@@ -94,8 +99,8 @@ const Cates = (props) => {
       // after that, must scroll to end and hasNextLink to update loadmore to true
       if (loadMore) {
          requestGetAListOfCategories();
+         mountedRef.current && setLoadMore(false);
       }
-      return () => {};
    }, [loadMore, listCategory]);
 
    return (

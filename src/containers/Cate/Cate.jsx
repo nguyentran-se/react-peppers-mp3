@@ -2,35 +2,80 @@ import musicApi from "api/musicApi";
 import ListCard from "common/ListCard/ListCard";
 import Button from "common/UI/Button/Button";
 import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Cate.scss";
 const Cate = () => {
    const { slug } = useParams();
    const [cate, setCate] = useState();
-   const [playlistsOfCate, setPlaylistsOfCate] = useState();
+   const [playlistsOfCate, setPlaylistsOfCate] = useState({
+      items: [],
+      next: null,
+      previous: null,
+   });
+   const [loadMore, setLoadMore] = useState(true);
+   const mountedRef = useRef(true);
+
+   useEffect(() => {
+      const layoutRight = document.querySelector(".layout-right");
+      const scrollHandler = () => {
+         const scrollHeight = layoutRight.scrollHeight;
+         const scrollTop = layoutRight.scrollTop;
+         const clientHeight = layoutRight.clientHeight;
+         //scrollTop + clientHeight >= scrollHeight - 300 if want loadMore sooner
+         if (scrollTop + clientHeight === scrollHeight && playlistsOfCate.next)
+            setLoadMore(true);
+      };
+      layoutRight.addEventListener("scroll", scrollHandler);
+      return () => {
+         layoutRight.removeEventListener("scroll", scrollHandler);
+      };
+   }, [playlistsOfCate]);
+
+   useEffect(() => {
+      return () => {
+         mountedRef.current = false;
+      };
+   }, []);
 
    useEffect(() => {
       const requestGetData = async () => {
+         const cateParams = {
+            country: "VN",
+            locale: "en_us",
+         };
          const playlistsParams = {
             country: "VN",
             locale: "en_us",
-            limit: 10,
+            limit: 20,
             offset: 0,
          };
          // category
-         const cate = await musicApi.getSpecificCategory(slug);
-         const { playlists } = await musicApi.getPlaylistsOfCategory(
-            slug,
-            playlistsParams
-         );
-         console.log(playlists);
-         setCate(cate);
-         setPlaylistsOfCate(playlists);
+         let data;
+         if (playlistsOfCate?.next) {
+            data = await musicApi.getNext(playlistsOfCate.next);
+         } else {
+            const cate = await musicApi.getSpecificCategory(slug, cateParams);
+            mountedRef.current && setCate(cate);
+            data = await musicApi.getPlaylistsOfCategory(slug, playlistsParams);
+         }
+
+         const { playlists } = data;
+         // add more playlists
+         const updatedPlaylists = {
+            items: [...playlistsOfCate.items, ...playlists.items],
+            next: playlists.next,
+            previous: playlists.previous,
+         };
+         // console.log(cate);
+         mountedRef.current && setPlaylistsOfCate(updatedPlaylists);
       };
-      requestGetData();
-      return () => {};
-   }, [slug]);
+      if (loadMore) {
+         requestGetData();
+         setLoadMore(false);
+      }
+   }, [slug, playlistsOfCate, loadMore]);
+
    return (
       <div className="cate">
          <div className="container cate-container">
