@@ -5,8 +5,7 @@ import Button from "common/UI/Button/Button";
 import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
 import { useParams } from "react-router-dom";
 import "./Cate.scss";
-import { useScrollLoadMore } from "hooks/useScrollLoadMore";
-import { useCheckMounted } from "hooks";
+import { useCheckMounted, useScrollLoadMore } from "hooks";
 const Cate = () => {
    const { slug } = useParams();
    const [cate, setCate] = useState();

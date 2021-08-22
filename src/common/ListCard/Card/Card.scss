@@ -34,8 +34,7 @@
          color: inherit;
       }
    }
-   &-title,
-   &-artist {
+   &-title {
       transition: all 0.1s linear;
       &:hover {
          color: var(--cl-hover-link-text);

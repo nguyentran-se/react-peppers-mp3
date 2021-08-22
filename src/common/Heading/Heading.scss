@@ -1,0 +1,10 @@
+.heading {
+   display: flex;
+   align-items: center;
+   & h1 {
+      text-transform: capitalize;
+      margin-right: 5px;
+      font-size: 40px;
+      font-weight: 800;
+   }
+}

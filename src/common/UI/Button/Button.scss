@@ -29,7 +29,11 @@
    align-items: center;
    justify-content: center;
 }
-
+.button-heading {
+   width: 40px !important;
+   height: 40px !important;
+   background-color: var(--cl-primary) !important;
+}
 .button--hover {
    width: 30px;
    height: 30px;

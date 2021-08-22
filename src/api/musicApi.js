@@ -28,6 +28,11 @@ const musicApi = {
       const url = `/browse/categories/${categoryId}`;
       return axiosClient.get(url, { params });
    },
+
+   getNewReleases: (params) => {
+      const url = `/browse/new-releases`;
+      return axiosClient.get(url, { params });
+   },
 };
 
 export default musicApi;

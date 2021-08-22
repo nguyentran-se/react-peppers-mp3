@@ -24,7 +24,20 @@ const Card = ({
    const onMouseOutHandler = () => {
       setOnHover(false);
    };
-
+   let transformedArtist = null;
+   if (cardArtist) {
+      const length = cardArtist.length - 1;
+      transformedArtist = cardArtist.map((art, index) => (
+         <span key={art.id}>
+            <Link
+               to={`/artist/${art.id}`}
+               className="queue-song__artist artist-hover">
+               {art.name}
+            </Link>
+            {length !== index && ", "}
+         </span>
+      ));
+   }
    return (
       <div className={`card card--${cardShape}`}>
          <div className="card-wrapper">
@@ -40,15 +53,16 @@ const Card = ({
             </Link>
             {cardArtist ? (
                <h5 className="card-artist line-clamp--2">
-                  {<a href="#card-artist">{cardArtist}</a>}
+                  {transformedArtist}
                </h5>
             ) : (
                <h5
                   className="card-description line-clamp--2"
-                  dangerouslySetInnerHTML={{ __html: cardDescription }}>
-                  {!cardDescription ||
-                     (cardFollowers &&
-                        `${numberFormatter(cardFollowers)} Followers`)}
+                  dangerouslySetInnerHTML={
+                     cardDescription && { __html: cardDescription }
+                  }>
+                  {cardFollowers &&
+                     `${numberFormatter(cardFollowers)} Followers`}
                </h5>
             )}
          </div>

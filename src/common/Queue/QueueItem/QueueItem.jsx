@@ -9,12 +9,14 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
    if (artists) {
       let length = artists.length - 1;
       transformedArtist = artists.map((art, index) => (
-         <Link
-            to={`/artist/${art.id}`}
-            key={art.id}
-            className="queue-song__artist artist-hover">
-            {length === index ? art.name : `${art.name}, `}
-         </Link>
+         <span key={art.id}>
+            <Link
+               to={`/artist/${art.id}`}
+               className="queue-song__artist artist-hover">
+               {art.name}
+            </Link>
+            {length !== index && ", "}
+         </span>
       ));
    }
    return (

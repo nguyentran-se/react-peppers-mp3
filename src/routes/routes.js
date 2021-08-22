@@ -1,3 +1,4 @@
+// import NewReleases from "containers/NewReleases/NewReleases";
 import { lazy } from "react";
 // import PublicLayout from "hoc/PublicLayout/PublicLayout";
 
@@ -8,6 +9,8 @@ const Playlist = lazy(() => import("containers/Playlist/Playlist"));
 const Artist = lazy(() => import("containers/Artist/Artist"));
 const Notfound = lazy(() => import("containers/Notfound/Notfound"));
 const Cate = lazy(() => import("containers/Cate/Cate"));
+const NewReleases = lazy(() => import("containers/NewReleases/NewReleases"));
+
 const routes = [
    {
       path: "/",
@@ -27,6 +30,13 @@ const routes = [
       layout: "PublicLayout",
       component: Cates,
    },
+   {
+      path: "/new-releases",
+      exact: true,
+      layout: "PublicLayout",
+      component: NewReleases,
+   },
+
    {
       path: "/categories/:slug",
       exact: true,
