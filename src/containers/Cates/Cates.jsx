@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import ListCategory from "common/ListCategory/ListCategory";
+import React, { useEffect, useState } from "react";
 import musicApi from "api/musicApi";
+import ListCategory from "common/ListCategory/ListCategory";
+import { useCheckMounted, useScrollLoadMore } from "hooks";
 import "./Cates.scss";
 /**
  * Cates: get listCategory then fetch playlists for each category.
@@ -13,32 +14,10 @@ const Cates = (props) => {
       previous: null,
    });
    const [playlists, setPlaylists] = useState([]);
-   const [loadMore, setLoadMore] = useState(true);
-   //cancel subcription useState and call api = mountedRef
-   const mountedRef = useRef(true);
-   //scroll to end and hasNextLink, then setLoadMore(true)
-   useEffect(() => {
-      const layoutRight = document.querySelector(".layout-right");
-      const scrollHandler = () => {
-         const scrollHeight = layoutRight.scrollHeight;
-         const scrollTop = layoutRight.scrollTop;
-         const clientHeight = layoutRight.clientHeight;
-         //scrollTop + clientHeight >= scrollHeight - 300 if want loadMore sooner
-         if (scrollTop + clientHeight === scrollHeight && listCategory.next)
-            setLoadMore(true);
-      };
-      layoutRight.addEventListener("scroll", scrollHandler);
-      return () => {
-         layoutRight.removeEventListener("scroll", scrollHandler);
-      };
-   }, [listCategory.next]);
 
-   //unmouted suddenlly, then not update state
-   useEffect(() => {
-      return () => {
-         mountedRef.current = false;
-      };
-   }, []);
+   //cancel subcription useState and call api by mountedRef. unmouted suddenlly, then not update state
+   const isMounted = useCheckMounted();
+   const [loadMore, setLoadMore] = useScrollLoadMore(listCategory.next);
 
    //handle call api at first time and 'next' call if scroll to end
    useEffect(() => {
@@ -72,7 +51,7 @@ const Cates = (props) => {
             Promise.all(requests).then((results) =>
                results.map(
                   ({ playlists }) =>
-                     mountedRef.current &&
+                     isMounted &&
                      setPlaylists((prevPlaylists) => [
                         ...prevPlaylists,
                         {
@@ -90,7 +69,7 @@ const Cates = (props) => {
             };
 
             // mountedRef.current && setLoadMore(false);
-            mountedRef.current && setListCategory(updatedListCategory);
+            isMounted && setListCategory(updatedListCategory);
          } catch (error) {
             console.log(error);
          }
@@ -99,9 +78,9 @@ const Cates = (props) => {
       // after that, must scroll to end and hasNextLink to update loadmore to true
       if (loadMore) {
          requestGetAListOfCategories();
-         mountedRef.current && setLoadMore(false);
+         isMounted && setLoadMore(false);
       }
-   }, [loadMore, listCategory]);
+   }, [listCategory, loadMore, setLoadMore, isMounted]);
 
    return (
       <div className="category">
@@ -116,3 +95,27 @@ const Cates = (props) => {
 };
 
 export default Cates;
+
+// const mountedRef = useRef(true);
+// useEffect(() => {
+//    return () => {
+//       mountedRef.current = false;
+//    };
+// }, []);
+
+// const [loadMore, setLoadMore] = useState(true);
+// useEffect(() => {
+//    const layoutRight = document.querySelector(".layout-right");
+//    const scrollHandler = () => {
+//       const scrollHeight = layoutRight.scrollHeight;
+//       const scrollTop = layoutRight.scrollTop;
+//       const clientHeight = layoutRight.clientHeight;
+//       //scrollTop + clientHeight >= scrollHeight - 300 if want loadMore sooner
+//       if (scrollTop + clientHeight === scrollHeight && listCategory.next)
+//          setLoadMore(true);
+//    };
+//    layoutRight.addEventListener("scroll", scrollHandler);
+//    return () => {
+//       layoutRight.removeEventListener("scroll", scrollHandler);
+//    };
+// }, [listCategory.next]);

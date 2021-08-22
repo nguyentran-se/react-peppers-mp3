@@ -7,9 +7,10 @@ import PlaylistSongs from "./components/PlaylistSongs/PlaylistSongs";
 import { msToTime } from "helper";
 const Playlist = () => {
    const { slug } = useParams();
-   const [playlist, setPlaylist] = useState(null);
    const matchPath = useRouteMatch().url;
    const totalTimeRef = useRef();
+   const [playlist, setPlaylist] = useState(null);
+
    useEffect(() => {
       const requestGetAPlaylist = async () => {
          try {
@@ -75,8 +76,12 @@ const Playlist = () => {
                   </div>
                </div>
                <div className="playlist-content">
-                  <div className="playlist-content__description">
-                     {playlist?.description}
+                  <div
+                     className="playlist-content__description"
+                     dangerouslySetInnerHTML={{
+                        __html: playlist?.description,
+                     }}>
+                     {/* {playlist?.description} */}
                   </div>
                   <PlaylistSongs
                      songs={playlist?.tracks.items}

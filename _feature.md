@@ -195,3 +195,12 @@ inital loadMore = true -> callApi at first -> scroll(event) to end and hasNextLi
 ## sticky position
 
 -  khi scroll thì sẽ cách 1 khoảng top đã set.
+
+## parse text -> html
+
+-  `dangerouslySetInnerHTML={{__html: 'text'}}`
+-  [package interweave này an toàn hơn](https://github.com/milesj/interweave)
+
+## custom hook useScrollLoadMore and useCheckMouted.
+
+-  performance nhanh hơn @@

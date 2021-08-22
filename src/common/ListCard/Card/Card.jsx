@@ -43,8 +43,10 @@ const Card = ({
                   {<a href="#card-artist">{cardArtist}</a>}
                </h5>
             ) : (
-               <h5 className="card-description line-clamp--2 ">
-                  {cardDescription ||
+               <h5
+                  className="card-description line-clamp--2"
+                  dangerouslySetInnerHTML={{ __html: cardDescription }}>
+                  {!cardDescription ||
                      (cardFollowers &&
                         `${numberFormatter(cardFollowers)} Followers`)}
                </h5>

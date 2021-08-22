@@ -1,10 +1,12 @@
+import React, { useEffect, useState } from "react";
 import musicApi from "api/musicApi";
 import ListCard from "common/ListCard/ListCard";
 import Button from "common/UI/Button/Button";
 import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
-import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Cate.scss";
+import { useScrollLoadMore } from "hooks/useScrollLoadMore";
+import { useCheckMounted } from "hooks";
 const Cate = () => {
    const { slug } = useParams();
    const [cate, setCate] = useState();
@@ -13,30 +15,8 @@ const Cate = () => {
       next: null,
       previous: null,
    });
-   const [loadMore, setLoadMore] = useState(true);
-   const mountedRef = useRef(true);
-
-   useEffect(() => {
-      const layoutRight = document.querySelector(".layout-right");
-      const scrollHandler = () => {
-         const scrollHeight = layoutRight.scrollHeight;
-         const scrollTop = layoutRight.scrollTop;
-         const clientHeight = layoutRight.clientHeight;
-         //scrollTop + clientHeight >= scrollHeight - 300 if want loadMore sooner
-         if (scrollTop + clientHeight === scrollHeight && playlistsOfCate.next)
-            setLoadMore(true);
-      };
-      layoutRight.addEventListener("scroll", scrollHandler);
-      return () => {
-         layoutRight.removeEventListener("scroll", scrollHandler);
-      };
-   }, [playlistsOfCate]);
-
-   useEffect(() => {
-      return () => {
-         mountedRef.current = false;
-      };
-   }, []);
+   const [loadMore, setLoadMore] = useScrollLoadMore(playlistsOfCate.next);
+   const isMounted = useCheckMounted();
 
    useEffect(() => {
       const requestGetData = async () => {
@@ -56,7 +36,7 @@ const Cate = () => {
             data = await musicApi.getNext(playlistsOfCate.next);
          } else {
             const cate = await musicApi.getSpecificCategory(slug, cateParams);
-            mountedRef.current && setCate(cate);
+            isMounted && setCate(cate);
             data = await musicApi.getPlaylistsOfCategory(slug, playlistsParams);
          }
 
@@ -68,13 +48,13 @@ const Cate = () => {
             previous: playlists.previous,
          };
          // console.log(cate);
-         mountedRef.current && setPlaylistsOfCate(updatedPlaylists);
+         isMounted && setPlaylistsOfCate(updatedPlaylists);
       };
       if (loadMore) {
          requestGetData();
          setLoadMore(false);
       }
-   }, [slug, playlistsOfCate, loadMore]);
+   }, [slug, playlistsOfCate, loadMore, setLoadMore, isMounted]);
 
    return (
       <div className="cate">
@@ -105,3 +85,29 @@ const Cate = () => {
 };
 
 export default Cate;
+
+// const mountedRef = useRef(true);
+
+// useEffect(() => {
+//    return () => {
+//       mountedRef.current = false;
+//    };
+// }, []);
+
+// const [loadMore, setLoadMore] = useState(true);
+
+// useEffect(() => {
+//    const layoutRight = document.querySelector(".layout-right");
+//    const scrollHandler = () => {
+//       const scrollHeight = layoutRight.scrollHeight;
+//       const scrollTop = layoutRight.scrollTop;
+//       const clientHeight = layoutRight.clientHeight;
+//       //scrollTop + clientHeight >= scrollHeight - 300 if want loadMore sooner
+//       if (scrollTop + clientHeight === scrollHeight && playlistsOfCate.next)
+//          setLoadMore(true);
+//    };
+//    layoutRight.addEventListener("scroll", scrollHandler);
+//    return () => {
+//       layoutRight.removeEventListener("scroll", scrollHandler);
+//    };
+// }, [playlistsOfCate]);
