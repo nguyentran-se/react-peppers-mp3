@@ -1,7 +1,5 @@
 import React from "react";
 import Category from "./Category/Category";
-// import { LIST_TOPIC } from "constant";
-// import "./ListCategory.scss";
 import { withRouter } from "react-router-dom";
 
 const ListCategory = ({ playlists, listCategory, match }) => {
