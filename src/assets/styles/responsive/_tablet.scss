@@ -106,7 +106,13 @@
          position: static !important;
          &__song {
             text-align: left !important;
-            width: 100%;
+            max-width: 100% !important;
+            margin-top: 0 !important;
+         }
+      }
+      &-content {
+         &__description {
+            margin-top: 10px;
          }
       }
    }

@@ -6,13 +6,18 @@ const propTypes = {
    heading: PropTypes.string,
    icon: PropTypes.string,
 };
-const Heading = ({ heading, icon }) => {
+const Heading = ({ heading, icon, message }) => {
    return (
       <div className="heading">
-         <h1>{heading}</h1>
-         <Button icon={icon} hoverCircle custom="button-heading" />
+         <div className="heading-title">
+            <h1>{heading}</h1>
+            {icon && <Button icon={icon} hoverCircle custom="button-heading" />}
+         </div>
+         {message && <p className="heading-message">{message}</p>}
       </div>
    );
 };
+
 Heading.propTypes = propTypes;
+
 export default Heading;

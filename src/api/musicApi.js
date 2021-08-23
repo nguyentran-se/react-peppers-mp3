@@ -33,6 +33,11 @@ const musicApi = {
       const url = `/browse/new-releases`;
       return axiosClient.get(url, { params });
    },
+
+   getFeaturedPlaylists: (params) => {
+      const url = `/browse/featured-playlists`;
+      return axiosClient.get(url, { params });
+   },
 };
 
 export default musicApi;

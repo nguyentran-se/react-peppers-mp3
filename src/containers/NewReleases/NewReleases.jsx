@@ -1,6 +1,7 @@
 import musicApi from "api/musicApi";
 import Heading from "common/Heading/Heading";
 import ListCard from "common/ListCard/ListCard";
+import { useCheckMounted, useScrollLoadMore } from "hooks";
 import React, { useEffect, useState } from "react";
 import "./NewReleases.scss";
 const NewReleases = () => {
@@ -9,25 +10,33 @@ const NewReleases = () => {
       next: null,
       previous: null,
    });
+   const isMounted = useCheckMounted();
+   const [loadMore, setLoadMore] = useScrollLoadMore(albums.next);
    useEffect(() => {
       const requestGetNewReleases = async () => {
          const params = {
             country: "VN",
             locale: "en_US",
-            limit: 5,
+            limit: 20,
             offset: 0,
          };
-         const { albums: albumsData } = await musicApi.getNewReleases(params);
+         let data;
+         if (albums.next) data = await musicApi.getNext(albums.next);
+         else data = await musicApi.getNewReleases(params);
+         const { albums: albumsData } = data;
          console.log(albumsData);
          const updatedAlbums = {
             items: [...albums.items, ...albumsData.items],
             next: albumsData.next,
             previous: albumsData.previous,
          };
-         setAlbums(updatedAlbums);
+         isMounted && setAlbums(updatedAlbums);
       };
-      requestGetNewReleases();
-   }, []);
+      if (loadMore) {
+         requestGetNewReleases();
+         setLoadMore(false);
+      }
+   }, [albums, isMounted, loadMore, setLoadMore]);
    // console.log(albums);
    return (
       <div className="new">

@@ -5,6 +5,7 @@ import "./Playlist.scss";
 import PlaylistThumbnail from "./components/PlaylistThumbnail/PlaylistThumbnail";
 import PlaylistSongs from "./components/PlaylistSongs/PlaylistSongs";
 import { msToTime } from "helper";
+import PlaylistInfo from "./components/PlaylistInfo/PlaylistInfo";
 const Playlist = () => {
    const { slug } = useParams();
    const matchPath = useRouteMatch().url;
@@ -18,12 +19,14 @@ const Playlist = () => {
                fields:
                   "description,followers,id,images,name," +
                   "tracks.items(added_at,track(album(id,images,name,type),artists,duration_ms,id,name,preview_url,type,uri))," +
-                  "tracks.next,tracks.previous,tracks.total,type",
+                  // "tracks.next,tracks.previous,tracks.total,type",
+                  "tracks(next,previous,total,limit),type",
             };
             let playlist;
             if (matchPath.includes("album"))
                playlist = await musicApi.getSpecificAlbum(slug);
             else playlist = await musicApi.getSpecificPlaylist(slug, params);
+            console.log(playlist);
 
             // get totaltime of playlist
             totalTimeRef.current = playlist.tracks.items.reduce(
@@ -42,7 +45,6 @@ const Playlist = () => {
       requestGetAPlaylist();
       return () => {};
    }, [slug, matchPath]);
-   console.log(playlist);
 
    return (
       <div className="playlist">
@@ -53,27 +55,11 @@ const Playlist = () => {
                      image={playlist?.images[0].url}
                      custom={"playlist-img"}
                   />
-                  <div className="playlist-info__song">
-                     <h3 className="playlist-info__name">{playlist?.name}</h3>
-                     <h5 className="playlist-info__desc">
-                        {playlist?.tracks.total} bài hát -{" "}
-                        {msToTime(totalTimeRef.current)}
-                     </h5>
-                     <h5 className="playlist-info__desc">
-                        {playlist?.followers &&
-                           `${playlist?.followers.total.toLocaleString(
-                              "vi-VN"
-                           )} người yêu thích`}
-                     </h5>
-                     {matchPath.includes("album") &&
-                        playlist?.copyrights.map((cr, index) => (
-                           <h5
-                              className="playlist-info__desc playlist-intro__copy"
-                              key={index}>
-                              {cr.text}
-                           </h5>
-                        ))}
-                  </div>
+                  <PlaylistInfo
+                     playlist={playlist}
+                     matchPath={matchPath}
+                     totalTime={msToTime(totalTimeRef.current)}
+                  />
                </div>
                <div className="playlist-content">
                   <div

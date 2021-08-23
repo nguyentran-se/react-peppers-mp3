@@ -3,7 +3,15 @@ import ListCard from "common/ListCard/ListCard";
 import "./Category.scss";
 import { Link } from "react-router-dom";
 import Button from "common/UI/Button/Button";
-
+import PropTypes from "prop-types";
+const propTypes = {
+   categoryName: PropTypes.string,
+   categoryHref: PropTypes.any,
+   cards: PropTypes.array,
+   cardShape: PropTypes.string,
+   isBanner: PropTypes.bool,
+   oneButton: PropTypes.bool,
+};
 const Category = ({
    categoryName,
    categoryHref,
@@ -42,5 +50,7 @@ const Category = ({
       </>
    );
 };
+
+Category.propTypes = propTypes;
 
 export default Category;
