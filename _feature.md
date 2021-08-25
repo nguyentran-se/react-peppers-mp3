@@ -204,3 +204,62 @@ inital loadMore = true -> callApi at first -> scroll(event) to end and hasNextLi
 ## custom hook useScrollLoadMore and useCheckMouted.
 
 -  performance nhanh hơn @@
+
+## selectors redux
+
+-  name with `selectSomething`
+-  useSelector or mapState will be re-run after every dispatched action, regardless of what section of the Redux root state was actually updated. If a selector return new reference then force component to re-render. Vì thế cẩn thận với `map && filter`(luôn return new reference), còn với expensive work ? ví dụ dưới.
+
+```js
+function ExampleComplexComponent() {
+   const data = useSelector((state) => {
+      const initialData = state.data;
+      const filteredData = expensiveFiltering(initialData);
+      const sortedData = expensiveSorting(filteredData);
+      const transformedData = expensiveTransformation(sortedData);
+
+      return transformedData;
+   });
+}
+```
+
+> dù state có đổi hay ko hàm này luôn re-run after dispatch action. Có cách nào nó chỉ re-run nếu state actually change ? -> memoization bằng reselect giúp trả về kquả cũ luôn nếu inputs ko đổi mà ko cần tính toán
+
+## reselector redux:
+
+-  `createSelector(inputSelectors, () => {outputSelectorFunc})`
+   createSelector can accept multiple input selectors, which can be provided as separate arguments || array. The results from all the input selectors are provided as separate arguments to the output selector(func callback). Nếu results of input selectors change thì nó mới re-run func callback .example:
+   ```js
+   const selectABC = createSelector([selectA, selectB, selectC], (a, b, c) => {
+      // do something with a, b, and c, and return a result
+      return a + b + c;
+   });
+   const res = selectABC(state);
+   ```
+-  Khi pass nhiều params cho `select` thì các `inputs selector` cũng sẽ nhận các params đó. example
+
+   ```js
+   const selectItems = (state) => state.items;
+   const selectItemId = (state, itemId) => itemId;
+   const selectItemById = createSelector(
+      [selectItems, selectItemId],
+      (items, itemId) => items[itemId]
+   );
+   const item = selectItemById(state, 42)
+   //internal: selectItems(state, 42)
+
+   // nếu pass thêm obj này -> selectOtherField(state, 42) -> error
+   const selectOtherField (state, someObject) => someObject.someField;
+   ```
+
+   => các `inputs selector` phải pass same type of params
+
+-  createSelector has cache size 1: ý là nó chỉ memoization đc 1 obj thôi
+   solution here: tạo 1 factory selector.
+
+## check authen login TOKEN VS isLoggedIn ?
+
+-  Token để check khi refresh app!
+   When refresh: check token in localStorage
+   -  if has: `dispatch isLoggedIn = true;` then function với dependency [isLoggedIn] sẽ chạy lại. và call data success.
+   -  if no: check search params. when has `code` from spotify then login `dispatch isLoggedIn = true;`

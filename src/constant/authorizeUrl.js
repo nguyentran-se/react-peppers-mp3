@@ -8,6 +8,11 @@ const scopes = [
    "user-library-modify",
    "user-read-playback-state",
    "user-modify-playback-state",
+   "user-follow-read",
+   "user-follow-modify",
+   "user-top-read",
+   "playlist-read-private",
+   "playlist-read-collaborative",
 ];
 
 const params = {
@@ -16,7 +21,7 @@ const params = {
    redirect_uri: "http://localhost:3000/",
    scope: scopes.join(" "),
    state: "34fFs29kd09",
-   // show_dialog: true,
+   show_dialog: true,
 };
 
 url.search = new URLSearchParams(params);

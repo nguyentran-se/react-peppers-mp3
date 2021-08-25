@@ -15,7 +15,7 @@ const ListCard = ({ cards, cardShape = "square", oneButton, wrapItems }) => {
    if (cards) {
       transformedCards = cards.map((c) => (
          <Card
-            cardImage={c?.images?.[0].url}
+            cardImage={c?.images?.[0]?.url}
             cardId={c.id}
             cardName={c.name}
             cardArtist={c?.artists}

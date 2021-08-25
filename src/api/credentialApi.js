@@ -1,8 +1,11 @@
 import axios from "axios";
-// import { CLIENT_ID, CLIENT_SECRET } from "constant";
-const authorURL = "https://accounts.spotify.com/api/token";
-const authorApi = {
-   getAuthorization: () => {
+/**
+ * @description client_credentials flow
+ */
+const credentialURL = "https://accounts.spotify.com/api/token";
+
+const credentialApi = {
+   getClientCredential: () => {
       let myHeaders = new Headers();
       myHeaders.append(
          "Authorization",
@@ -12,17 +15,15 @@ const authorApi = {
 
       const urlencoded = new URLSearchParams();
       urlencoded.append("grant_type", "client_credentials");
-      // urlencoded.append("client_id", CLIENT_ID);
       urlencoded.append("client_id", process.env.REACT_APP_CLIENT_ID);
-      // urlencoded.append("client_secret", CLIENT_SECRET);
       urlencoded.append("client_secret", process.env.REACT_APP_CLIENT_SECRET);
       return axios({
          method: "post",
-         url: authorURL,
+         url: credentialURL,
          headers: myHeaders,
          data: urlencoded,
       });
    },
 };
 
-export default authorApi;
+export default credentialApi;

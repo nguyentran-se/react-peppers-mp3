@@ -1,4 +1,4 @@
-import { PEPPERS } from "constant/localStorage";
+// import { PEPPERS } from "constant/localStorage";
 const localStorage = window.localStorage;
 
 export const getLocalStorage = (key) => {
@@ -17,13 +17,13 @@ export const getLocalStorage = (key) => {
 export const setLocalStorage = (key, value) => {
    try {
       let stringifyValue = JSON.stringify(value);
-      if (
-         key === PEPPERS ||
-         key === "LOCATION_KEYS" ||
-         localStorage.getItem(key) === null
-      )
-         localStorage.setItem(key, stringifyValue);
-      else throw new Error(`${key} HAS ALREADY EXIST`);
+      // if (
+      //    key === PEPPERS ||
+      //    key === "LOCATION_KEYS" ||
+      //    localStorage.getItem(key) === null
+      // )
+      localStorage.setItem(key, stringifyValue);
+      // else throw new Error(`${key} HAS ALREADY EXIST`);
    } catch (error) {
       console.error(`[setLocalStorage]: ${error.message}`);
    }

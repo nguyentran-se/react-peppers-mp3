@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-// import ListCategory from "common/ListCategory/ListCategory";
-import "./Home.scss";
-// import Banner from "./components/Banner/Banner";
 import musicApi from "api/musicApi";
-import dayjs from "dayjs";
-import ListCard from "common/ListCard/ListCard";
-import { useCheckMounted, useScrollLoadMore } from "hooks";
 import Heading from "common/Heading/Heading";
-const Home = (props) => {
+import ListCard from "common/ListCard/ListCard";
+import dayjs from "dayjs";
+import { useCheckMounted, useScrollLoadMore } from "hooks";
+import React, { useEffect, useState } from "react";
+import "./Home.scss";
+
+const Home = () => {
    const [playlists, setPlaylists] = useState({
       items: [],
       next: null,
@@ -16,6 +15,10 @@ const Home = (props) => {
    const [message, setMessage] = useState(null);
    const isMounted = useCheckMounted();
    const [loadMore, setLoadMore] = useScrollLoadMore(playlists.next);
+
+   /**
+    * @description request feature playlists, get next if has
+    */
    useEffect(() => {
       const requestData = async () => {
          const params = {
@@ -47,6 +50,7 @@ const Home = (props) => {
          setLoadMore(false);
       }
    }, [isMounted, loadMore, playlists, setLoadMore]);
+
    return (
       <div className="home">
          <div className="container home-container">

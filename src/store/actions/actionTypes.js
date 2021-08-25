@@ -1,0 +1,7 @@
+// login
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+
+// user data
+export const REQUEST_USER_DATA_SUCCESS = "REQUEST_USER_DATA_SUCCESS";
+export const REQUEST_USER_DATA_FAIL = "REQUEST_USER_DATA_FAIL";

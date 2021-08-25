@@ -1,0 +1,24 @@
+.mymusic {
+   &-container {
+      margin-top: 20px;
+      padding-bottom: 50px;
+   }
+   &-user {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      &__info {
+         text-align: center;
+      }
+      &__name {
+         font-size: 32px;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: capitalize;
+         margin-top: 14px;
+      }
+   }
+   &-nav {
+      margin: 50px 0 40px 0;
+   }
+}

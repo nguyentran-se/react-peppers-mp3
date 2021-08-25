@@ -1,0 +1,12 @@
+.user-photo img {
+   height: 40px;
+   border-radius: 50%;
+}
+
+.user-photo--medium {
+   height: 95px;
+   width: 95px;
+   & img {
+      height: 100%;
+   }
+}

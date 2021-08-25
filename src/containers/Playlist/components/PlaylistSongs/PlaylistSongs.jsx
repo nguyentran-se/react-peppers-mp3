@@ -2,7 +2,7 @@ import React from "react";
 import PlaylistSong from "../PlaylistSong/PlaylistSong";
 import "./PlaylistSongs.scss";
 const PlaylistSongs = ({ songs, customInstance, album }) => {
-   console.log(songs);
+   // console.log(songs);
    let transformedSongs;
    if (songs) {
       // console.log(songs[0].track.artists);

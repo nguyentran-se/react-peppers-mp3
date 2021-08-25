@@ -2,7 +2,7 @@ import React from "react";
 import ToolbarItem from "./ToolbarItem/ToolbarItem";
 import "./Toolbar.scss";
 import ThemeIcon from "assets/images/ThemIcon";
-import UserPhoto from "assets/images/UserPhoto";
+import UserPhoto from "common/User/UserPhoto/UserPhoto";
 const Toolbar = () => {
    return (
       <section className="toolbar">

@@ -34,10 +34,12 @@ const Category = ({
                      ) : (
                         <h3 className="category-title">{categoryName}</h3>
                      )}
-                     <div className="category-header__icons">
-                        <Button icon="icon--medium-size ic-go-left" />
-                        <Button icon="icon--medium-size ic-go-right" />
-                     </div>
+                     {cards?.length > 5 && (
+                        <div className="category-header__icons">
+                           <Button icon="icon--medium-size ic-go-left" />
+                           <Button icon="icon--medium-size ic-go-right" />
+                        </div>
+                     )}
                   </div>
                )}
                <ListCard

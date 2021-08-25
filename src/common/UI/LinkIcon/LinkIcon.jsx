@@ -1,16 +1,17 @@
 import React from "react";
-import Proptypes from "prop-types";
+import PropTypes from "prop-types";
 import "./LinkIcon.scss";
 import { NavLink } from "react-router-dom";
 
 const propTypes = {
-   listIcon: Proptypes.array,
-   customIcon: Proptypes.string,
-   link: Proptypes.string,
-   title: Proptypes.string,
-   typeWrapper: Proptypes.string,
-   iconLeft: Proptypes.bool,
-   customClass: Proptypes.string,
+   listIcon: PropTypes.array,
+   customIcon: PropTypes.string,
+   link: PropTypes.string,
+   title: PropTypes.string,
+   typeWrapper: PropTypes.string,
+   iconLeft: PropTypes.bool,
+   customClass: PropTypes.string,
+   exact: PropTypes.bool,
 };
 
 const LinkIcon = ({
@@ -22,11 +23,12 @@ const LinkIcon = ({
    iconLeft = true,
    customClass,
    disabled,
+   exact,
 }) => {
    const transformedListIcon = listIcon.map((icon) => (
       <NavLink
          to={link}
-         exact
+         exact={exact}
          className={`link-icon ${customClass ?? ""}`}
          key={icon}>
          {iconLeft && icon && <i className={`${customIcon} ${icon}`}></i>}

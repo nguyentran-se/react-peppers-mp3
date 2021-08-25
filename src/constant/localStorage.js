@@ -4,3 +4,5 @@ export const USER_SETTING = "USER_SETTING";
 export const PEPPERS_PLAYER = "PEPPERS_PLAYER";
 //token
 export const PEPPERS = "PEPPERS";
+
+export const USER = "USER";

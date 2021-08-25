@@ -20,7 +20,7 @@ const routes = [
    },
    {
       path: "/my-music",
-      exact: true,
+      exact: false,
       layout: "PublicLayout",
       component: MyMusic,
    },

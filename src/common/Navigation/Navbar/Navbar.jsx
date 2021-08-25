@@ -6,8 +6,14 @@ import Separated from "common/UI/Separated/Separated";
 const Navbar = ({ type }) => {
    let transformedNav;
    const transform = (navList) => {
-      return navList.map(({ title, link, icon }, index) => (
-         <NavItem key={index} title={title} link={link} icon={icon} />
+      return navList.map(({ title, link, icon, exact }, index) => (
+         <NavItem
+            key={index}
+            title={title}
+            link={link}
+            icon={icon}
+            exact={exact}
+         />
       ));
    };
    let navClasses = ["navbar"];

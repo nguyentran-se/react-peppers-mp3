@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getLocalStorage } from "helper";
-import { PEPPERS } from "constant/localStorage";
+import { PEPPERS, USER } from "constant/localStorage";
 import camelize from "camelize";
 import queryString from "query-string";
 const axiosClient = axios.create({
@@ -13,8 +13,11 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
    (config) => {
-      const token = getLocalStorage(PEPPERS).accessToken;
-      // console.log("[axios] token", token);
+      //using 2 token, one for not login, and one when login success
+      const token =
+         getLocalStorage(USER)?.accessToken ||
+         getLocalStorage(PEPPERS).accessToken;
+      console.log(token);
       if (token) config.headers.Authorization = `Bearer ${token}`;
       return config;
    },
