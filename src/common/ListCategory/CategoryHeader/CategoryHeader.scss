@@ -1,0 +1,40 @@
+.category-header {
+   display: flex;
+   align-items: stretch;
+   margin-bottom: 10px;
+
+   &__icons {
+      display: flex;
+      transform: translateY(1px);
+      margin-left: auto;
+      & button {
+         padding: 0 5px;
+         & i {
+            margin: 0;
+         }
+         & + button {
+            margin-left: 20px;
+         }
+         &:hover {
+            filter: brightness(0.9);
+            cursor: pointer;
+         }
+      }
+   }
+   & a[class*="category-title"] {
+      transition: all 0.1s linear;
+      display: flex;
+      align-items: center;
+
+      & i {
+         margin: 0 0 0 2px;
+      }
+
+      &:hover {
+         color: var(--cl-hover-link-text);
+         & > i {
+            color: var(--cl-hover-link-text);
+         }
+      }
+   }
+}

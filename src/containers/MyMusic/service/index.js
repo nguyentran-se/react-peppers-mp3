@@ -2,8 +2,11 @@
 import { lazy } from "react";
 import General from "../components/General/General";
 
-const Favourite = lazy(() => import("../components/Favourite/Favourite"));
 const Playlist = lazy(() => import("../components/UserPlaylist/UserPlaylist"));
+const Favourite = lazy(() => import("../components/Favourite/Favourite"));
+const TopTracks = lazy(() =>
+   import("../components/UserTopTracks/UserTopTracks")
+);
 const NotSupport = lazy(() => import("common/NotSupport/NotSupport"));
 
 const service = {
@@ -19,6 +22,11 @@ const service = {
             name: "FAVOURITE",
             href: matchPath + "/favourite",
             component: Favourite,
+         },
+         {
+            name: "TOP TRACKS",
+            href: matchPath + "/top-tracks",
+            component: TopTracks,
          },
          {
             name: "TẢI LÊN",

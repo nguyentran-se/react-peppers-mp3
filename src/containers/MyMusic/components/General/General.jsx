@@ -1,13 +1,18 @@
 import userApi from "api/userApi";
+import CategoryHeader from "common/ListCategory/CategoryHeader/CategoryHeader";
 import ListCategory from "common/ListCategory/ListCategory";
 import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
-// import Category from "common/ListCategory/Category/Category";
 import React, { useEffect, useState } from "react";
 import "./General.scss";
+
 const General = () => {
    const [topTracks, setTopTracks] = useState();
    const [topArtists, setTopArtists] = useState();
    const [following, setFollowing] = useState();
+
+   /**
+    * @description get userdata: toptracks, topartists, following
+    */
    useEffect(() => {
       const requestData = async () => {
          const topTracksParams = {
@@ -47,7 +52,7 @@ const General = () => {
       requestData();
       return () => {};
    }, []);
-   // console.log("RENDERING");
+
    const listSection = [
       {
          name: "Your top artists",
@@ -70,7 +75,10 @@ const General = () => {
    return (
       <div className="general">
          <div className="general-songs">
-            <h3 className="category-title">Your top tracks</h3>
+            <CategoryHeader
+               categoryHref={"/my-music/top-tracks"}
+               categoryName={"your top tracks"}
+            />
             <PlaylistSongs
                songs={topTracks?.items}
                customInstance={{
