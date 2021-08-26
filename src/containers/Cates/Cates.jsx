@@ -78,7 +78,7 @@ const Cates = (props) => {
       // after that, must scroll to end and hasNextLink to update loadmore to true
       if (loadMore) {
          requestGetAListOfCategories();
-         isMounted && setLoadMore(false);
+         setLoadMore(false);
       }
    }, [listCategory, loadMore, setLoadMore, isMounted]);
 
