@@ -1,7 +1,7 @@
 import userApi from "api/userApi";
 import CategoryHeader from "common/ListCategory/CategoryHeader/CategoryHeader";
 import ListCategory from "common/ListCategory/ListCategory";
-import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
+import PlaylistSongs from "common/PlaylistSongs/PlaylistSongs";
 import React, { useEffect, useState } from "react";
 import "./General.scss";
 

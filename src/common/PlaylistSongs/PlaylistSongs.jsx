@@ -1,5 +1,5 @@
 import React from "react";
-import PlaylistSong from "../PlaylistSong/PlaylistSong";
+import PlaylistSong from "./PlaylistSong/PlaylistSong";
 import "./PlaylistSongs.scss";
 const PlaylistSongs = ({ songs, customInstance, album }) => {
    // console.log(songs);

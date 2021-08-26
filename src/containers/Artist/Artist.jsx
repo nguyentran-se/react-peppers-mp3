@@ -1,7 +1,7 @@
 import artistApi from "api/artistApi";
 import ListCategory from "common/ListCategory/ListCategory";
 import NestedNav from "common/NestedNav/NestedNav";
-import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
+import PlaylistSongs from "common/PlaylistSongs/PlaylistSongs";
 import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
 import { uniqBy } from "lodash/array";
 import React, { useEffect, useState } from "react";

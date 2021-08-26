@@ -1,5 +1,5 @@
 import userApi from "api/userApi";
-import PlaylistSongs from "containers/Playlist/components/PlaylistSongs/PlaylistSongs";
+import PlaylistSongs from "common/PlaylistSongs/PlaylistSongs";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
