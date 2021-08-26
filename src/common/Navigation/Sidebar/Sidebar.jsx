@@ -3,16 +3,26 @@ import Logo from "common/UI/Logo/Logo";
 import "./Sidebar.scss";
 import Navbar from "common/Navigation/Navbar/Navbar";
 import AddPlaylist from "../AddPlaylist/AddPlaylist";
+import RemindBox from "common/UI/RemindBox/RemindBox";
 
-const Sidebar = () => {
+const Sidebar = ({ navPlaylists }) => {
    return (
       <aside className="sidebar">
          <div className="sidebar-wrapper">
             <Logo />
             <Navbar type="main" />
-            <div className="sidebar__navbar--scroll">
-               <Navbar type="playlist" />
-            </div>
+            {navPlaylists ? (
+               <div className="sidebar__navbar--scroll">
+                  <Navbar type="playlist" navPlaylists={navPlaylists} />
+               </div>
+            ) : (
+               <>
+                  <h3 className="sidebar-note">
+                     Sign-in to get your playlists
+                  </h3>
+                  <RemindBox />
+               </>
+            )}
             <AddPlaylist />
          </div>
       </aside>
@@ -20,3 +30,4 @@ const Sidebar = () => {
 };
 
 export default memo(Sidebar);
+/* <h3 className="sidebar-note">Sign-in to get your playlists</h3> */

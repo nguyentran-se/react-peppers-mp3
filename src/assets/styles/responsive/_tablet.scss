@@ -74,9 +74,15 @@
                display: none;
             }
          }
+         & .sidebar-note {
+            display: block;
+         }
+         & .remindbox {
+            display: none;
+         }
       }
       //config header
-      .header-wrapper {
+      & .header-wrapper {
          left: 70px;
          width: calc(100% - 74px);
       }

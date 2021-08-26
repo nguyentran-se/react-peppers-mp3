@@ -1,0 +1,21 @@
+.remindbox {
+   margin: 15px 15px 0;
+   background-color: var(--cl-primary);
+   height: 155px;
+   text-align: center;
+   padding: 20px;
+   border-radius: 16px;
+   font-size: 14px;
+   &-wrapper {
+      & button {
+         margin: 15px auto 0;
+         background-color: var(--bg-alpha);
+         border: 1px solid #fff;
+         font-weight: 600;
+         width: 100%;
+      }
+   }
+   &-text {
+      line-height: 1.5;
+   }
+}

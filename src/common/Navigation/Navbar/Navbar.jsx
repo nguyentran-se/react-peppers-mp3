@@ -1,9 +1,10 @@
+import Separated from "common/UI/Separated/Separated";
+import { NAV_MENU } from "constant";
 import React from "react";
 import NavItem from "../NavItem/NavItem";
-import { NAV_MENU, NAV_PLAYLIST } from "constant";
 import "./Navbar.scss";
-import Separated from "common/UI/Separated/Separated";
-const Navbar = ({ type }) => {
+
+const Navbar = ({ type, navPlaylists }) => {
    let transformedNav;
    const transform = (navList) => {
       return navList.map(({ title, link, icon, exact }, index) => (
@@ -23,7 +24,7 @@ const Navbar = ({ type }) => {
          navClasses.push("navbar-main");
          break;
       case "playlist":
-         transformedNav = transform(NAV_PLAYLIST);
+         transformedNav = transform(navPlaylists);
          navClasses.push("navbar-playlist");
          break;
       default:

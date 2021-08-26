@@ -4,14 +4,24 @@ import Header from "common/Header/Header";
 import Player from "common/PLayer/Player";
 import "./PublicLayout.scss";
 import Queue from "common/Queue/Queue";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "selectors";
+import userApi from "api/userApi";
+import { useCallback } from "react";
 const PublicLayout = (props) => {
    const [toggleQueue, setToogleQueue] = useState(false);
+   const [navPlaylists, setNavPlaylists] = useState();
+
    const layoutRightRef = useRef(null);
    const headerRef = useRef(null);
 
+   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+   //scroll then justify header style
    useEffect(() => {
-      layoutRightRef.current.onscroll = () => {
-         const positionScroll = layoutRightRef.current.scrollTop;
+      const layoutRight = layoutRightRef.current;
+      const onscrollHandler = () => {
+         const positionScroll = layoutRight.scrollTop;
          if (headerRef) {
             if (positionScroll === 0) {
                headerRef.current.style.boxShadow = "none";
@@ -23,17 +33,36 @@ const PublicLayout = (props) => {
             }
          }
       };
+      layoutRight.addEventListener("scroll", onscrollHandler);
+      return () => {
+         layoutRight.removeEventListener("scroll", onscrollHandler);
+      };
    }, []);
 
-   const clickedHandler = () => {
+   // get playlists render to sidebar
+   useEffect(() => {
+      const requestGetUserPlaylists = async () => {
+         const { items } = await userApi.getUserPlaylists();
+         const updatedNavPlaylists = items.map(({ id, name }) => ({
+            title: name,
+            link: `/playlist/${id}`,
+         }));
+         setNavPlaylists(updatedNavPlaylists);
+      };
+      if (isLoggedIn) {
+         requestGetUserPlaylists();
+      }
+   }, [isLoggedIn]);
+
+   const clickedHandler = useCallback(() => {
       setToogleQueue((prevOpen) => !prevOpen);
-   };
+   }, []);
 
    return (
       <div className="layout">
          <div className="layout-wrapper">
             <div className="layout-left">
-               <Sidebar />
+               <Sidebar navPlaylists={navPlaylists} />
             </div>
             <div className="layout-right" ref={layoutRightRef}>
                <Header headerRef={headerRef} />

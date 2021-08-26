@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./Queue.scss";
 import QueueHeader from "./QueueHeader/QueueHeader";
@@ -21,4 +21,4 @@ const Queue = ({ toggleQueue }) => {
    );
 };
 
-export default Queue;
+export default memo(Queue);

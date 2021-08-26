@@ -1,5 +1,5 @@
 import ProgressBar from "common/ProgressBar/ProgressBar";
-import React from "react";
+import React, { memo } from "react";
 import "./Player.scss";
 import PlayerActions from "./PlayerActions/PlayerActions";
 import PlayerControls from "./PlayerControls/PlayerControls";
@@ -19,4 +19,4 @@ const Player = ({ clicked, toggleQueue }) => {
    );
 };
 
-export default Player;
+export default memo(Player);

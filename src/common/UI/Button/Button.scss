@@ -5,6 +5,8 @@
    background-color: transparent;
    cursor: pointer;
    padding: 0;
+   transition: all 0.2s linear;
+   user-select: none;
 }
 .button.button--normal {
    color: #fff;
@@ -16,6 +18,11 @@
       height: 16px;
       color: #fff;
       margin-right: 4px;
+   }
+}
+.button.button--text {
+   &:hover {
+      filter: brightness(0.8);
    }
 }
 .button.disabled {
