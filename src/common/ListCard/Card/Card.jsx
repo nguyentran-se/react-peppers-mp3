@@ -3,6 +3,21 @@ import { Link } from "react-router-dom";
 import CardModal from "../CardModal/CardModal";
 import "./Card.scss";
 import { numberFormatter } from "helper";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "selectors";
+import PropTypes from "prop-types";
+
+const propTypes = {
+   cardImage: PropTypes.string,
+   cardId: PropTypes.string,
+   cardName: PropTypes.string,
+   cardArtist: PropTypes.array,
+   cardDescription: PropTypes.string,
+   cardShape: PropTypes.string,
+   cardType: PropTypes.string,
+   cardFollowers: PropTypes.number,
+   oneButton: PropTypes.bool,
+};
 
 const Card = ({
    cardImage,
@@ -16,12 +31,20 @@ const Card = ({
    oneButton,
 }) => {
    const [onHover, setOnHover] = useState(false);
-
-   const onMouseOverHandler = () => {
+   const isLoggedIn = useSelector(selectIsLoggedIn);
+   const onMouseEnterHandler = async () => {
       setOnHover(true);
+      try {
+         // const params = { ids: cardId };
+         if (isLoggedIn && (cardType === "album" || cardType === "playlist")) {
+            // const data = await userApi.checkFavouriteAlbum(params);
+            // console.log(data);
+            console.log(cardType, cardId);
+         }
+      } catch (error) {}
    };
 
-   const onMouseOutHandler = () => {
+   const onMouseLeaveHandler = () => {
       setOnHover(false);
    };
    let transformedArtist = null;
@@ -44,8 +67,8 @@ const Card = ({
             <Link to={`/${cardType}/${cardId}`}>
                <div
                   className="card-img"
-                  onMouseEnter={onMouseOverHandler}
-                  onMouseLeave={onMouseOutHandler}>
+                  onMouseEnter={onMouseEnterHandler}
+                  onMouseLeave={onMouseLeaveHandler}>
                   <CardModal onHover={onHover} oneButton={oneButton} />
                   <img src={cardImage} alt="card song" />
                </div>
@@ -55,19 +78,20 @@ const Card = ({
                <h5 className="card-artist line-clamp--2">
                   {transformedArtist}
                </h5>
-            ) : (
+            ) : cardDescription ? (
                <h5
                   className="card-description line-clamp--2"
-                  dangerouslySetInnerHTML={
-                     cardDescription && { __html: cardDescription }
-                  }>
-                  {cardFollowers &&
-                     `${numberFormatter(cardFollowers)} Followers`}
+                  dangerouslySetInnerHTML={{ __html: cardDescription }}></h5>
+            ) : (
+               <h5 className="card-description line-clamp--2">
+                  {numberFormatter(cardFollowers)} Followers
                </h5>
             )}
          </div>
       </div>
    );
 };
+
+Card.propTypes = propTypes;
 
 export default Card;

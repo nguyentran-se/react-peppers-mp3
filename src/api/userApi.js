@@ -26,8 +26,18 @@ const userApi = {
       return axiosClient.get(url);
    },
 
+   getUserAlBums: () => {
+      const url = `/me/albums`;
+      return axiosClient.get(url);
+   },
+
    getFavouriteTracks: (params) => {
       const url = `/me/tracks`;
+      return axiosClient.get(url, { params });
+   },
+
+   checkFavouriteAlbum: (params) => {
+      const url = `/me/albums/contains`;
       return axiosClient.get(url, { params });
    },
 };

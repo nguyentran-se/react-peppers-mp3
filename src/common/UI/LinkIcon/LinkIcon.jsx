@@ -32,7 +32,7 @@ const LinkIcon = ({
          className={`link-icon ${customClass ?? ""}`}
          key={icon}>
          {iconLeft && icon && <i className={`${customIcon} ${icon}`}></i>}
-         {title && <span>{title}</span>}
+         {title && <span className="line-clamp--2">{title}</span>}
          {!iconLeft && icon && <i className={`${customIcon} ${icon}`}></i>}
       </NavLink>
    ));

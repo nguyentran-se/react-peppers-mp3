@@ -3,6 +3,7 @@ import { lazy } from "react";
 import General from "../components/General/General";
 
 const Playlist = lazy(() => import("../components/UserPlaylist/UserPlaylist"));
+const Album = lazy(() => import("../components/UserAlbum/UserAlbum"));
 const Favourite = lazy(() => import("../components/Favourite/Favourite"));
 const TopTracks = lazy(() =>
    import("../components/UserTopTracks/UserTopTracks")
@@ -15,12 +16,17 @@ const service = {
          { name: "TỔNG QUAN", href: matchPath, component: General },
          {
             name: "PLAYLIST",
-            href: matchPath + "/playlist",
+            href: matchPath + "/playlists",
             component: Playlist,
          },
          {
+            name: "ALBUM",
+            href: matchPath + "/albums",
+            component: Album,
+         },
+         {
             name: "FAVOURITE",
-            href: matchPath + "/favourite",
+            href: matchPath + "/favourites",
             component: Favourite,
          },
          {
