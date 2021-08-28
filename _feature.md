@@ -263,3 +263,8 @@ function ExampleComplexComponent() {
    When refresh: check token in localStorage
    -  if has: `dispatch isLoggedIn = true;` then function với dependency [isLoggedIn] sẽ chạy lại. và call data success.
    -  if no: check search params. when has `code` from spotify then login `dispatch isLoggedIn = true;`
+
+## useCallback
+
+-  usage:
+   -  khi component children wrap trong memo and parent pass func to.

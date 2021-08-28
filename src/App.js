@@ -29,7 +29,6 @@ const App = () => {
     * @description client_crediential to get data when user not login
     */
    useEffect(() => {
-      console.log("APP");
       const requestGetClientCredential = async () => {
          try {
             const response = await credentialApi.getClientCredential();
@@ -61,7 +60,7 @@ const App = () => {
                   image: images[0].url,
                })
             );
-            console.log(userData);
+            // console.log(userData);
          } catch (error) {
             requestUserDataFail({ error: error.message });
          }

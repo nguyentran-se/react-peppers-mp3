@@ -17,7 +17,7 @@ axiosClient.interceptors.request.use(
       const token =
          getLocalStorage(USER)?.accessToken ||
          getLocalStorage(PEPPERS).accessToken;
-      console.log(token);
+      // console.log(token);
       if (token) config.headers.Authorization = `Bearer ${token}`;
       return config;
    },

@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import CardModal from "../CardModal/CardModal";
 import "./Card.scss";
 import { numberFormatter } from "helper";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
 import PropTypes from "prop-types";
+import { useRef } from "react";
+import { followPlaylist, unFollowPlaylist } from "store/actions/favAction";
 
 const propTypes = {
    cardImage: PropTypes.string,
@@ -32,21 +34,27 @@ const Card = ({
 }) => {
    const [onHover, setOnHover] = useState(false);
    const isLoggedIn = useSelector(selectIsLoggedIn);
-   const onMouseEnterHandler = async () => {
+   const favouriteIds = useSelector(selectFavouriteIds);
+   // check if a album || playlist is in user's favourite
+   const isFavourite = useRef(
+      isLoggedIn &&
+         (cardType === "album" || cardType === "playlist") &&
+         favouriteIds.includes(cardId)
+   );
+
+   const dispatch = useDispatch();
+
+   const onMouseEnterHandler = () => {
       setOnHover(true);
-      try {
-         // const params = { ids: cardId };
-         if (isLoggedIn && (cardType === "album" || cardType === "playlist")) {
-            // const data = await userApi.checkFavouriteAlbum(params);
-            // console.log(data);
-            console.log(cardType, cardId);
-         }
-      } catch (error) {}
+      // if (isLoggedIn && (cardType === "album" || cardType === "playlist")) {
+      //    isFavourite.current = favouriteIds.includes(cardId);
+      // }
    };
 
    const onMouseLeaveHandler = () => {
       setOnHover(false);
    };
+
    let transformedArtist = null;
    if (cardArtist) {
       const length = cardArtist.length - 1;
@@ -61,6 +69,24 @@ const Card = ({
          </span>
       ));
    }
+
+   /**
+    * @description click heart button
+    *    if album||playlist is in follow(isFavourite = true), then dispatch
+    *  unfollow(isFavourite = false)
+    */
+   const followHandler = () => {
+      if (isLoggedIn) {
+         if (isFavourite.current) {
+            isFavourite.current = false;
+            dispatch(unFollowPlaylist(cardId));
+         } else {
+            isFavourite.current = true;
+            dispatch(followPlaylist(cardId));
+         }
+      }
+   };
+
    return (
       <div className={`card card--${cardShape}`}>
          <div className="card-wrapper">
@@ -69,7 +95,12 @@ const Card = ({
                   className="card-img"
                   onMouseEnter={onMouseEnterHandler}
                   onMouseLeave={onMouseLeaveHandler}>
-                  <CardModal onHover={onHover} oneButton={oneButton} />
+                  <CardModal
+                     onHover={onHover}
+                     oneButton={oneButton}
+                     isFavourite={isFavourite.current}
+                     clicked={followHandler}
+                  />
                   <img src={cardImage} alt="card song" />
                </div>
                <h4 className="card-title line-clamp--1">{cardName}</h4>

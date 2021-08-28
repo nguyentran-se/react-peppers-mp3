@@ -5,13 +5,14 @@ import Navbar from "common/Navigation/Navbar/Navbar";
 import AddPlaylist from "../AddPlaylist/AddPlaylist";
 import RemindBox from "common/UI/RemindBox/RemindBox";
 
-const Sidebar = ({ navPlaylists }) => {
+const Sidebar = ({ navPlaylists, isLoggedIn }) => {
+   // console.log(navPlaylists);
    return (
       <aside className="sidebar">
          <div className="sidebar-wrapper">
             <Logo />
             <Navbar type="main" />
-            {navPlaylists ? (
+            {isLoggedIn ? (
                <div className="sidebar__navbar--scroll">
                   <Navbar type="playlist" navPlaylists={navPlaylists} />
                </div>

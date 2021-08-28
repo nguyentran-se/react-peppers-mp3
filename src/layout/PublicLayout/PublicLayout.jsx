@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import Sidebar from "common/Navigation/Sidebar/Sidebar";
 import Header from "common/Header/Header";
+import Sidebar from "common/Navigation/Sidebar/Sidebar";
 import Player from "common/PLayer/Player";
-import "./PublicLayout.scss";
 import Queue from "common/Queue/Queue";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "selectors";
-import userApi from "api/userApi";
-import { useCallback } from "react";
+import { selectAlbums, selectPlaylists } from "selectors/commonSelectors";
+import { initFavourite } from "store/actions";
+import "./PublicLayout.scss";
 const PublicLayout = (props) => {
    const [toggleQueue, setToogleQueue] = useState(false);
-   const [navPlaylists, setNavPlaylists] = useState();
-
+   // const [navPlaylists, setNavPlaylists] = useState();
    const layoutRightRef = useRef(null);
    const headerRef = useRef(null);
 
+   const dispatch = useDispatch();
    const isLoggedIn = useSelector(selectIsLoggedIn);
+   const playlists = useSelector(selectPlaylists);
+   const albums = useSelector(selectAlbums);
 
    //scroll then justify header style
    useEffect(() => {
@@ -41,28 +43,33 @@ const PublicLayout = (props) => {
 
    // get playlists render to sidebar
    useEffect(() => {
-      const requestGetUserPlaylists = async () => {
-         const { items } = await userApi.getUserPlaylists();
-         const updatedNavPlaylists = items.map(({ id, name }) => ({
-            title: name,
-            link: `/playlist/${id}`,
-         }));
-         setNavPlaylists(updatedNavPlaylists);
-      };
       if (isLoggedIn) {
-         requestGetUserPlaylists();
+         dispatch(initFavourite());
       }
-   }, [isLoggedIn]);
+   }, [isLoggedIn, dispatch]);
 
    const clickedHandler = useCallback(() => {
       setToogleQueue((prevOpen) => !prevOpen);
    }, []);
 
+   let navPlaylists = null;
+   if (isLoggedIn) {
+      navPlaylists = playlists.map(({ id, name }) => ({
+         title: name,
+         link: `/playlist/${id}`,
+      }));
+      const navAlbums = albums.map(({ id, name }) => ({
+         title: name,
+         link: `/album/${id}`,
+      }));
+      navPlaylists = navPlaylists.concat(navAlbums);
+   }
+
    return (
       <div className="layout">
          <div className="layout-wrapper">
             <div className="layout-left">
-               <Sidebar navPlaylists={navPlaylists} />
+               <Sidebar navPlaylists={navPlaylists} isLoggedIn={isLoggedIn} />
             </div>
             <div className="layout-right" ref={layoutRightRef}>
                <Header headerRef={headerRef} />

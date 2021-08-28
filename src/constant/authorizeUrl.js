@@ -13,6 +13,8 @@ const scopes = [
    "user-top-read",
    "playlist-read-private",
    "playlist-read-collaborative",
+   "playlist-modify-public",
+   "playlist-modify-private",
 ];
 
 const params = {

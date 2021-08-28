@@ -9,7 +9,7 @@ const propTypes = {
    wrapItems: PropTypes.bool,
 };
 const ListCard = ({ cards, cardShape = "square", oneButton, wrapItems }) => {
-   console.log(cards);
+   // console.log(cards);
    let transformedCards;
    //each cards in [] has artists[]
    // album and playlist

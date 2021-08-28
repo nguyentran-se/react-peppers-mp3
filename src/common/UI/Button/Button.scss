@@ -122,3 +122,10 @@
    height: 45px;
    display: block;
 }
+
+//active
+.button--card {
+   & i.icon.ic-like-full {
+      color: var(--cl-primary);
+   }
+}

@@ -36,7 +36,7 @@ const Home = () => {
             isMounted && setMessage(messageData);
          }
          const { playlists: playlistsData } = data;
-         console.log(playlistsData);
+         // console.log(playlistsData);
 
          const updatedPlaylists = {
             items: [...playlists.items, ...playlistsData.items],

@@ -40,6 +40,16 @@ const userApi = {
       const url = `/me/albums/contains`;
       return axiosClient.get(url, { params });
    },
+
+   followPlaylist: (id) => {
+      const url = `/playlists/${id}/followers`;
+      return axiosClient.put(url);
+   },
+
+   unFollowPlaylist: (id) => {
+      const url = `/playlists/${id}/followers`;
+      return axiosClient.delete(url);
+   },
 };
 
 export default userApi;

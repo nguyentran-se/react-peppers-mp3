@@ -24,6 +24,7 @@ const Button = ({
    hoverNoShape,
    activeSquare,
    text,
+   active,
 }) => {
    const buttonClasses = ["button"];
    if (custom) buttonClasses.push(custom);
@@ -35,11 +36,12 @@ const Button = ({
    if (hoverNoShape) buttonClasses.push("button--hover-no-shape");
    if (activeSquare) buttonClasses.push("button--active-square");
    if (text) buttonClasses.push("button--text");
+   if (active) buttonClasses.push("active");
    return (
       <button
          onClick={(e) => {
             e.preventDefault();
-            clicked && clicked();
+            clicked && clicked(e);
          }}
          className={buttonClasses.join(" ")}>
          {icon && <i className={`icon ${icon}`}></i>}
