@@ -15,27 +15,27 @@
          padding-bottom: 10px;
       }
    }
-   &-info {
-      position: sticky;
-      top: 105px;
-      align-self: flex-start;
-      &__song {
-         text-align: center;
-         margin-top: 12px;
-         max-width: 300px;
-      }
-      &__name {
-         font-size: 20px;
-         font-weight: 700;
-         line-height: 30px;
-      }
-      &__desc {
-         font-size: 12px;
-         line-height: 21px;
-         color: var(--text-secondary);
-      }
-      &__copy {
-         text-align: left;
-      }
-   }
+   // &-info {
+   //    position: sticky;
+   //    top: 105px;
+   //    align-self: flex-start;
+   //    &__song {
+   //       text-align: center;
+   //       margin-top: 12px;
+   //       max-width: 300px;
+   //    }
+   //    &__name {
+   //       font-size: 20px;
+   //       font-weight: 700;
+   //       line-height: 30px;
+   //    }
+   //    &__desc {
+   //       font-size: 12px;
+   //       line-height: 21px;
+   //       color: var(--text-secondary);
+   //    }
+   //    &__copy {
+   //       text-align: left;
+   //    }
+   // }
 }

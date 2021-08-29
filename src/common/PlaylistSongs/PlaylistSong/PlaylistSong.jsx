@@ -41,10 +41,8 @@ const PlaylistSong = ({
    const favTrackIds = useSelector(selectTracks);
    const dispatch = useDispatch();
    const isFavourite = useRef(favTrackIds.includes(trackId));
-   console.log(isFavourite.current);
    const clickHandler = (e) => {
       if (isLoggedIn) {
-         console.log(isFavourite.current);
          if (isFavourite.current) {
             e.currentTarget.classList.remove("active");
             isFavourite.current = false;

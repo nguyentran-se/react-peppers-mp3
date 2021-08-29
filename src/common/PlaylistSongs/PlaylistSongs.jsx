@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const propTypes = {
    songs: PropTypes.array,
    customInstance: PropTypes.object,
-   album: PropTypes.object,
+   album: PropTypes.any,
 };
 
 const PlaylistSongs = ({ songs, customInstance, album }) => {

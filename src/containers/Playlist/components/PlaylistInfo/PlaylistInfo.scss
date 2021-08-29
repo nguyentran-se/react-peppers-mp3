@@ -1,0 +1,39 @@
+.playlist-info {
+   // position: sticky;
+   top: 105px;
+   align-self: flex-start;
+   // display: flex;
+   &__song {
+      text-align: center;
+      margin-top: 12px;
+      max-width: 300px;
+   }
+   &__name {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 30px;
+   }
+   &__desc {
+      font-size: 12px;
+      line-height: 21px;
+      color: var(--text-secondary);
+   }
+   &__copy {
+      text-align: left;
+   }
+   &__buttons {
+      display: flex;
+      margin-top: 10px;
+      justify-content: center;
+      & button + button {
+         margin-left: 10px;
+      }
+      & .button--heart {
+         &.active {
+            & i.ic-like-full {
+               top: 10px;
+            }
+         }
+      }
+   }
+}

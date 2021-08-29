@@ -76,26 +76,3 @@
       }
    }
 }
-
-.button--heart {
-   position: relative;
-
-   & i.ic-like-full {
-      position: absolute;
-      transition: all 0.2s linear;
-      color: var(--cl-primary);
-      top: -35px;
-      visibility: hidden;
-   }
-   &.active {
-      & i.ic-like-full {
-         top: 5px;
-         visibility: visible;
-      }
-      & i.ic-like {
-         transition: all 0.2s linear;
-
-         visibility: hidden;
-      }
-   }
-}

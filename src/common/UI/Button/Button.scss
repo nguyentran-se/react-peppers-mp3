@@ -19,6 +19,12 @@
       color: #fff;
       margin-right: 4px;
    }
+   &.button-primary {
+      background-color: var(--cl-primary);
+      &:hover {
+         filter: brightness(0.8);
+      }
+   }
 }
 .button.button--text {
    &:hover {
@@ -80,6 +86,10 @@
       filter: brightness(0.9);
       background-color: var(--bg-alpha);
    }
+   &.lg-size {
+      width: 35px;
+      height: 35px;
+   }
 }
 .button--hover-no-shape {
    @extend .button--hover;
@@ -127,5 +137,28 @@
 .button--card {
    & i.icon.ic-like-full {
       color: var(--cl-primary);
+   }
+}
+//button heart
+.button--heart {
+   position: relative;
+
+   & i.ic-like-full {
+      position: absolute;
+      transition: all 0.2s linear;
+      color: var(--cl-primary);
+      top: -35px;
+      visibility: hidden;
+   }
+   &.active {
+      & i.ic-like-full {
+         top: 5px;
+         visibility: visible;
+      }
+      & i.ic-like {
+         transition: all 0.2s linear;
+
+         visibility: hidden;
+      }
    }
 }

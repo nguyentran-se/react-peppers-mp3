@@ -115,6 +115,9 @@
             max-width: 100% !important;
             margin-top: 0 !important;
          }
+         &__buttons {
+            justify-content: flex-start !important;
+         }
       }
       &-content {
          &__description {
