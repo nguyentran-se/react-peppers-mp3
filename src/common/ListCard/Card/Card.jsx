@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import CardModal from "../CardModal/CardModal";
-import "./Card.scss";
 import { numberFormatter } from "helper";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
 import PropTypes from "prop-types";
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
 import {
    followAlbum,
    followPlaylist,
    unFollowAlbum,
    unFollowPlaylist,
 } from "store/actions/";
+import CardModal from "../CardModal/CardModal";
+import "./Card.scss";
 
 const propTypes = {
    cardImage: PropTypes.string,

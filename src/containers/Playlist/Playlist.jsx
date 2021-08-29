@@ -1,11 +1,12 @@
 import musicApi from "api/musicApi";
+import { msToTime } from "helper";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useRouteMatch } from "react-router-dom";
-import "./Playlist.scss";
-import PlaylistThumbnail from "./components/PlaylistThumbnail/PlaylistThumbnail";
 import PlaylistSongs from "../../common/PlaylistSongs/PlaylistSongs";
-import { msToTime } from "helper";
 import PlaylistInfo from "./components/PlaylistInfo/PlaylistInfo";
+import PlaylistThumbnail from "./components/PlaylistThumbnail/PlaylistThumbnail";
+import "./Playlist.scss";
+
 const Playlist = () => {
    const { slug } = useParams();
    const matchPath = useRouteMatch().url;

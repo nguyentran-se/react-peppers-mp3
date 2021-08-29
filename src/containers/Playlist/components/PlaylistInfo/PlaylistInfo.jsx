@@ -1,8 +1,6 @@
 import Button from "common/UI/Button/Button";
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
 import {

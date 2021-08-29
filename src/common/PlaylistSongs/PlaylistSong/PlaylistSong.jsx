@@ -1,16 +1,15 @@
 import QueueItem from "common/Queue/QueueItem/QueueItem";
-import React from "react";
 import Button from "common/UI/Button/Button";
-import "./PlaylistSong.scss";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/vi";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn, selectTracks } from "selectors";
-import { useRef } from "react";
-import { followTrack, unFollowTrack } from "store/actions/favAction";
+import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
+import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectIsLoggedIn, selectTracks } from "selectors";
+import { followTrack, unFollowTrack } from "store/actions/favAction";
+import "./PlaylistSong.scss";
 
 const propTypes = {
    src: PropTypes.string,
