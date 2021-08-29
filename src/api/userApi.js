@@ -50,6 +50,15 @@ const userApi = {
       const url = `/playlists/${id}/followers`;
       return axiosClient.delete(url);
    },
+
+   followAlbum: (id) => {
+      const url = `/me/albums?ids=${id}`;
+      return axiosClient.put(url);
+   },
+   unFollowAlbum: (id) => {
+      const url = `/me/albums?ids=${id}`;
+      return axiosClient.delete(url);
+   },
 };
 
 export default userApi;

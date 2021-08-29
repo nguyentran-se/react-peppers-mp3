@@ -1,12 +1,12 @@
 import userApi from "api/userApi";
 import * as actionTypes from "./actionTypes";
 
-export const fetchPlaylistsSuccess = (playlists) => ({
+const fetchPlaylistsSuccess = (playlists) => ({
    type: actionTypes.FETCH_PLAYLISTS_SUCCESS,
    payload: { playlists },
 });
 
-export const fetchAlbumsSuccess = (albums) => ({
+const fetchAlbumsSuccess = (albums) => ({
    type: actionTypes.FETCH_ALBUMS_SUCCESS,
    payload: { albums },
 });
@@ -51,5 +51,19 @@ export const unFollowPlaylist = (id) => {
    return async (dispatch) => {
       await userApi.unFollowPlaylist(id);
       dispatch(fetchPlaylists());
+   };
+};
+
+export const followAlbum = (id) => {
+   return async (dispatch) => {
+      await userApi.followAlbum(id);
+      dispatch(fetchAlbums());
+   };
+};
+
+export const unFollowAlbum = (id) => {
+   return async (dispatch) => {
+      await userApi.unFollowAlbum(id);
+      dispatch(fetchAlbums());
    };
 };

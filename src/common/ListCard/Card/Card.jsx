@@ -7,7 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
 import PropTypes from "prop-types";
 import { useRef } from "react";
-import { followPlaylist, unFollowPlaylist } from "store/actions/favAction";
+import {
+   followAlbum,
+   followPlaylist,
+   unFollowAlbum,
+   unFollowPlaylist,
+} from "store/actions/";
 
 const propTypes = {
    cardImage: PropTypes.string,
@@ -82,13 +87,12 @@ const Card = ({
             e.currentTarget.classList.remove("active");
             isFavourite.current = false;
             if (cardType === "playlist") dispatch(unFollowPlaylist(cardId));
-            else if (cardType === "album")
-               console.log("dispatch unfollow album");
+            else if (cardType === "album") dispatch(unFollowAlbum(cardId));
          } else {
             e.currentTarget.classList.add("active");
             isFavourite.current = true;
             if (cardType === "playlist") dispatch(followPlaylist(cardId));
-            else if (cardType === "album") console.log("dispatch FOLLOW album");
+            else if (cardType === "album") dispatch(followAlbum(cardId));
          }
       }
    };
