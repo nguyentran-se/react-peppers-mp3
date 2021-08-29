@@ -31,12 +31,7 @@ const CardModal = ({
                            isFavourite ? "active" : ""
                         }`}
                         hover
-                        clicked={(e) => {
-                           if (isFavourite)
-                              e.currentTarget.classList.remove("active");
-                           else e.currentTarget.classList.add("active");
-                           clicked();
-                        }}>
+                        clicked={clicked}>
                         <i className="icon ic-like-full"></i>
                      </Button>
                      <Button

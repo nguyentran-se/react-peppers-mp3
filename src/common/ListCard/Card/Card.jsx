@@ -75,12 +75,14 @@ const Card = ({
     *    if album||playlist is in follow(isFavourite = true), then dispatch
     *  unfollow(isFavourite = false)
     */
-   const followHandler = () => {
+   const followHandler = (e) => {
       if (isLoggedIn) {
          if (isFavourite.current) {
+            e.currentTarget.classList.remove("active");
             isFavourite.current = false;
             dispatch(unFollowPlaylist(cardId));
          } else {
+            e.currentTarget.classList.add("active");
             isFavourite.current = true;
             dispatch(followPlaylist(cardId));
          }
@@ -99,7 +101,7 @@ const Card = ({
                      onHover={onHover}
                      oneButton={oneButton}
                      isFavourite={isFavourite.current}
-                     clicked={followHandler}
+                     clicked={(e) => followHandler(e)}
                   />
                   <img src={cardImage} alt="card song" />
                </div>
