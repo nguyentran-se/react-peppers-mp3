@@ -7,12 +7,12 @@ const initialState = {
 
 const favReducer = (state = initialState, { type, payload }) => {
    switch (type) {
-      case actionTypes.INIT_PLAYLISTS_SUCCESS:
+      case actionTypes.FETCH_PLAYLISTS_SUCCESS:
          return {
             ...state,
             playlists: [...payload.playlists],
          };
-      case actionTypes.INIT_ALBUMS_SUCCESS:
+      case actionTypes.FETCH_ALBUMS_SUCCESS:
          return {
             ...state,
             albums: [...payload.albums],

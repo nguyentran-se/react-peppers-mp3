@@ -72,19 +72,23 @@ const Card = ({
 
    /**
     * @description click heart button
-    *    if album||playlist is in follow(isFavourite = true), then dispatch
+    *  - if album||playlist is in follow(isFavourite = true), then dispatch
     *  unfollow(isFavourite = false)
+    *  - add active into button
     */
    const followHandler = (e) => {
       if (isLoggedIn) {
          if (isFavourite.current) {
             e.currentTarget.classList.remove("active");
             isFavourite.current = false;
-            dispatch(unFollowPlaylist(cardId));
+            if (cardType === "playlist") dispatch(unFollowPlaylist(cardId));
+            else if (cardType === "album")
+               console.log("dispatch unfollow album");
          } else {
             e.currentTarget.classList.add("active");
             isFavourite.current = true;
-            dispatch(followPlaylist(cardId));
+            if (cardType === "playlist") dispatch(followPlaylist(cardId));
+            else if (cardType === "album") console.log("dispatch FOLLOW album");
          }
       }
    };

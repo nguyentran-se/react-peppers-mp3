@@ -268,3 +268,32 @@ function ExampleComplexComponent() {
 
 -  usage:
    -  khi component children wrap trong memo and parent pass func to.
+
+## dispatch Redux thunk
+
+-  có thể dispatch liên tục các hàm trong thunk, miễn sao func cuối return 1obj action là ok
+
+```js
+//more func above
+export const fetchAlbums = () => {
+   return async (dispatch) => {
+      const { items: albums } = await userApi.getUserAlBums();
+      const albumsStore = albums.map(({ album }) => ({
+         id: album.id,
+         name: album.name,
+      }));
+      dispatch(fetchAlbumsSuccess(albumsStore));
+   };
+};
+export const initFavourite1 = () => {
+   return (dispatch) => {
+      dispatch(fetchPlaylists());
+      dispatch(fetchAlbums());
+   };
+};
+export const initFavourite = () => {
+   return (dispatch) => {
+      dispatch(initFavourite1());
+   };
+};
+```
