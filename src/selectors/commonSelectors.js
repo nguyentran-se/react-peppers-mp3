@@ -9,3 +9,4 @@ export const selectImage = (state) => state.user.image;
 //fav select
 export const selectPlaylists = (state) => state.fav.playlists;
 export const selectAlbums = (state) => state.fav.albums;
+export const selectTracks = (state) => state.fav.tracks;

@@ -1,8 +1,16 @@
 import React from "react";
 import PlaylistSong from "./PlaylistSong/PlaylistSong";
 import "./PlaylistSongs.scss";
+import PropTypes from "prop-types";
+
+const propTypes = {
+   songs: PropTypes.array,
+   customInstance: PropTypes.object,
+   album: PropTypes.object,
+};
+
 const PlaylistSongs = ({ songs, customInstance, album }) => {
-   // console.log(songs);
+   console.log(songs);
    let transformedSongs;
    if (songs) {
       // console.log(songs[0].track.artists);
@@ -26,6 +34,7 @@ const PlaylistSongs = ({ songs, customInstance, album }) => {
                      null
                   }
                   time={song?.durationMs}
+                  trackId={song?.id}
                   key={song?.id}
                />
             )
@@ -49,5 +58,7 @@ const PlaylistSongs = ({ songs, customInstance, album }) => {
       </div>
    );
 };
+
+PlaylistSongs.propTypes = propTypes;
 
 export default PlaylistSongs;

@@ -6,6 +6,23 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/vi";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn, selectTracks } from "selectors";
+import { useRef } from "react";
+import { followTrack, unFollowTrack } from "store/actions/favAction";
+import PropTypes from "prop-types";
+
+const propTypes = {
+   src: PropTypes.string,
+   name: PropTypes.string,
+   artists: PropTypes.array,
+   albumName: PropTypes.string,
+   albumId: PropTypes.string,
+   ago: PropTypes.string,
+   time: PropTypes.number,
+   trackId: PropTypes.string,
+};
+
 const PlaylistSong = ({
    src,
    name,
@@ -14,11 +31,31 @@ const PlaylistSong = ({
    albumId,
    ago,
    time,
+   trackId,
 }) => {
    dayjs.extend(relativeTime);
    dayjs.locale("vi");
    // console.log(dayjs(ago).fromNow());
    // console.log(Math.ceil(dayjs().diff(dayjs(ago), "hours") / 24));
+   const isLoggedIn = useSelector(selectIsLoggedIn);
+   const favTrackIds = useSelector(selectTracks);
+   const dispatch = useDispatch();
+   const isFavourite = useRef(favTrackIds.includes(trackId));
+   console.log(isFavourite.current);
+   const clickHandler = (e) => {
+      if (isLoggedIn) {
+         console.log(isFavourite.current);
+         if (isFavourite.current) {
+            e.currentTarget.classList.remove("active");
+            isFavourite.current = false;
+            dispatch(unFollowTrack(trackId));
+         } else {
+            e.currentTarget.classList.add("active");
+            isFavourite.current = true;
+            dispatch(followTrack(trackId));
+         }
+      }
+   };
    return (
       <div className="playlist-song">
          <div className="checkbox">
@@ -41,7 +78,16 @@ const PlaylistSong = ({
                   </div>
                   <div className="playlist-song__buttons">
                      <Button icon="ic-karaoke" hover />
-                     <Button icon="ic-like" hover />
+                     {/* <Button icon="ic-like" hover /> */}
+                     <Button
+                        icon={"ic-like"}
+                        custom={`button--heart ${
+                           isFavourite.current ? "active" : ""
+                        }`}
+                        hover
+                        clicked={(e) => clickHandler(e)}>
+                        <i className="icon ic-like-full"></i>
+                     </Button>
                      <span className="playlist-song__time">
                         0{Math.floor(time / 60000)}:
                         {Math.floor(time / 6000 - Math.floor(time / 60000))}
@@ -54,5 +100,7 @@ const PlaylistSong = ({
       </div>
    );
 };
+
+PlaylistSong.propTypes = propTypes;
 
 export default PlaylistSong;

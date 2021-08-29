@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
    playlists: [],
    albums: [],
+   tracks: [],
 };
 
 const favReducer = (state = initialState, { type, payload }) => {
@@ -17,7 +18,11 @@ const favReducer = (state = initialState, { type, payload }) => {
             ...state,
             albums: [...payload.albums],
          };
-
+      case actionTypes.FETCH_TRACKS_SUCCESS:
+         return {
+            ...state,
+            tracks: [...payload.tracks],
+         };
       default:
          return state;
    }

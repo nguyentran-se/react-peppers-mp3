@@ -55,8 +55,19 @@ const userApi = {
       const url = `/me/albums?ids=${id}`;
       return axiosClient.put(url);
    },
+
    unFollowAlbum: (id) => {
       const url = `/me/albums?ids=${id}`;
+      return axiosClient.delete(url);
+   },
+
+   followTrack: (id) => {
+      const url = `/me/tracks?ids=${id}`;
+      return axiosClient.put(url);
+   },
+
+   unFollowTrack: (id) => {
+      const url = `/me/tracks?ids=${id}`;
       return axiosClient.delete(url);
    },
 };

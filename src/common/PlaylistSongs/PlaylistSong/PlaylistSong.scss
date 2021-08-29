@@ -85,3 +85,18 @@
       color: var(--text-secondary);
    }
 }
+// button heart
+.playlist-song__buttons {
+   .button--heart {
+      &.active {
+         & i.ic-like-full {
+            top: 7px;
+         }
+      }
+      &:hover {
+         & i.ic-like-full {
+            color: var(--cl-primary);
+         }
+      }
+   }
+}

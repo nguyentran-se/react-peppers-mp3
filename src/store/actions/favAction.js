@@ -11,6 +11,11 @@ const fetchAlbumsSuccess = (albums) => ({
    payload: { albums },
 });
 
+export const fetchTracksSuccess = (tracks) => ({
+   type: actionTypes.FETCH_TRACKS_SUCCESS,
+   payload: { tracks },
+});
+
 export const fetchPlaylists = () => {
    return async (dispatch) => {
       const { items: playlists } = await userApi.getUserPlaylists();
@@ -33,10 +38,19 @@ export const fetchAlbums = () => {
    };
 };
 
+export const fetchTracks = () => {
+   return async (dispatch) => {
+      const { items: tracks } = await userApi.getFavouriteTracks();
+      const tracksStore = tracks.map(({ track }) => track.id);
+      dispatch(fetchTracksSuccess(tracksStore));
+   };
+};
+
 export const initFavourite = () => {
    return (dispatch) => {
       dispatch(fetchPlaylists());
       dispatch(fetchAlbums());
+      dispatch(fetchTracks());
    };
 };
 
@@ -65,5 +79,19 @@ export const unFollowAlbum = (id) => {
    return async (dispatch) => {
       await userApi.unFollowAlbum(id);
       dispatch(fetchAlbums());
+   };
+};
+
+export const followTrack = (id) => {
+   return async (dispatch) => {
+      await userApi.followTrack(id);
+      dispatch(fetchTracks());
+   };
+};
+
+export const unFollowTrack = (id) => {
+   return async (dispatch) => {
+      await userApi.unFollowTrack(id);
+      dispatch(fetchTracks());
    };
 };

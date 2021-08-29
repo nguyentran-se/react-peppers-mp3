@@ -4,8 +4,7 @@ import { AUTHORIZE_URL } from "constant";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, useRouteMatch } from "react-router-dom";
-import { selectIsLoggedIn } from "selectors";
-import { selectFollowers, selectName } from "selectors/commonSelectors";
+import { selectFollowers, selectIsLoggedIn, selectName } from "selectors";
 import "./MyMusic.scss";
 import service from "./service";
 
