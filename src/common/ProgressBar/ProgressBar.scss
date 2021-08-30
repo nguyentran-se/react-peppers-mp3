@@ -24,32 +24,42 @@
       display: flex;
       align-items: center;
       flex-grow: 1;
+      position: relative;
 
+      overflow: hidden;
       cursor: pointer;
       &:hover {
-         & > .progress-bar__gray {
-            height: 5px;
+         & input {
+            height: 7px;
+            &::-webkit-slider-thumb {
+               visibility: visible;
+            }
          }
       }
-   }
-   &__gray {
-      position: relative;
-      height: 3px;
-      flex-grow: 1;
-
-      border-radius: 4px;
-      transition: all 0.1s linear;
-      background-color: gray;
-   }
-   &__white {
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      width: 35px;
-      height: inherit;
-      border-radius: inherit;
-
-      background-color: #fff;
+      & input {
+         position: absolute;
+         width: 100%;
+         // background: linear-gradient(
+         //    to right,
+         //    #ffffff 0%,
+         //    #ffffff 50%,
+         //    #808080 50%,
+         //    #808080 100%
+         // );
+         border: solid 1px;
+         border-radius: 8px;
+         height: 5px;
+         outline: none;
+         cursor: pointer;
+         -webkit-appearance: none;
+         &::-webkit-slider-thumb {
+            background-color: #fff;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            -webkit-appearance: none;
+            visibility: hidden;
+         }
+      }
    }
 }
