@@ -25,6 +25,28 @@
          filter: brightness(0.8);
       }
    }
+   &.button-card-menu {
+      width: 100%;
+      justify-content: flex-start;
+      border-radius: 0;
+      color: #dadada;
+      padding: 10px 20px 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      &:hover {
+         color: #fff;
+         & i {
+            color: #fff;
+         }
+      }
+      & i {
+         margin-right: 13px;
+         color: #dadada;
+         &:hover {
+            background-color: unset;
+         }
+      }
+   }
 }
 .button.button--text {
    &:hover {

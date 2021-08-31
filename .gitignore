@@ -5,8 +5,8 @@
 /.pnp
 .pnp.js
 
-_feature.md
-
+.feature.md
+.structure.md
 
 # testing
 /coverage

@@ -1,0 +1,19 @@
+.card-menu {
+   position: absolute;
+   width: 250px;
+   background-color: var(--bg-card-menu);
+   height: 200px;
+   border-radius: 8px;
+   z-index: 999;
+   &__wrapper {
+      padding: 10px 0;
+   }
+   &__item {
+      font-size: 14px;
+      font-weight: 400;
+      :hover {
+         background-color: var(--bg-alpha);
+         color: #fff;
+      }
+   }
+}

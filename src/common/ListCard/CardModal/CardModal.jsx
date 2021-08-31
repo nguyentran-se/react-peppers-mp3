@@ -9,6 +9,7 @@ const CardModal = ({
    oneButton = false,
    isFavourite,
    clicked,
+   menuClicked,
 }) => {
    // console.log(isFavourite);
    const nodeRef = useRef(null);
@@ -39,7 +40,12 @@ const CardModal = ({
                         custom="button--card"
                         hover
                      />
-                     <Button icon="ic-more" custom="button--card" hover />
+                     <Button
+                        icon="ic-more"
+                        custom="button--card"
+                        hover
+                        clicked={menuClicked}
+                     />
                   </>
                )}
                {oneButton && (
