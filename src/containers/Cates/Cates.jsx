@@ -37,7 +37,7 @@ const Cates = (props) => {
             const playlistsParams = {
                country: "VN",
                locale: "en_us",
-               limit: 5,
+               limit: 10,
                offset: 0,
             };
             // call api playlists by loop in each category

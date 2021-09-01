@@ -8,9 +8,16 @@ const propTypes = {
    categoryHref: PropTypes.any,
    categoryName: PropTypes.string,
    cardLength: PropTypes.number,
+   slideIndex: PropTypes.number,
 };
 
-const CategoryHeader = ({ categoryHref, categoryName, cardLength }) => {
+const CategoryHeader = ({
+   categoryHref,
+   categoryName,
+   cardLength,
+   sliderRef,
+   slideIndex,
+}) => {
    return (
       <div className="category-header">
          {categoryHref ? (
@@ -24,8 +31,21 @@ const CategoryHeader = ({ categoryHref, categoryName, cardLength }) => {
 
          {cardLength > 5 && (
             <div className="category-header__icons">
-               <Button icon="icon--medium-size ic-go-left" />
-               <Button icon="icon--medium-size ic-go-right" />
+               <Button
+                  icon="icon--medium-size ic-go-left"
+                  custom={slideIndex === 0 ? "disabled" : ""}
+                  clicked={() => sliderRef.current.slickPrev()}
+               />
+               <Button
+                  icon="icon--medium-size ic-go-right"
+                  custom={
+                     slideIndex === cardLength - 5 ||
+                     slideIndex === cardLength - 4
+                        ? "disabled"
+                        : ""
+                  }
+                  clicked={() => sliderRef.current.slickNext()}
+               />
             </div>
          )}
       </div>

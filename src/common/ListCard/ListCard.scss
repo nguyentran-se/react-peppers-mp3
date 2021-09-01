@@ -1,8 +1,6 @@
 .list-card {
-   display: flex;
-   align-items: stretch;
    margin: 0 -15px;
-   overflow-x: auto;
+   overflow-x: hidden;
    &::-webkit-scrollbar {
       background-color: var(--bg-main);
       height: 4px;
@@ -12,10 +10,16 @@
       background-color: var(--bg-scroll-thumb);
    }
    &.list-card--wrap {
+      display: flex;
+      align-items: stretch;
       flex-wrap: wrap;
       overflow-x: hidden;
       & .card {
          margin-bottom: 26px;
       }
    }
+}
+.slick-track {
+   display: flex;
+   // transform: translate3d(0px, 0px, 0px);
 }
