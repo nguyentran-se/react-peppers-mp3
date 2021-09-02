@@ -49,7 +49,7 @@
 
 //5-items-square
 .card.card--square {
-   // flex: 0 0 20%;
+   flex: 0 0 20%;
    & .card-img {
       padding-bottom: 100%;
       border-radius: 5px;
@@ -57,7 +57,7 @@
 }
 //3-items-rec
 .card.card--rectangle {
-   // flex: 0 0 33.33%;
+   flex: 0 0 33.33%;
    & .card-img {
       padding-bottom: 56.25%;
       border-radius: 8px;
@@ -65,10 +65,19 @@
 }
 
 .card.card--circle {
-   // flex: 0 0 20%;
+   flex: 0 0 20%;
    text-align: center;
    & .card-img {
       padding-bottom: 100%;
       border-radius: 50%;
    }
 }
+
+// .test {
+//    background-color: red;
+//    position: fixed;
+//    top: 0;
+//    left: 0;
+//    width: 100px;
+//    height: 100px;
+// }
