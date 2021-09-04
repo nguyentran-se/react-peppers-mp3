@@ -2,6 +2,8 @@ import { numberFormatter } from "helper";
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import usePortal from "react-cool-portal";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
@@ -42,6 +44,7 @@ const Card = ({
    const [onHover, setOnHover] = useState(false);
    const isLoggedIn = useSelector(selectIsLoggedIn);
    const favouriteIds = useSelector(selectFavouriteIds);
+   const [errorImage, setErrorImage] = useState(false);
    // check if a album || playlist is in user's favourite
    const isFavourite = useRef(
       isLoggedIn &&
@@ -156,7 +159,42 @@ const Card = ({
                      clicked={followHandler}
                      menuClicked={cardMenuHandler}
                   />
-                  <img src={cardImage} alt="card song" />
+                  {errorImage && (
+                     <SkeletonTheme
+                        color={"var(--loading-bg)"}
+                        highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
+                        <Skeleton
+                           style={{
+                              position: "absolute",
+                              height: "100%",
+                              top: 0,
+                           }}
+                           duration={1.5}
+                        />
+                     </SkeletonTheme>
+                  )}
+                  <LazyLoadImage
+                     alt={"card-song"}
+                     src={cardImage}
+                     threshold={100} //-150: visible 150px then load image
+                     onError={() => setErrorImage(true)}
+                     placeholder={
+                        <SkeletonTheme
+                           color={"var(--loading-bg)"}
+                           highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
+                           <Skeleton
+                              style={{
+                                 position: "absolute",
+                                 height: "100%",
+                                 top: 0,
+                                 left: 0,
+                              }}
+                              duration={1.5}
+                           />
+                        </SkeletonTheme>
+                     }
+                  />
+                  {/* <img src={cardImage} alt="card song" /> */}
                </div>
                <h4 className="card-title line-clamp--1">{cardName}</h4>
             </Link>
