@@ -1,4 +1,5 @@
 import userApi from "api/userApi";
+import { batch } from "react-redux";
 import * as actionTypes from "./actionTypes";
 
 const fetchPlaylistsSuccess = (playlists) => ({
@@ -48,9 +49,11 @@ export const fetchTracks = () => {
 
 export const initFavourite = () => {
    return (dispatch) => {
-      dispatch(fetchPlaylists());
-      dispatch(fetchAlbums());
-      dispatch(fetchTracks());
+      batch(() => {
+         dispatch(fetchPlaylists());
+         dispatch(fetchAlbums());
+         dispatch(fetchTracks());
+      });
    };
 };
 

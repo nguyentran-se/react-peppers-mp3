@@ -1,8 +1,11 @@
 /**
  * @description This component is render for both playlist and album
  */
+import cardListSkeleton from "common/UI/CardListSkeleton/CardListSkeleton";
+import CardListSkeleton from "common/UI/CardListSkeleton/CardListSkeleton";
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Slider from "react-slick";
 import Card from "./Card/Card";
 import "./ListCard.scss";
@@ -17,34 +20,38 @@ const propTypes = {
 
 const ListCard = forwardRef((props, ref) => {
    const {
-      cards,
+      cards = [],
       cardShape = "square",
       oneButton,
       wrapItems,
       afterChangeHandler,
    } = props;
-
-   let transformedCards;
+   const [isLoaded, setIsLoaded] = useState(false);
+   useEffect(() => {
+      if (cards.length > 0) setIsLoaded(true);
+   }, [cards]);
    //each cards in [] has artists[]
-   if (cards) {
-      transformedCards = cards.map((c) => {
-         if (c.album) c = c.album;
-         return (
-            <Card
-               cardImage={c?.images?.[0]?.url}
-               cardId={c.id}
-               cardName={c.name}
-               cardArtist={c?.artists}
-               cardDescription={c.description}
-               cardShape={cardShape}
-               cardType={c.type}
-               key={c.id}
-               cardFollowers={c?.followers?.total}
-               oneButton={oneButton}
-            />
-         );
-      });
-   }
+   // let transformedCards;
+   // if(cards){
+   // }
+   const transformedCards = cards.map((c) => {
+      if (c.album) c = c.album;
+      return (
+         <Card
+            cardImage={c?.images?.[0]?.url}
+            cardId={c.id}
+            cardName={c.name}
+            cardArtist={c?.artists}
+            cardDescription={c.description}
+            cardShape={cardShape}
+            cardType={c.type}
+            key={c.id}
+            cardFollowers={c?.followers?.total}
+            oneButton={oneButton}
+            // isLoaded={isLoaded}
+         />
+      );
+   });
    const settingSlider = {
       dots: false,
       infinite: false,
@@ -75,22 +82,18 @@ const ListCard = forwardRef((props, ref) => {
     *       on responsive for 4 items of listcard.
     *    - and wrapItems for page like Home, Nhạc mới...
     */
-   return cards ? (
-      !wrapItems ? (
-         <Slider
-            {...settingSlider}
-            ref={ref}
-            className={`list-card ${wrapItems ? "list-card--wrap" : ""}`}>
-            {transformedCards}
-         </Slider>
-      ) : (
-         <div className={`list-card ${wrapItems ? "list-card--wrap" : ""}`}>
-            {transformedCards}
-         </div>
-      )
+   return !wrapItems ? (
+      <Slider {...settingSlider} ref={ref} className={`list-card`}>
+         {isLoaded ? transformedCards : cardListSkeleton(cardShape, 10)}
+      </Slider>
    ) : (
-      <div>waiting</div>
+      <div className={`list-card list-card--wrap`}>
+         {isLoaded ? transformedCards : cardListSkeleton(cardShape, 20)}
+      </div>
    );
+   // : (
+   //   <CardListSkeleton />
+   // );
 });
 
 ListCard.displayName = "ListCard";

@@ -82,7 +82,7 @@ const Artist = () => {
    // console.log(artistSingle);
    // console.log(artistAlbums);
    // render listSection, pass to ListCategory
-   const listSection = [
+   let listSection = [
       {
          name: "Single",
          customHref: `${matchPath}/discography/single`,
@@ -107,6 +107,9 @@ const Artist = () => {
          id: 3,
       },
    ];
+   if (artistAlbums)
+      listSection = listSection.filter((section) => section.cards.length > 0);
+
    return (
       <div className="artist">
          <div

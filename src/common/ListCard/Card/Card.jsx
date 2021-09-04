@@ -37,6 +37,7 @@ const Card = ({
    cardType,
    cardFollowers,
    oneButton,
+   isLoaded,
 }) => {
    const [onHover, setOnHover] = useState(false);
    const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -47,7 +48,7 @@ const Card = ({
          (cardType === "album" || cardType === "playlist") &&
          favouriteIds.includes(cardId)
    );
-
+   // console.log(isLoaded);
    const dispatch = useDispatch();
 
    const onMouseEnterHandler = () => {
@@ -140,7 +141,6 @@ const Card = ({
          }
       }
    };
-
    return (
       <div className={`card card--${cardShape}`}>
          <div className="card-wrapper">
@@ -179,6 +179,28 @@ const Card = ({
          </div>
       </div>
    );
+   // : (
+   //    <div className={`card card--${cardShape}`}>
+   //       <SkeletonTheme
+   //          color={"var(--loading-bg)"}
+   //          highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
+   //          <div className="card-wrapper">
+   //             <div className="card-img">
+   //                <Skeleton
+   //                   style={{ position: "absolute", height: "100%" }}
+   //                   duration={1.5}
+   //                />
+   //             </div>
+   //             <h4 className="card-title">
+   //                <Skeleton duration={1.5} height={17} />
+   //             </h4>
+   //             <h5 className="card-artist">
+   //                <Skeleton duration={1.5} height={17} width={100} />
+   //             </h5>
+   //          </div>
+   //       </SkeletonTheme>
+   //    </div>
+   // );
 };
 
 Card.propTypes = propTypes;

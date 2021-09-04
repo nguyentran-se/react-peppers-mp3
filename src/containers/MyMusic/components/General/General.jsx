@@ -78,6 +78,7 @@ const General = () => {
             <CategoryHeader
                categoryHref={"/my-music/top-tracks"}
                categoryName={"your top tracks"}
+               cardLength={1}
             />
             <PlaylistSongs
                songs={topTracks?.items}
