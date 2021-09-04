@@ -4,6 +4,7 @@ import userApi from "api/userApi";
 import camelize from "camelize";
 import { PEPPERS, USER } from "constant/localStorage";
 import { getLocalStorage, setLocalStorage } from "helper";
+import { useScrollTop } from "hooks";
 import PublicLayout from "layout/PublicLayout/PublicLayout";
 import PublicRoute from "layout/PublicRoute/PublicRoute";
 import queryString from "query-string";
@@ -24,7 +25,7 @@ const App = () => {
    const dispatch = useDispatch();
    const isLoggedIn = useSelector(selectIsLoggedIn);
    const history = useHistory();
-
+   useScrollTop();
    /**
     * @description client_crediential to get data when user not login
     */
