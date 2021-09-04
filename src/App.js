@@ -20,14 +20,17 @@ import {
    requestUserDataFail,
    requestUserDataSuccess,
 } from "store/actions";
+import { requestGetTokenOnExpired } from "store/actions/authAction";
 
 const App = () => {
    const dispatch = useDispatch();
    const isLoggedIn = useSelector(selectIsLoggedIn);
    const history = useHistory();
+
    useScrollTop();
+
    /**
-    * @description client_crediential to get data when user not login
+    * @implements client_crediential to get data when user not login
     */
    useEffect(() => {
       const requestGetClientCredential = async () => {
@@ -42,12 +45,40 @@ const App = () => {
       requestGetClientCredential();
    }, []);
 
+   /**
+    * @implements call api refreshToken
+    * @description check USER in localStore to get time expire.
+    */
    useEffect(() => {
-      const token = getLocalStorage(USER)?.accessToken;
-      if (token) dispatch(loginSuccess());
+      let timeout;
+      if (getLocalStorage(USER)) {
+         const {
+            accessToken: token,
+            refreshToken,
+            expiresIn: expiresInTime,
+         } = getLocalStorage(USER);
+
+         const now = new Date().getTime();
+
+         if (now < expiresInTime && token) {
+            dispatch(loginSuccess());
+            console.log("EXPIRED");
+            timeout = setTimeout(() => {
+               dispatch(requestGetTokenOnExpired(refreshToken));
+            }, expiresInTime - now);
+         } else if (now >= expiresInTime) {
+            dispatch(requestGetTokenOnExpired(refreshToken));
+         }
+      }
+
+      return () => {
+         clearTimeout(timeout);
+      };
    }, [dispatch]);
 
-   // - Call get currentUser after user login
+   /**
+    * @implements getUserData
+    */
    useEffect(() => {
       const requestGetUserData = async () => {
          try {
@@ -72,6 +103,7 @@ const App = () => {
    }, [dispatch, isLoggedIn]);
 
    /**
+    * @implements check code response on URL
     * @description check token after history.location.search change
     *  - If not token then login = false, then check params response from spotify
     *    when click to my-music page. code: success || error: fail
@@ -89,8 +121,8 @@ const App = () => {
             dispatch(loginSuccess());
             setLocalStorage(USER, {
                accessToken: data.accessToken,
-               expiresIn: data.expiresIn,
                refreshToken: data.refreshToken,
+               expiresIn: new Date().getTime() + data.expiresIn * 1000,
             });
          }
       };

@@ -2,10 +2,8 @@
  * @description This component is render for both playlist and album
  */
 import cardListSkeleton from "common/UI/CardListSkeleton/CardListSkeleton";
-import CardListSkeleton from "common/UI/CardListSkeleton/CardListSkeleton";
 import PropTypes from "prop-types";
 import React, { forwardRef, useEffect, useState } from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Slider from "react-slick";
 import Card from "./Card/Card";
 import "./ListCard.scss";

@@ -19,7 +19,9 @@ const Cates = (props) => {
    const isMounted = useCheckMounted();
    const [loadMore, setLoadMore] = useScrollLoadMore(listCategory.next);
 
-   //handle call api at first time and 'next' call if scroll to end
+   /**
+    * @implements handle call api at first time and 'next' call if scroll to end
+    */
    useEffect(() => {
       const requestGetAListOfCategories = async () => {
          try {
@@ -52,6 +54,7 @@ const Cates = (props) => {
                results.map(
                   ({ playlists }) =>
                      isMounted &&
+                     playlists.items.length > 0 &&
                      setPlaylists((prevPlaylists) => [
                         ...prevPlaylists,
                         {
