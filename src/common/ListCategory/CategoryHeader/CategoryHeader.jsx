@@ -10,6 +10,7 @@ const propTypes = {
    categoryName: PropTypes.string,
    cardLength: PropTypes.number,
    slideIndex: PropTypes.number,
+   wrapItems: PropTypes.bool,
 };
 
 const CategoryHeader = ({
@@ -18,6 +19,7 @@ const CategoryHeader = ({
    cardLength,
    sliderRef,
    slideIndex,
+   wrapItems,
 }) => {
    return (
       <div className="category-header">
@@ -38,7 +40,7 @@ const CategoryHeader = ({
             </h3>
          )}
 
-         {cardLength > 5 && (
+         {cardLength > 5 && wrapItems && (
             <div className="category-header__icons">
                <Button
                   icon="icon--medium-size ic-go-left"

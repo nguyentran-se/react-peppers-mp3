@@ -31,6 +31,9 @@
          //    }
          // }
       }
+      & .card.card--rectangle-theme {
+         flex: 0 0 33.33%;
+      }
       //config sidebar
       & .sidebar {
          width: 70px;
@@ -123,6 +126,13 @@
          &__description {
             margin-top: 10px;
          }
+      }
+   }
+}
+@media screen and (min-width: 1024px) and (max-width: 1224px) {
+   body {
+      .card.card--rectangle-theme {
+         flex: 0 0 25%;
       }
    }
 }

@@ -1,0 +1,72 @@
+.peppers-modal {
+   &.open {
+      background-color: rgba($color: #000000, $alpha: 0.6);
+      inset: 0;
+      position: fixed;
+      z-index: 99999;
+   }
+   & .modal-box {
+      $box-height: 596px;
+      width: 70vw;
+      height: $box-height;
+      max-width: 900px;
+      max-height: 100%;
+
+      margin: calc((100vh - #{$box-height}) / 2) auto 0;
+      border-radius: 8px;
+
+      background-color: var(--primary-bg);
+      overflow: hidden;
+   }
+   & .modal-header {
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & h2 {
+         font-weight: 700;
+         text-transform: capitalize;
+         line-height: 1.5;
+      }
+      & button {
+         align-self: flex-start;
+         margin-right: -13px;
+         margin-top: -3px;
+         & i {
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+         }
+      }
+   }
+   //custom listcategory here
+   & .modal-content {
+      padding: 0 30px 20px;
+      max-height: 50vh;
+      min-height: 500px;
+      overflow: hidden auto;
+      .category + .category {
+         margin-top: 0px;
+      }
+      .category-title {
+         font-size: 18px;
+      }
+      .list-card {
+         margin: 0 -7px;
+      }
+      .card-description {
+         color: #fff;
+         font-weight: 500;
+         text-transform: capitalize;
+      }
+      &::-webkit-scrollbar {
+         width: 4px;
+         // background-color: var(--bg-main);
+         // background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         background-color: var(--bg-scroll-thumb);
+      }
+   }
+}

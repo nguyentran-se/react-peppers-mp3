@@ -18,6 +18,7 @@ const Category = ({
    cards,
    cardShape,
    oneButton,
+   wrapItems,
 }) => {
    //pass to forwardRef(ListCard) to get ref, then pass to CategoryHeader
    const sliderRef = useRef(null);
@@ -46,6 +47,7 @@ const Category = ({
             cardShape={cardShape}
             oneButton={oneButton}
             afterChangeHandler={afterChangeHandler}
+            wrapItems={wrapItems}
          />
       </div>
    );

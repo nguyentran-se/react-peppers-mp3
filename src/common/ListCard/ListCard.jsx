@@ -36,7 +36,7 @@ const ListCard = forwardRef((props, ref) => {
       if (c.album) c = c.album;
       return (
          <Card
-            cardImage={c?.images?.[0]?.url}
+            cardImage={c?.images?.[0]?.url || c.image}
             cardId={c.id}
             cardName={c.name}
             cardArtist={c?.artists}

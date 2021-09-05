@@ -73,6 +73,15 @@
    }
 }
 
+.card.card--rectangle-theme {
+   flex: 0 0 16.66667%;
+   padding: 0 7px;
+   & .card-img {
+      padding-bottom: 66.67%;
+      border-radius: 8px;
+   }
+}
+
 // .test {
 //    background-color: red;
 //    position: fixed;

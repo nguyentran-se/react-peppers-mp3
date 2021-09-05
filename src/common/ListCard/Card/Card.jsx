@@ -19,7 +19,7 @@ import "./Card.scss";
 
 const propTypes = {
    cardImage: PropTypes.string,
-   cardId: PropTypes.string,
+   cardId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
    cardName: PropTypes.string,
    cardArtist: PropTypes.array,
    cardDescription: PropTypes.string,
@@ -39,7 +39,6 @@ const Card = ({
    cardType,
    cardFollowers,
    oneButton,
-   isLoaded,
 }) => {
    const [onHover, setOnHover] = useState(false);
    const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -196,7 +195,9 @@ const Card = ({
                   />
                   {/* <img src={cardImage} alt="card song" /> */}
                </div>
-               <h4 className="card-title line-clamp--1">{cardName}</h4>
+               {cardName && (
+                  <h4 className="card-title line-clamp--1">{cardName}</h4>
+               )}
             </Link>
             {cardArtist ? (
                <h5 className="card-artist line-clamp--2">
