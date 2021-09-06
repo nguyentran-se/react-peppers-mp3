@@ -13,4 +13,7 @@
 
    border-radius: 20px;
    background-color: var(--bg-alpha);
+   & + .not-support {
+      margin-top: 30px;
+   }
 }

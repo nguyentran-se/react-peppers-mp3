@@ -1,13 +1,12 @@
 import artistApi from "api/artistApi";
-import ListCategory from "common/ListCategory/ListCategory";
 import NestedNav from "common/NestedNav/NestedNav";
-import PlaylistSongs from "common/PlaylistSongs/PlaylistSongs";
-import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/PlaylistThumbnail";
 import { uniqBy } from "lodash/array";
 import React, { useEffect, useState } from "react";
+import { Route } from "react-router";
 import { useParams, useRouteMatch } from "react-router-dom";
 import "./Artist.scss";
 import ArtistIntro from "./Components/ArtistIntro/ArtistIntro";
+import service from "./service";
 
 const Artist = () => {
    const { slug } = useParams();
@@ -17,15 +16,6 @@ const Artist = () => {
    const [artistAlbums, setArtistAlbums] = useState();
    const [relatedArtist, setRelatedArtist] = useState([]);
    // const slugRef = useRef(slug);
-   const nestedNavList = [
-      { name: "TỔNG QUAN", href: matchPath },
-      { name: "HOẠT ĐỘNG", href: matchPath + "/feed" },
-      { name: "SỰ KIỆN", href: matchPath + "/event" },
-      { name: "BÀI HÁT", href: matchPath + "/bai-hat" },
-      { name: "MV", href: matchPath + "/video" },
-      { name: "RADIO", href: matchPath + "/radio" },
-      { name: "TIN TỨC", href: matchPath + "/news" },
-   ];
    let artistSingle, artistAlbum;
    //filter artistAlbums from api into single and album
    if (artistAlbums) {
@@ -126,26 +116,28 @@ const Artist = () => {
                popularity={artist?.popularity}
             />
             <div className="artist-main">
-               <NestedNav nestedNavList={nestedNavList} />
-               <div className="artist-outstanding">
-                  <h2 className="artist-main__heading">Bài hát nổi bật</h2>
-                  <div className="artist-outstanding__wrapper">
-                     <PlaylistThumbnail
-                        image={topTracks?.[0]?.album.images[0].url}
-                        custom={"artist-img"}
+               <NestedNav nestedNavList={service.getNestedNav(matchPath)} />
+               {service
+                  .getNestedNav(matchPath)
+                  .map(({ name, href, component: Component }) => (
+                     <Route
+                        key={name}
+                        path={href}
+                        render={(props) =>
+                           href === matchPath ? (
+                              <Component
+                                 {...props}
+                                 image={topTracks?.[0]?.album.images[0].url}
+                                 songs={topTracks}
+                                 listSection={listSection}
+                              />
+                           ) : (
+                              <Component {...props} />
+                           )
+                        }
+                        exact
                      />
-                     <PlaylistSongs
-                        songs={topTracks}
-                        customInstance={{
-                           customClass: "artist-outstanding__songs",
-                           noHeader: true,
-                        }}
-                     />
-                  </div>
-               </div>
-               {listSection[0].cards && (
-                  <ListCategory listCategory={listSection} />
-               )}
+                  ))}
             </div>
          </div>
       </div>
