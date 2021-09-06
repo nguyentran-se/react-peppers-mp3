@@ -7,7 +7,11 @@ import "../Modal.scss";
 const Theme = () => {
    return (
       <div className="theme">
-         <ListCategory listCategory={themes} wrapItems={true} />
+         <ListCategory
+            listCategory={themes}
+            wrapItems={true}
+            themeButton={true}
+         />
       </div>
    );
 };

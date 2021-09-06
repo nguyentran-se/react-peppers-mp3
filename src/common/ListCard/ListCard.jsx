@@ -23,6 +23,7 @@ const ListCard = forwardRef((props, ref) => {
       oneButton,
       wrapItems,
       afterChangeHandler,
+      themeButton,
    } = props;
    const [isLoaded, setIsLoaded] = useState(false);
    useEffect(() => {
@@ -46,6 +47,7 @@ const ListCard = forwardRef((props, ref) => {
             key={c.id}
             cardFollowers={c?.followers?.total}
             oneButton={oneButton}
+            themeButton={themeButton}
             // isLoaded={isLoaded}
          />
       );

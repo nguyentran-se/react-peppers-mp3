@@ -31,6 +31,22 @@
       transform: translate(-50%, -50%);
       z-index: 2;
       @include fade-effect(hidden, 0);
+      &.card-theme__control {
+         flex-direction: column;
+         & button {
+            padding: 5px 0px;
+            font-size: 9px;
+            height: 22px;
+            width: 100px;
+            text-transform: uppercase;
+            transition: background-color 0.2s linear;
+            &:nth-child(2) {
+               background-color: rgba(0, 0, 0, 0.2);
+               border: 1px solid hsla(0, 0%, 100%, 0.7);
+               margin-top: 10px;
+            }
+         }
+      }
    }
 }
 .card-img:hover > .card-modal {

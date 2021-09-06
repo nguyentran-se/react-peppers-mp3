@@ -2,7 +2,13 @@ import React from "react";
 import Category from "./Category/Category";
 import { withRouter } from "react-router-dom";
 
-const ListCategory = ({ playlists, listCategory, match, wrapItems }) => {
+const ListCategory = ({
+   playlists,
+   listCategory,
+   match,
+   wrapItems,
+   themeButton,
+}) => {
    let transformedListCategory;
    if (listCategory) {
       transformedListCategory = listCategory.map((category, index) => (
@@ -15,6 +21,7 @@ const ListCategory = ({ playlists, listCategory, match, wrapItems }) => {
             oneButton={category?.oneButton}
             key={category.id}
             wrapItems={wrapItems}
+            themeButton={themeButton}
          />
       ));
    }

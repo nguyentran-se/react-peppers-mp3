@@ -10,6 +10,7 @@ const propTypes = {
    cards: PropTypes.array,
    cardShape: PropTypes.string,
    oneButton: PropTypes.bool,
+   themeButton: PropTypes.bool,
 };
 
 const Category = ({
@@ -19,6 +20,7 @@ const Category = ({
    cardShape,
    oneButton,
    wrapItems,
+   themeButton,
 }) => {
    //pass to forwardRef(ListCard) to get ref, then pass to CategoryHeader
    const sliderRef = useRef(null);
@@ -48,6 +50,7 @@ const Category = ({
             oneButton={oneButton}
             afterChangeHandler={afterChangeHandler}
             wrapItems={wrapItems}
+            themeButton={themeButton}
          />
       </div>
    );

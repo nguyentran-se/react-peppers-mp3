@@ -10,6 +10,7 @@ const CardModal = ({
    isFavourite,
    clicked,
    menuClicked,
+   themeButton = false,
 }) => {
    // console.log(isFavourite);
    const nodeRef = useRef(null);
@@ -23,8 +24,11 @@ const CardModal = ({
          classNames="card-modal--hover">
          <div ref={nodeRef} className="card-modal">
             <div className="card-modal__backdrop"></div>
-            <div className="card-modal__control">
-               {defaultButton && !oneButton && (
+            <div
+               className={`card-modal__control ${
+                  themeButton ? "card-theme__control" : ""
+               } `}>
+               {defaultButton && !oneButton && !themeButton && (
                   <>
                      <Button
                         icon={"ic-like"}
@@ -54,6 +58,16 @@ const CardModal = ({
                      custom="button--card button--middle"
                      hover
                   />
+               )}
+               {themeButton && (
+                  <>
+                     <Button text custom={"button--normal button-primary"}>
+                        Áp dụng
+                     </Button>
+                     <Button text custom={"button--normal"}>
+                        Xem trước
+                     </Button>
+                  </>
                )}
                {children}
             </div>

@@ -2,8 +2,6 @@ import { numberFormatter } from "helper";
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import usePortal from "react-cool-portal";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
@@ -13,8 +11,8 @@ import {
    unFollowAlbum,
    unFollowPlaylist,
 } from "store/actions/";
+import CardMain from "../CardMain/CardMain";
 import CardMenu from "../CardMenu/CardMenu";
-import CardModal from "../CardModal/CardModal";
 import "./Card.scss";
 
 const propTypes = {
@@ -39,6 +37,7 @@ const Card = ({
    cardType,
    cardFollowers,
    oneButton,
+   themeButton,
 }) => {
    const [onHover, setOnHover] = useState(false);
    const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -143,62 +142,33 @@ const Card = ({
          }
       }
    };
+
+   const cardMain = (
+      <CardMain
+         onMouseEnterHandler={onMouseEnterHandler}
+         onMouseLeaveHandler={onMouseLeaveHandler}
+         onHover={onHover}
+         oneButton={oneButton}
+         isFavourite={isFavourite.current}
+         followHandler={followHandler}
+         cardMenuHandler={cardMenuHandler}
+         errorImage={errorImage}
+         cardImage={cardImage}
+         onError={() => setErrorImage(true)}
+         cardName={cardName}
+         themeButton={themeButton}
+      />
+   );
+
    return (
       <div className={`card card--${cardShape}`}>
          <div className="card-wrapper">
-            <Link to={`/${cardType}/${cardId}`}>
-               <div
-                  className="card-img"
-                  onMouseEnter={onMouseEnterHandler}
-                  onMouseLeave={onMouseLeaveHandler}>
-                  <CardModal
-                     onHover={onHover}
-                     oneButton={oneButton}
-                     isFavourite={isFavourite.current}
-                     clicked={followHandler}
-                     menuClicked={cardMenuHandler}
-                  />
-                  {errorImage && (
-                     <SkeletonTheme
-                        color={"var(--loading-bg)"}
-                        highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
-                        <Skeleton
-                           style={{
-                              position: "absolute",
-                              height: "100%",
-                              top: 0,
-                           }}
-                           duration={1.5}
-                        />
-                     </SkeletonTheme>
-                  )}
-                  <LazyLoadImage
-                     alt={"card-song"}
-                     src={cardImage}
-                     threshold={100} //-150: visible 150px then load image
-                     onError={() => setErrorImage(true)}
-                     placeholder={
-                        <SkeletonTheme
-                           color={"var(--loading-bg)"}
-                           highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
-                           <Skeleton
-                              style={{
-                                 position: "absolute",
-                                 height: "100%",
-                                 top: 0,
-                                 left: 0,
-                              }}
-                              duration={1.5}
-                           />
-                        </SkeletonTheme>
-                     }
-                  />
-                  {/* <img src={cardImage} alt="card song" /> */}
-               </div>
-               {cardName && (
-                  <h4 className="card-title line-clamp--1">{cardName}</h4>
-               )}
-            </Link>
+            {cardType ? (
+               <Link to={`/${cardType}/${cardId}`}>{cardMain}</Link>
+            ) : (
+               cardMain
+            )}
+
             {cardArtist ? (
                <h5 className="card-artist line-clamp--2">
                   {transformedArtist}
@@ -218,28 +188,6 @@ const Card = ({
          </div>
       </div>
    );
-   // : (
-   //    <div className={`card card--${cardShape}`}>
-   //       <SkeletonTheme
-   //          color={"var(--loading-bg)"}
-   //          highlightColor={"hsl(0, 0%, 100%, 0.4)"}>
-   //          <div className="card-wrapper">
-   //             <div className="card-img">
-   //                <Skeleton
-   //                   style={{ position: "absolute", height: "100%" }}
-   //                   duration={1.5}
-   //                />
-   //             </div>
-   //             <h4 className="card-title">
-   //                <Skeleton duration={1.5} height={17} />
-   //             </h4>
-   //             <h5 className="card-artist">
-   //                <Skeleton duration={1.5} height={17} width={100} />
-   //             </h5>
-   //          </div>
-   //       </SkeletonTheme>
-   //    </div>
-   // );
 };
 
 Card.propTypes = propTypes;
