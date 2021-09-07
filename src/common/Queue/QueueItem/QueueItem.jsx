@@ -1,10 +1,12 @@
 import Button from "common/UI/Button/Button";
+import { useMenu } from "hooks";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./QueueItem.scss";
+import { QUEUE_MENU_BUTTONS } from "constant";
 const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
+   const { Menu, cardMenuHandler } = useMenu({ menuList: QUEUE_MENU_BUTTONS });
    let transformedArtist;
-   // console.log(artists);
 
    if (artists) {
       let length = artists.length - 1;
@@ -38,10 +40,11 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
             {buttons || (
                <div className="queue-item__actions">
                   <Button icon="ic-like" hover />
-                  <Button icon="ic-more" hover />
+                  <Button icon="ic-more" hover clicked={cardMenuHandler} />
                </div>
             )}
          </div>
+         <Menu />
       </div>
    );
 };

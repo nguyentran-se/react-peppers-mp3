@@ -1,8 +1,10 @@
 import QueueItem from "common/Queue/QueueItem/QueueItem";
 import Button from "common/UI/Button/Button";
+import { SONG_MENU_BUTTONS } from "constant";
 import dayjs from "dayjs";
 import "dayjs/locale/vi";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useMenu } from "hooks";
 import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +36,10 @@ const PlaylistSong = ({
 }) => {
    dayjs.extend(relativeTime);
    dayjs.locale("vi");
+
+   const { Menu, cardMenuHandler } = useMenu(SONG_MENU_BUTTONS, {
+      height: 272,
+   });
    // console.log(dayjs(ago).fromNow());
    // console.log(Math.ceil(dayjs().diff(dayjs(ago), "hours") / 24));
    const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -89,11 +95,12 @@ const PlaylistSong = ({
                         0{Math.floor(time / 60000)}:
                         {Math.floor(time / 6000 - Math.floor(time / 60000))}
                      </span>
-                     <Button icon="ic-more" hover />
+                     <Button icon="ic-more" hover clicked={cardMenuHandler} />
                   </div>
                </>
             }
          />
+         <Menu />
       </div>
    );
 };

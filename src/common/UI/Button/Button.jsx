@@ -15,6 +15,7 @@ const propTypes = {
 const Button = ({
    clicked,
    icon,
+   iconRight,
    custom,
    disabled,
    children,
@@ -25,10 +26,11 @@ const Button = ({
    activeSquare,
    text,
    active,
+   style,
 }) => {
    const buttonClasses = ["button"];
    if (custom) buttonClasses.push(custom);
-   if (icon) buttonClasses.push("button--flex");
+   if (icon || iconRight) buttonClasses.push("button--flex");
    if (disabled) buttonClasses.push("disabled");
    if (hover) buttonClasses.push("button--hover");
    if (hoverSquare) buttonClasses.push("button--hover-square");
@@ -43,9 +45,11 @@ const Button = ({
             e.preventDefault();
             clicked && clicked(e);
          }}
-         className={buttonClasses.join(" ")}>
+         className={buttonClasses.join(" ")}
+         style={{ ...style }}>
          {icon && <i className={`icon ${icon}`}></i>}
          {children}
+         {iconRight && <i className={`icon ${iconRight}`}></i>}
       </button>
    );
 };

@@ -1,7 +1,8 @@
+import { CARD_MENU_BUTTONS } from "constant";
 import { numberFormatter } from "helper";
+import { useMenu } from "hooks";
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
-import usePortal from "react-cool-portal";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
@@ -12,7 +13,6 @@ import {
    unFollowPlaylist,
 } from "store/actions/";
 import CardMain from "../CardMain/CardMain";
-import CardMenu from "../CardMenu/CardMenu";
 import "./Card.scss";
 
 const propTypes = {
@@ -25,6 +25,7 @@ const propTypes = {
    cardType: PropTypes.string,
    cardFollowers: PropTypes.number,
    oneButton: PropTypes.bool,
+   themeButton: PropTypes.bool,
 };
 
 const Card = ({
@@ -98,50 +99,7 @@ const Card = ({
       }
    };
 
-   /**
-    * @event clickButtonMoreOnCard
-    * @implements
-    *  - get position of mouse, get width height of screen
-    *  - if(portal hide) setMenuPosition -> avoid redundance of setState.
-    *  - hide if catch scroll event
-    */
-   const { Portal, isShow, toggle, hide } = usePortal({
-      defaultShow: false,
-      containerId: "peppers-portal",
-   });
-   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-   const cardMenuHandler = (e) => {
-      const screenWidth = window.innerWidth,
-         screenHeight = window.innerHeight,
-         x = e.pageX,
-         y = e.pageY,
-         menuWith = 260,
-         menuHeight = 210;
-
-      document.querySelector(".layout-right").onscroll = () => {
-         hide();
-      };
-
-      toggle();
-      if (!isShow) {
-         if (screenWidth - x >= menuWith && screenHeight - y >= menuHeight) {
-            setMenuPosition({ x: x + 10, y: y + 10 });
-            // console.log("ĐỦ");
-         } else if (
-            screenWidth - x < menuWith &&
-            screenHeight - y < menuHeight
-         ) {
-            setMenuPosition({ x: x - menuWith, y: y - menuHeight });
-            // console.log("THIẾU CẢ 2");
-         } else if (screenWidth - x < menuWith) {
-            setMenuPosition({ x: x - menuWith, y });
-            // console.log("THIẾU X");
-         } else {
-            setMenuPosition({ x, y: y - menuHeight });
-            // console.log("THIẾU Y");
-         }
-      }
-   };
+   const { Menu, cardMenuHandler } = useMenu({ menuList: CARD_MENU_BUTTONS });
 
    const cardMain = (
       <CardMain
@@ -182,9 +140,7 @@ const Card = ({
                   {numberFormatter(cardFollowers)} Followers
                </h5>
             )}
-            <Portal>
-               <CardMenu top={menuPosition.y} left={menuPosition.x} />
-            </Portal>
+            <Menu />
          </div>
       </div>
    );
