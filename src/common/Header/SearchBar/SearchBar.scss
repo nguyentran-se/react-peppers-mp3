@@ -1,39 +1,100 @@
+$search-focus: var(--primary-bg);
 .search-bar {
    width: 100%;
    max-width: 540px;
    &__wrapper {
+      position: relative;
+
       display: flex;
       align-items: center;
       height: 40px;
+      padding: 0 32px 0 10px;
+
       border-radius: 20px;
       background-color: hsla(0, 0%, 100%, 0.1);
-      padding: 0 32px 0 10px;
+   }
+   &.hide {
+      & .search-result {
+         visibility: hidden;
+         pointer-events: none;
+      }
+   }
+   &.show {
+      & .search-bar__wrapper {
+         background-color: $search-focus;
+         border-radius: 20px 20px 0 0;
+      }
+      & .search-result {
+         visibility: visible;
+         pointer-events: initial;
+      }
    }
 }
+
 .icon-wrapper {
    display: flex;
    align-items: center;
 }
-.input {
-   &-wrapper {
-      flex: 1;
-      height: 100%;
-      padding: 5px 0;
+
+.search-input__wrapper {
+   flex: 1;
+   height: 100%;
+   padding: 5px 0;
+}
+.search-input {
+   width: 100%;
+   height: 100%;
+
+   font-size: 14px;
+   outline: none;
+   border: none;
+
+   background-color: transparent;
+   color: #eee;
+   font-weight: 500;
+   user-select: none;
+   &::placeholder {
+      opacity: 1;
    }
-   &-search {
-      width: 100%;
-      height: 100%;
+}
 
-      font-size: 14px;
-      outline: none;
-      border: none;
+.search-result {
+   position: absolute;
+   top: 40px;
+   left: 0;
 
-      background-color: transparent;
-      color: #eee;
-      font-weight: 500;
-      user-select: none;
-      &::placeholder {
-         opacity: 1;
+   width: 100%;
+   height: auto;
+   background-color: $search-focus;
+   // visibility: hidden;
+   // pointer-events: none;
+   user-select: none;
+   border-radius: 0 0 20px 20px;
+   &__wrapper {
+      padding: 13px 10px;
+   }
+   // &__list {
+   // }
+   &__item {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+
+      cursor: pointer;
+      border-radius: 4px;
+      &:hover {
+         background-color: var(--bg-alpha);
       }
+      & i {
+         width: 16px;
+         height: 16px;
+         font-size: 16px;
+         margin-right: 10px;
+         color: var(--text-secondary);
+      }
+   }
+   &__name {
+      font-size: 14px;
+      line-height: 21px;
    }
 }
