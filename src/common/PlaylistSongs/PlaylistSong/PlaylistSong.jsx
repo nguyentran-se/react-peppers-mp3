@@ -37,7 +37,8 @@ const PlaylistSong = ({
    dayjs.extend(relativeTime);
    dayjs.locale("vi");
 
-   const { Menu, cardMenuHandler } = useMenu(SONG_MENU_BUTTONS, {
+   const { Menu, cardMenuHandler } = useMenu({
+      menuList: SONG_MENU_BUTTONS,
       height: 272,
    });
    // console.log(dayjs(ago).fromNow());

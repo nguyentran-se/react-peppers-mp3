@@ -10,6 +10,7 @@ const Artist = lazy(() => import("containers/Artist/Artist"));
 const Notfound = lazy(() => import("containers/Notfound/Notfound"));
 const Cate = lazy(() => import("containers/Cate/Cate"));
 const NewReleases = lazy(() => import("containers/NewReleases/NewReleases"));
+const Search = lazy(() => import("containers/Search/Search"));
 
 const routes = [
    {
@@ -61,6 +62,13 @@ const routes = [
       layout: "PublicLayout",
       component: Playlist,
    },
+   {
+      path: "/search/",
+      exact: false,
+      layout: "PublicLayout",
+      component: Search,
+   },
+
    {
       path: "*",
       exact: true,

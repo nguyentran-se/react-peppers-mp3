@@ -11,7 +11,7 @@ const SearchBar = () => {
    const [searchResults, setSearchResults] = useState();
 
    const onChangeHandler = async (e) => {
-      const value = e.target.value;
+      const value = e.target.value.trim();
       setQuery(value);
       if (!value) {
          setSearchResults(null);
