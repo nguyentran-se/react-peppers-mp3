@@ -39,7 +39,7 @@ const musicApi = {
       return axiosClient.get(url, { params });
    },
 
-   searchAll: (params) => {
+   search: (params) => {
       const url = `/search`;
       return axiosClient.get(url, { params });
    },
