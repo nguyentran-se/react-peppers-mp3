@@ -40,7 +40,7 @@ const CategoryHeader = ({
             </h3>
          )}
 
-         {cardLength > 5 && wrapItems && (
+         {cardLength > 5 && !wrapItems && (
             <div className="category-header__icons">
                <Button
                   icon="icon--medium-size ic-go-left"
