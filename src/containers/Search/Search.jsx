@@ -1,18 +1,9 @@
 import { useSearch } from "hooks";
-import React, { lazy, useRef } from "react";
+import React, { useRef } from "react";
 import { Route, useRouteMatch } from "react-router";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 import "./Search.scss";
-
-const SearchAll = lazy(() => import("./components/SearchAll/SearchAll"));
-const SearchTrack = lazy(() => import("./components/SearchTrack/SearchTrack"));
-const SearchPlaylist = lazy(() =>
-   import("./components/SearchPlaylist/SearchPlaylist")
-);
-const SearchArtist = lazy(() =>
-   import("./components/SearchArtist/SearchArtist")
-);
-const SearchShow = lazy(() => import("./components/SearchShow/SearchShow"));
+import service from "./service";
 
 const Search = () => {
    const matchPath = useRouteMatch().url;
@@ -37,55 +28,29 @@ const Search = () => {
       allTotalOfResult = Object.keys(allResult).reduce((acc, currentKey) => {
          return { ...acc, [currentKey]: allResult[currentKey].total };
       }, {});
-   console.log(allTotalOfResult);
-
-   const subRoutes = [
-      {
-         path: `${matchPath}/all`,
-         component: SearchAll,
-         exact: false,
-      },
-      {
-         path: `${matchPath}/track`,
-         component: SearchTrack,
-         exact: false,
-      },
-      {
-         path: `${matchPath}/playlist`,
-         component: SearchPlaylist,
-         exact: false,
-      },
-      {
-         path: `${matchPath}/artist`,
-         component: SearchArtist,
-         exact: false,
-      },
-      {
-         path: `${matchPath}/show`,
-         component: SearchShow,
-         exact: false,
-      },
-   ];
+   // console.log(allTotalOfResult);
 
    return (
       <div className="search">
          <SearchHeader query={query} allTotalOfResult={allTotalOfResult} />
          <div className="container search-container">
             {/* <SearchAll all={all} query={query} /> */}
-            {subRoutes.map(({ path, exact, component: Component }) => (
-               <Route
-                  path={path}
-                  exact={exact}
-                  render={(props) => (
-                     <Component
-                        {...props}
-                        query={query}
-                        allResult={allResult}
-                     />
-                  )}
-                  key={path}
-               />
-            ))}
+            {service
+               .getSubRoutes(matchPath)
+               .map(({ path, exact, component: Component }) => (
+                  <Route
+                     path={path}
+                     exact={exact}
+                     render={(props) => (
+                        <Component
+                           {...props}
+                           query={query}
+                           allResult={allResult}
+                        />
+                     )}
+                     key={path}
+                  />
+               ))}
          </div>
       </div>
    );

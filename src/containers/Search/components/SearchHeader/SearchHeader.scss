@@ -1,6 +1,6 @@
 $header-height: 52px;
 .search-header {
-   padding: 0 4vw;
+   padding-left: 4vw;
    border-bottom: 1px solid var(--cl-border-primary);
    margin-bottom: 30px;
    display: flex;
@@ -19,6 +19,8 @@ $header-height: 52px;
 .search-nav {
    display: flex;
    align-items: center;
+   flex-shrink: 0;
+   flex-grow: 1;
    &__item {
       margin: 0 20px;
       & a {

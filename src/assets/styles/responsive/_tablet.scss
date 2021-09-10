@@ -128,6 +128,11 @@
          }
       }
    }
+   .search {
+      .search-header__title {
+         display: none;
+      }
+   }
 }
 @media screen and (min-width: 1024px) and (max-width: 1224px) {
    body {
