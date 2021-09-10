@@ -11,7 +11,7 @@ const SearchTrack = ({ query }) => {
       offset: 0,
    });
    const [result] = useSearch(query, params.current);
-   console.log(result);
+   // console.log(result);
    return (
       <div className="search-track">
          <CategoryHeader categoryName={"Bài hát"} cardLength={1} />
