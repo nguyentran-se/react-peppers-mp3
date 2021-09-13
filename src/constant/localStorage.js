@@ -6,3 +6,5 @@ export const PEPPERS_PLAYER = "PEPPERS_PLAYER";
 export const PEPPERS = "PEPPERS";
 
 export const USER = "USER";
+
+export const HISTORY_SEARCH = "HISTORY_SEARCH";

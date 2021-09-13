@@ -131,13 +131,16 @@ const Card = ({
                <h5 className="card-artist line-clamp--2">
                   {transformedArtist}
                </h5>
-            ) : cardDescription ? (
-               <h5
-                  className="card-description line-clamp--2"
-                  dangerouslySetInnerHTML={{ __html: cardDescription }}></h5>
             ) : (
+               cardDescription && (
+                  <h5
+                     className="card-description line-clamp--2"
+                     dangerouslySetInnerHTML={{ __html: cardDescription }}></h5>
+               )
+            )}
+            {cardFollowers && (
                <h5 className="card-description line-clamp--2">
-                  {numberFormatter(cardFollowers)} Followers
+                  {numberFormatter(cardFollowers, 1)} Followers
                </h5>
             )}
             <Menu />
