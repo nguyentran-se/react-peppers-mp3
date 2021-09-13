@@ -1,24 +1,39 @@
-import React from "react";
-import srcImg from "assets/images/test.jpg";
-import "./PlayerSong.scss";
+import srcImg2 from "assets/images/test.jpg";
 import Button from "common/UI/Button/Button";
-const PlayerSong = () => {
+import React from "react";
+import { Link } from "react-router-dom";
+import "./PlayerSong.scss";
+
+const PlayerSong = ({ track }) => {
+   // const {artists, album, name: songName} = track;
+   let transformedArtist;
+   if (track?.artists) {
+      let length = track.artists.length - 1;
+      transformedArtist = track.artists.map((art, index) => (
+         <span key={art.id}>
+            <Link
+               to={`/artist/${art.id}`}
+               className="player-song__artist artist-hover--nocolor">
+               {art.name}
+            </Link>
+            {length !== index && ", "}
+         </span>
+      ));
+   }
    return (
       <div className="player-song">
          <a href="#playlist-id">
             <div className="player-song__thumbnail">
-               <img src={srcImg} alt="song" />
+               <img src={track?.album?.images[0].url || srcImg2} alt="song" />
             </div>
          </a>
          <div className="player-song__info">
-            <a href="#song" className="player-song__name line-clamp--1">
-               NameTest
-            </a>
-            <a
-               href="#artist"
-               className="player-song__artist line-clamp--1 artist-hover--nocolor">
-               ArtistTest
-            </a>
+            <Link
+               to={`/album/${track?.album.id}`}
+               className="player-song__name line-clamp--1">
+               {track?.name}
+            </Link>
+            <span className={"line-clamp--1"}>{transformedArtist}</span>
          </div>
          <div className="player-song__control">
             <Button icon="ic-like" hover />
