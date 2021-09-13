@@ -21,12 +21,12 @@ const SearchBar = () => {
       const params = {
          q: value,
          type: "album,artist,playlist,track", //show,episode",
-         limit: 3,
+         limit: 10,
          offset: 0,
       };
       const searchData = await musicApi.search(params);
       setSearchResults(searchData);
-      // console.log(searchData);
+      console.log(searchData);
    };
 
    //after milis call onchange
