@@ -1,3 +1,7 @@
+/**
+ * @implements search on searchbar
+ * 1. try search on searchbar. Text and Image(suggestionResults) results
+ */
 import React from "react";
 import { useHistory } from "react-router";
 import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
@@ -30,11 +34,13 @@ const SearchResult = ({ searchResults, query, searchBarRef }) => {
          EPISODES: "episodes",
       };
       //textResults
+      //filter artist to get clear data
       const filterHighFollowerArtists = sortBy(
          searchResults[keys.ARTISTS].items,
          (o) => o.followers.total
       )
          .reverse()
+         .filter((art) => art.images.length)
          .slice(0, 2);
 
       textResults = filterHighFollowerArtists

@@ -11,12 +11,12 @@ const SearchArtist = ({ query }) => {
       offset: 0,
    });
    const [result] = useSearch(query, params.current);
-   console.log(result);
+
    return (
       <div className="search-track">
          <CategoryHeader categoryName={"Artist"} cardLength={1} />
          <ListCard
-            cards={result?.artists.items}
+            cards={result?.artists?.items}
             wrapItems
             cardShape={"circle"}
          />
