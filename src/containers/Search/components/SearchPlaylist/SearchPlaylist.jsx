@@ -15,7 +15,7 @@ const SearchPlaylist = ({ query }) => {
       <div className="search-playlist">
          <CategoryHeader categoryName={"Playlist/Album"} cardLength={1} />
          <ListCard
-            cards={result?.playlists.items.concat(result?.albums.items)}
+            cards={result?.playlists?.items.concat(result?.albums?.items)}
             wrapItems
          />
       </div>

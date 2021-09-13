@@ -16,7 +16,7 @@ const SearchArtist = ({ query }) => {
       <div className="search-track">
          <CategoryHeader categoryName={"Artist"} cardLength={1} />
          <ListCard
-            cards={result?.artists.items}
+            cards={result?.artists?.items}
             wrapItems
             cardShape={"circle"}
          />

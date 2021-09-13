@@ -11,14 +11,14 @@ const SearchAll = ({ query, allResult }) => {
       {
          name: "Playlist/Album",
          customHref: `playlist?${params}`,
-         cards: allResult?.playlists.items.concat(allResult?.albums.items),
+         cards: allResult?.playlists?.items.concat(allResult?.albums.items),
          id: 1,
       },
       {
          name: "Artist",
          customHref: `artist?${params}`,
          cards: sortBy(
-            allResult?.artists.items.filter(
+            allResult?.artists?.items.filter(
                ({ images, followers }) => images.length && followers.total
             ),
             (o) => o.followers.total
@@ -30,13 +30,13 @@ const SearchAll = ({ query, allResult }) => {
       {
          name: "Show",
          customHref: `show?${params}`,
-         cards: allResult?.shows.items,
+         cards: allResult?.shows?.items,
          id: 3,
       },
       {
          name: "Episode",
          customHref: `show?${params}`,
-         cards: allResult?.episodes.items,
+         cards: allResult?.episodes?.items,
          id: 4,
       },
    ];
@@ -59,7 +59,11 @@ const SearchAll = ({ query, allResult }) => {
                />
             </div>
             {listSection[0].cards && (
-               <ListCategory listCategory={listSection} />
+               <ListCategory
+                  listCategory={listSection.filter(
+                     (section) => section.cards.length
+                  )}
+               />
             )}
          </div>
       </>
