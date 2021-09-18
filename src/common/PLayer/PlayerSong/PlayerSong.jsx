@@ -10,9 +10,9 @@ const PlayerSong = ({ track }) => {
    if (track?.artists) {
       let length = track.artists.length - 1;
       transformedArtist = track.artists.map((art, index) => (
-         <span key={art.id}>
+         <span key={art?.id || index}>
             <Link
-               to={`/artist/${art.id}`}
+               to={`/artist/${art.id || (art.uri && art?.uri.split(":")[2])}`}
                className="player-song__artist artist-hover--nocolor">
                {art.name}
             </Link>
@@ -29,7 +29,10 @@ const PlayerSong = ({ track }) => {
          </a>
          <div className="player-song__info">
             <Link
-               to={`/album/${track?.album.id}`}
+               to={`/album/${
+                  track?.album?.id ||
+                  (track?.album?.uri && track?.album?.uri.split(":")[2])
+               }`}
                className="player-song__name line-clamp--1">
                {track?.name}
             </Link>

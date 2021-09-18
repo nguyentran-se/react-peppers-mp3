@@ -15,6 +15,16 @@ const playerApi = {
       const url = `/me/player/recently-played`;
       return axiosClient.get(url, { params });
    },
+
+   playURI: (params, uri) => {
+      const url = "/me/player/play";
+      return axiosClient({
+         method: "PUT",
+         params,
+         url: url,
+         data: JSON.stringify({ uris: [uri] }),
+      });
+   },
 };
 
 export default playerApi;
