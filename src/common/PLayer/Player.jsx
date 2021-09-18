@@ -1,20 +1,18 @@
 import playerApi from "api/playerApi";
 import ProgressBar from "common/ProgressBar/ProgressBar";
 import React, { memo, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
    selectCurrentTrack,
    selectIsLoggedIn,
    selectPaused,
    selectPlayer,
 } from "selectors";
+import { initPlayer } from "store/actions";
 import "./Player.scss";
 import PlayerActions from "./PlayerActions/PlayerActions";
 import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerSong from "./PlayerSong/PlayerSong";
-import { getLocalStorage } from "helper";
-import { useDispatch } from "react-redux";
-import { initPlayer, seekPlayer } from "store/actions";
 // const initialTrack = {
 //    name: "",
 //    album: {
@@ -67,7 +65,7 @@ const Player = ({ clicked, toggleQueue }) => {
          // console.log(paused);
          if (!paused && progressValue <= duration)
             setProgressValue((value) => value + 0.001);
-         else setProgressValue(0);
+         else if (progressValue > duration) setProgressValue(0);
       }, 1000);
       return () => clearInterval(timeInterval);
    }, [duration, paused, progressValue]);
