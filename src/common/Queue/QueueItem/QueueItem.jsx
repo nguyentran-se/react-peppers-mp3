@@ -4,7 +4,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./QueueItem.scss";
 import { QUEUE_MENU_BUTTONS } from "constant";
-const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
+import PropTypes from "prop-types";
+import playerApi from "api/playerApi";
+import { useSelector } from "react-redux";
+import { selectDeviceId } from "selectors";
+const propTypes = {
+   src: PropTypes.string,
+   name: PropTypes.string,
+   artists: PropTypes.array,
+   custom: PropTypes.string,
+   active: PropTypes.bool,
+};
+const QueueItem = ({
+   src,
+   name,
+   artists,
+   buttons,
+   custom = "",
+   active,
+   uri,
+}) => {
    const { Menu, cardMenuHandler } = useMenu({ menuList: QUEUE_MENU_BUTTONS });
    let transformedArtist;
 
@@ -21,9 +40,24 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
          </span>
       ));
    }
+   const deviceId = useSelector(selectDeviceId);
+   const playClickedHandler = () => {
+      const params = {
+         device_id: deviceId,
+      };
+      if (uri) {
+         const option = {
+            uris: [uri],
+         };
+         playerApi.playURI(params, option);
+      }
+   };
    return (
-      <div className="queue-item ">
-         <div className={`queue-item__wrapper ${custom}`}>
+      <div className="queue-item" onClick={playClickedHandler}>
+         <div
+            className={`queue-item__wrapper ${custom} ${
+               active ? "active" : ""
+            }`}>
             <div className="queue-item__left">
                <div className="card-img queue-item__img">
                   <img src={src} alt="queue item" />
@@ -48,5 +82,5 @@ const QueueItem = ({ src, name, artists, buttons, custom = "" }) => {
       </div>
    );
 };
-
+QueueItem.propTypes = propTypes;
 export default QueueItem;

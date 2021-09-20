@@ -36,8 +36,20 @@ const PublicLayout = (props) => {
          }
       };
       layoutRight.addEventListener("scroll", onscrollHandler);
+      const mousedownHandler = (e) => {
+         const queue = document.querySelector(".queue");
+         const buttonQueue = document.querySelector(
+            ".player-actions button:last-child"
+         );
+         if (buttonQueue.contains(e.target)) return;
+         if (queue && !queue.contains(e.target)) {
+            setToogleQueue(false);
+         }
+      };
+      document.addEventListener("mousedown", mousedownHandler);
       return () => {
          layoutRight.removeEventListener("scroll", onscrollHandler);
+         document.removeEventListener("mousedown", mousedownHandler);
       };
    }, []);
 

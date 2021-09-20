@@ -15,6 +15,7 @@ const scopes = [
    "playlist-read-collaborative",
    "playlist-modify-public",
    "playlist-modify-private",
+   "user-read-recently-played",
 ];
 
 const params = {

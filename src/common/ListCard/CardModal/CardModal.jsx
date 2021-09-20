@@ -11,6 +11,7 @@ const CardModal = ({
    clicked,
    menuClicked,
    themeButton = false,
+   playClicked,
 }) => {
    // console.log(isFavourite);
    const nodeRef = useRef(null);
@@ -43,6 +44,7 @@ const CardModal = ({
                         icon="action-play ic-svg-play-circle"
                         custom="button--card"
                         hover
+                        clicked={playClicked}
                      />
                      <Button
                         icon="ic-more"

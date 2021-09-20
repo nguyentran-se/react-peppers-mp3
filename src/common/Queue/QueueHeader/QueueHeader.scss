@@ -36,16 +36,21 @@
       user-select: none;
       transition: all 0.2s linear;
       flex-grow: 1;
-      &:first-child {
+      &.active {
          background-color: #6a6475;
          border-radius: 999px;
          font-weight: 600;
       }
-      &:nth-child(2) {
-         color: #dadada;
-         &:hover {
-            color: #fff;
-         }
+      // &:first-child {
+      //    background-color: #6a6475;
+      //    border-radius: 999px;
+      //    font-weight: 600;
+      // }
+      // &:nth-child(2) {
+      color: #dadada;
+      &:hover {
+         color: #fff;
       }
+      // }
    }
 }
