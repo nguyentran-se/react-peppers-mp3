@@ -106,7 +106,7 @@ const Card = ({
    };
    const deviceId = useSelector(selectDeviceId);
    const playClickedHandler = () => {
-      console.log(cardType, cardId);
+      // console.log(cardType, cardId);
       const params = {
          device_id: deviceId,
       };

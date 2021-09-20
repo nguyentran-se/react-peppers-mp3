@@ -37,16 +37,24 @@ const ProgressBar = ({
                type="range"
                max={max}
                min={min}
-               value={(progressValue * 1e8) / duration || 0}
+               value={
+                  duration ? (progressValue * 1e8) / duration : progressValue
+               }
                step={step}
                onChange={changed}
                style={{
                   background: `linear-gradient(
                      to right,
                      #fff 0%,
-                     #fff ${(progressValue * 1e8) / duration}%,
+                     #fff ${
+                        duration
+                           ? (progressValue * 1e8) / duration
+                           : progressValue * 100
+                     }%,
                      var(--progressbar-player-bg) ${
-                        (progressValue * 1e8) / duration
+                        duration
+                           ? (progressValue * 1e8) / duration
+                           : progressValue * 100
                      }%,
                      var(--progressbar-player-bg) 100%
                   )`,
