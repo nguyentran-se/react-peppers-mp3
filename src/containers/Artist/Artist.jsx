@@ -50,7 +50,7 @@ const Artist = () => {
                artistAlbums,
                relatedArtist,
             ]).then((results) => {
-               console.log(results);
+               // console.log(results);
                setArtist(results[0]);
                setTopTracks(results[1].tracks);
                setArtistAlbums({

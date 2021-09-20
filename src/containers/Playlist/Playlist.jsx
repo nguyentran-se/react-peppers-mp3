@@ -27,7 +27,7 @@ const Playlist = () => {
             if (matchPath.includes("album"))
                playlist = await musicApi.getSpecificAlbum(slug);
             else playlist = await musicApi.getSpecificPlaylist(slug, params);
-            console.log(playlist);
+            // console.log(playlist);
 
             // get totaltime of playlist
             totalTimeRef.current = playlist.tracks.items.reduce(

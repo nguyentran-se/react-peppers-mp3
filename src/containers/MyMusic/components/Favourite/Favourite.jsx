@@ -9,7 +9,7 @@ const Favourite = () => {
    useEffect(() => {
       const requestGetFavouriteTracks = async () => {
          const favourite = await userApi.getFavouriteTracks();
-         console.log(favourite);
+         // console.log(favourite);
          const updatedFavourite = {
             items: favourite.items,
             next: favourite.next,

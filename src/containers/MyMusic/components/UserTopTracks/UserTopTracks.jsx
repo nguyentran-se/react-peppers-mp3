@@ -19,7 +19,7 @@ const UserTopTracks = () => {
             next: data.next,
             previous: data.previous,
          };
-         console.log(updatedTopTracks);
+         // console.log(updatedTopTracks);
          setTopTracks(updatedTopTracks);
       };
       requestGetTopTracks();

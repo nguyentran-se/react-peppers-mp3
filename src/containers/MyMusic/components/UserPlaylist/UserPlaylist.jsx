@@ -9,7 +9,7 @@ const UserPlaylist = () => {
       const requestGetUserPlaylists = async () => {
          const playlistsData = await userApi.getUserPlaylists();
          setUserPlaylists(playlistsData.items);
-         console.log(playlistsData);
+         // console.log(playlistsData);
       };
       requestGetUserPlaylists();
    }, []);
