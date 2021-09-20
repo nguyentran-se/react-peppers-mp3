@@ -4,6 +4,7 @@ const initialState = {
    deviceId: null,
    status: null,
    currentTrack: null,
+   currentList: null,
    player: null,
 };
 
@@ -14,6 +15,8 @@ const playerReducer = (state = initialState, { type, payload }) => {
       case actionTypes.SET_CURRENT_TRACK:
          return { ...state, ...payload };
       case actionTypes.PAUSED:
+         return { ...state, ...payload };
+      case actionTypes.SET_CURRENT_LIST:
          return { ...state, ...payload };
       default:
          return state;

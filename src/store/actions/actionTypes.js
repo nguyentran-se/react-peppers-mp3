@@ -22,3 +22,4 @@ export const INIT_PLAYER = "INIT_PLAYER";
 export const SET_PLAYER_STATUS = "SET_PLAYER_STATUS";
 export const SET_CURRENT_TRACK = "SET_CURRENT_TRACK";
 export const PAUSED = "PAUSED";
+export const SET_CURRENT_LIST = "SET_CURRENT_LIST";

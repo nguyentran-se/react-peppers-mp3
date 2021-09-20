@@ -10,4 +10,4 @@ export {
    unFollowAlbum,
 } from "./favAction";
 
-export { initPlayer } from "./playerAction";
+export { initPlayer, setCurrentList } from "./playerAction";

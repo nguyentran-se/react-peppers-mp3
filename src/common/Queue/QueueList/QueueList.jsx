@@ -1,36 +1,33 @@
 import React from "react";
 import "./QueueList.scss";
-import srcImg from "assets/images/test.jpg";
 import QueueItem from "../QueueItem/QueueItem";
-const queueListTest = [
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-   { src: srcImg, songName: "test1", songArtist: "artist1" },
-];
-const QueueList = ({ queueList = queueListTest }) => {
-   let transformedQueue = queueList.map((item, index) => (
-      <QueueItem
-         src={item.src}
-         name={item.songName}
-         artist={item.songArtist}
-         key={index}
-      />
-   ));
+import PropTypes from "prop-types";
+const propTypes = {
+   queueList: PropTypes.array,
+   type: PropTypes.string,
+};
+const QueueList = ({ queueList, currentTrack }) => {
+   let transformedQueue;
+   if (queueList) {
+      transformedQueue = queueList.map((item) => {
+         if (item.track) item = item.track;
+         return (
+            <QueueItem
+               src={item?.album?.images?.[0]?.url}
+               name={item?.name}
+               artists={item?.artists}
+               uri={item?.uri}
+               key={item?.id}
+               active={item?.id === currentTrack?.id}
+            />
+         );
+      });
+   }
    return (
       <div className="queue-list">
          <div className="queue-list__wrapper">{transformedQueue}</div>
       </div>
    );
 };
-
+QueueList.propTypes = propTypes;
 export default QueueList;
