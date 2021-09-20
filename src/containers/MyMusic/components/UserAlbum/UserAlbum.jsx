@@ -9,7 +9,7 @@ const UserAlbum = () => {
       const requestGetUserAlbums = async () => {
          const albumsData = await userApi.getUserAlBums();
          setUserAlbums(albumsData.items);
-         console.log(albumsData.items);
+         // console.log(albumsData.items);
       };
       requestGetUserAlbums();
    }, []);

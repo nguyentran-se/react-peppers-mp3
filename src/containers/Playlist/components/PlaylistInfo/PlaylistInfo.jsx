@@ -37,7 +37,7 @@ const PlaylistInfo = ({ playlist, matchPath, totalTime }) => {
             favouriteIds.includes(playlist?.id)
       );
    }, [favouriteIds, isLoggedIn, playlist]);
-   console.log(isFavourite);
+   // console.log(isFavourite);
    const clickedHandler = (e) => {
       console.log(isFavourite);
       if (isLoggedIn) {
