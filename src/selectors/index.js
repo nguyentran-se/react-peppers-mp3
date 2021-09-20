@@ -6,5 +6,9 @@ export {
    selectPlaylists,
    selectAlbums,
    selectTracks,
+   selectCurrentTrack,
+   selectDeviceId,
+   selectPaused,
+   selectPlayer,
 } from "./commonSelectors";
 export { selectFavouriteIds } from "./favouriteSelectors";

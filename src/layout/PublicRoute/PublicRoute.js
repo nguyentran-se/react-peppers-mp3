@@ -6,7 +6,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
       <Route
          {...rest}
          render={(props) => (
-            <Suspense fallback={<div>loading ...</div>}>
+            <Suspense fallback={<div></div>}>
                <Component {...props} />
             </Suspense>
          )}

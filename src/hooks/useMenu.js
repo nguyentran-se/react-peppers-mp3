@@ -20,6 +20,7 @@ const useMenu = ({ menuList, width = 250, height = 200, fixed = false }) => {
     *  - hide if catch scroll event
     */
    const cardMenuHandler = (e) => {
+      e.stopPropagation();
       const screenWidth = window.innerWidth,
          screenHeight = window.innerHeight,
          x = e.pageX,
