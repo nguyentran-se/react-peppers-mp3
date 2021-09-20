@@ -1,3 +1,4 @@
+import playerApi from "api/playerApi";
 import { CARD_MENU_BUTTONS } from "constant";
 import { numberFormatter } from "helper";
 import { useMenu } from "hooks";
@@ -5,12 +6,17 @@ import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectFavouriteIds, selectIsLoggedIn } from "selectors";
+import {
+   selectDeviceId,
+   selectFavouriteIds,
+   selectIsLoggedIn,
+} from "selectors";
 import {
    followAlbum,
    followPlaylist,
    unFollowAlbum,
    unFollowPlaylist,
+   setCurrentList,
 } from "store/actions/";
 import CardMain from "../CardMain/CardMain";
 import "./Card.scss";
@@ -98,7 +104,22 @@ const Card = ({
          }
       }
    };
-
+   const deviceId = useSelector(selectDeviceId);
+   const playClickedHandler = () => {
+      console.log(cardType, cardId);
+      const params = {
+         device_id: deviceId,
+      };
+      const option = {
+         context_uri: `spotify:${cardType}:${cardId}`,
+      };
+      playerApi.playURI(params, option);
+      if (cardType === "album")
+         dispatch(
+            setCurrentList({ type: cardType, id: cardId, img: cardImage })
+         );
+      else dispatch(setCurrentList({ type: cardType, id: cardId }));
+   };
    const { Menu, cardMenuHandler } = useMenu({ menuList: CARD_MENU_BUTTONS });
 
    const cardMain = (
@@ -115,6 +136,7 @@ const Card = ({
          onError={() => setErrorImage(true)}
          cardName={cardName}
          themeButton={themeButton}
+         playClicked={playClickedHandler}
       />
    );
 

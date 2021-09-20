@@ -22,64 +22,76 @@ import PlayerSong from "./PlayerSong/PlayerSong";
 // };
 const Player = ({ clicked, toggleQueue }) => {
    const isLoggedIn = useSelector(selectIsLoggedIn);
-   // const [currentTrack, setCurrentTrack] = useState();
-   // const [player, setPlayer] = useState(undefined);
-   // const [paused, setPaused] = useState(true);
-   // const [active, setActive] = useState(false);
-   const [current_track, setTrack] = useState(null);
+
+   const [recentlyTrack, setRecentlyTrack] = useState(null);
+   // const [currentTrackApi, setCurrentTrackApi] = useState(null);
    const dispatch = useDispatch();
    const currentTrack = useSelector(selectCurrentTrack);
    const paused = useSelector(selectPaused);
    const player = useSelector(selectPlayer);
+
+   /**
+    * @implements getRencentlyTrack
+    */
    useEffect(() => {
-      const requestGetCurrentTrack = async () => {
+      const requestGetRecentlyTrack = async () => {
          const params = {
             limit: 1,
             before: new Date().getTime(),
          };
          const recentlyPlayed = await playerApi.getRecentlyPlayedTracks(params);
-         // console.log(recentlyPlayed);
-         setTrack(recentlyPlayed.items[0].track);
-         // console.log(recentlyPlayed);
-         // console.log(currentPlaying);
+         setRecentlyTrack(recentlyPlayed.items[0].track);
       };
-      if (isLoggedIn) requestGetCurrentTrack();
+      if (isLoggedIn) requestGetRecentlyTrack();
    }, [isLoggedIn]);
 
+   /**
+    * @implements initSpotifyPlayer
+    */
    useEffect(() => {
       if (isLoggedIn) dispatch(initPlayer());
    }, [isLoggedIn, dispatch]);
 
-   const duration = currentTrack?.duration || current_track?.durationMs;
-
+   const duration = currentTrack?.duration_ms || recentlyTrack?.durationMs;
+   // console.log(duration);
+   // console.log(currentTrack?.duration_ms);
    const [progressValue, setProgressValue] = useState(0);
 
    const seekInputHandler = (e) => {
       //e.target.value -> 0 - 100
       if (player) player.seek((+e.target.value / 100) * duration); // % * duration
       // console.log((+e.target.value * duration) / 100);
-      setProgressValue((+e.target.value * duration) / 1e8);
+      setProgressValue((+e.target.value * duration) / 1e8); //currentTime 0.012 -> 12secs
    };
+   /**
+    * setTime for progressbar
+    */
+
    useEffect(() => {
       const timeInterval = setInterval(() => {
          // console.log(paused);
          if (!paused && progressValue <= duration)
             setProgressValue((value) => value + 0.001);
-         else if (progressValue > duration) setProgressValue(0);
+         // else if (progressValue > duration) clearInterval(timeInterval);
       }, 1000);
       return () => clearInterval(timeInterval);
    }, [duration, paused, progressValue]);
-   // console.log(progressValue);
+
    // console.log(paused);
    return (
       <div className="player">
          <div className="player-wrapper">
             <PlayerSong
                // track={currentTrack?.item || currentTrack?.items?.[0].track}
-               track={currentTrack || current_track}
+               track={currentTrack || recentlyTrack}
             />
             <div className="player-main">
-               <PlayerControls player={player} paused={paused} />
+               <PlayerControls
+                  player={player}
+                  paused={paused}
+                  currentTrack={currentTrack}
+                  recentlyTrack={recentlyTrack}
+               />
                <ProgressBar
                   initial={0}
                   step={0.001}

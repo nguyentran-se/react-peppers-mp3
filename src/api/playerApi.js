@@ -16,14 +16,19 @@ const playerApi = {
       return axiosClient.get(url, { params });
    },
 
-   playURI: (params, uri) => {
+   playURI: (params, option = { uris: null, context_uri: null }) => {
       const url = "/me/player/play";
       return axiosClient({
          method: "PUT",
          params,
          url: url,
-         data: JSON.stringify({ uris: [uri] }),
+         data: JSON.stringify({ ...option }),
       });
+   },
+
+   getTracksOfCurrentList: (type, listId) => {
+      const url = `${type}s/${listId}/tracks`;
+      return axiosClient.get(url);
    },
 };
 

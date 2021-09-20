@@ -16,3 +16,4 @@ export const selectCurrentTrack = (state) => state.player.currentTrack;
 export const selectPaused = (state) => state.player.paused;
 export const selectDeviceId = (state) => state.player.deviceId;
 export const selectPlayer = (state) => state.player.player;
+export const selectCurrentList = (state) => state.player.currentList;

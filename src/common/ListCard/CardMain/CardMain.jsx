@@ -31,6 +31,7 @@ const CardMain = ({
    cardName,
    onError,
    themeButton,
+   playClicked,
 }) => {
    return (
       <>
@@ -45,6 +46,7 @@ const CardMain = ({
                clicked={followHandler}
                menuClicked={cardMenuHandler}
                themeButton={themeButton}
+               playClicked={playClicked}
             />
             {errorImage && (
                <SkeletonTheme

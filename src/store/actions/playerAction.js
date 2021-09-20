@@ -1,4 +1,3 @@
-import playerApi from "api/playerApi";
 import { getLocalStorage } from "helper";
 import * as actionTypes from "./actionTypes";
 const setPlayerStatus = (player, device_id, status) => {
@@ -30,10 +29,10 @@ export const initPlayer = () => {
          // console.log(player);
          player.addListener("ready", ({ device_id }) => {
             dispatch(setPlayerStatus(player, device_id, "READY"));
-            const params = {
-               device_id,
-            };
-            playerApi.playURI(params, "spotify:track:42pZsfo15M63tgCpDeGCx6");
+            // const params = {
+            //    device_id,
+            // };
+            // playerApi.playURI(params, "spotify:track:42pZsfo15M63tgCpDeGCx6");
          });
 
          player.addListener("not_ready", ({ device_id }) => {
@@ -54,6 +53,9 @@ export const initPlayer = () => {
          player.connect();
       };
    };
+};
+export const setCurrentList = (currentList) => {
+   return { type: actionTypes.SET_CURRENT_LIST, payload: { currentList } };
 };
 
 // export const seekPlayer = (value) => {
