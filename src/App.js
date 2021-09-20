@@ -62,7 +62,7 @@ const App = () => {
 
          if (now < expiresInTime && token) {
             dispatch(loginSuccess());
-            console.log("EXPIRED");
+            // console.log("EXPIRED");
             timeout = setTimeout(() => {
                dispatch(requestGetTokenOnExpired(refreshToken));
             }, expiresInTime - now);

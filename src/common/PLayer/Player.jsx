@@ -1,6 +1,6 @@
 import playerApi from "api/playerApi";
 import ProgressBar from "common/ProgressBar/ProgressBar";
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
    selectCurrentTrack,
@@ -64,20 +64,35 @@ const Player = ({ clicked, toggleQueue }) => {
       setProgressValue((+e.target.value * duration) / 1e8); //currentTime 0.012 -> 12secs
    };
    /**
+    * @implements handle case return too much currentTracks of spotify
+    * cause setProgressValue be wrong.
+    */
+   const currentRef = useRef(true);
+   useEffect(() => {
+      if (currentRef.current) {
+         setProgressValue(0);
+         currentRef.current = false;
+      }
+      const timeout = setTimeout(() => {
+         currentRef.current = true;
+      }, 2000);
+      return () => clearTimeout(timeout);
+   }, [currentTrack]);
+   /**
     * setTime for progressbar
     */
-
    useEffect(() => {
       const timeInterval = setInterval(() => {
          // console.log(paused);
-         if (!paused && progressValue <= duration)
+         if (!paused && progressValue * 1e6 <= duration)
             setProgressValue((value) => value + 0.001);
+         else if (progressValue * 1e6 > duration) setProgressValue(0);
          // else if (progressValue > duration) clearInterval(timeInterval);
       }, 1000);
       return () => clearInterval(timeInterval);
    }, [duration, paused, progressValue]);
 
-   // console.log(paused);
+   // console.log(progressValue * 1e6);
    return (
       <div className="player">
          <div className="player-wrapper">

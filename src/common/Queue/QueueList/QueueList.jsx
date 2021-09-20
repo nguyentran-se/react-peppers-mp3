@@ -13,7 +13,10 @@ const QueueList = ({ queueList, currentTrack }) => {
          if (item.track) item = item.track;
          return (
             <QueueItem
-               src={item?.album?.images?.[0]?.url}
+               src={
+                  item?.album?.images?.[0]?.url ||
+                  currentTrack?.album?.images[0].url
+               }
                name={item?.name}
                artists={item?.artists}
                uri={item?.uri}

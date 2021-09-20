@@ -24,7 +24,7 @@ const NewReleases = () => {
          if (albums.next) data = await musicApi.getNext(albums.next);
          else data = await musicApi.getNewReleases(params);
          const { albums: albumsData } = data;
-         console.log(albumsData);
+         // console.log(albumsData);
          const updatedAlbums = {
             items: [...albums.items, ...albumsData.items],
             next: albumsData.next,
