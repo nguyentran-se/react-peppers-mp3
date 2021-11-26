@@ -6,3 +6,4 @@ export {
 
 export { numberFormatter } from "./numberFormatter";
 export { msToTime } from "./msToTime";
+export { historySearch } from "./historySearch";

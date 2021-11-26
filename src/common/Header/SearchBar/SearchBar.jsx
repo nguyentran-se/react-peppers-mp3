@@ -5,16 +5,21 @@ import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import "./SearchBar.scss";
 import musicApi from "api/musicApi";
 import SearchResult from "./SearchResult/SearchResult";
+import { getLocalStorage } from "helper";
+import { HISTORY_SEARCH } from "constant";
 const SearchBar = () => {
    const searchBarRef = useRef(null);
    const [query, setQuery] = useState("");
-   const [searchResults, setSearchResults] = useState();
+   const [searchResults, setSearchResults] = useState(
+      getLocalStorage(HISTORY_SEARCH)?.reverse()
+   );
 
    const onChangeHandler = async (e) => {
       const value = e.target.value.trim();
-      setQuery(value);
+
       if (!value) {
-         setSearchResults(null);
+         setQuery("");
+         setSearchResults(getLocalStorage(HISTORY_SEARCH)?.reverse());
          return;
       }
 
@@ -24,9 +29,11 @@ const SearchBar = () => {
          limit: 10,
          offset: 0,
       };
+      setSearchResults(null);
       const searchData = await musicApi.search(params);
       setSearchResults(searchData);
-      console.log(searchData);
+      setQuery(value);
+      // console.log(searchData);
    };
 
    //after milis call onchange

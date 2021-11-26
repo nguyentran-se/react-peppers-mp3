@@ -7,9 +7,10 @@ import { useHistory } from "react-router";
 import SearchSuggestion from "../SearchSuggestion/SearchSuggestion";
 import "./SearchResult.scss";
 import sortBy from "lodash/sortBy";
+import { historySearch } from "helper";
 
 const SearchResult = ({ searchResults, query, searchBarRef }) => {
-   let textResults = [];
+   let textResults = null;
    let transformedTextResults = [];
    let suggestionResults = null;
    // push to search page.
@@ -22,9 +23,17 @@ const SearchResult = ({ searchResults, query, searchBarRef }) => {
       history.push(`/search/all?${params}`);
       searchBarRef.current.classList.add("hide");
       searchBarRef.current.classList.remove("show");
+      historySearch(name);
    };
 
-   if (searchResults) {
+   if (query === "" && searchResults?.length) {
+      //show history search
+      textResults = searchResults.map((historySearch, index) => ({
+         id: index,
+         name: historySearch,
+      }));
+   } else if (query && searchResults) {
+      // if (searchResults) {
       const keys = {
          ARTISTS: "artists",
          TRACKS: "tracks",
@@ -46,22 +55,26 @@ const SearchResult = ({ searchResults, query, searchBarRef }) => {
       textResults = filterHighFollowerArtists
          .concat(searchResults[keys.TRACKS].items.slice(0, 2))
          .concat([{ id: -1, name: `${query}` }]);
-
-      transformedTextResults = textResults.map(({ id, name }) => (
-         <li
-            className="search-result__item"
-            key={id}
-            onClick={() => navigateToDetailResult(name)}>
-            <i className="icon ic-search"></i>
-            <div className="search-result__name line-clamp--1">
-               {id === -1 ? `Tìm kiếm "${name}"` : name}
-            </div>
-         </li>
-      ));
       //suggestionResults
       suggestionResults = filterHighFollowerArtists
          .concat(searchResults[keys.ALBUMS].items.slice(0, 2))
          .concat(searchResults[keys.PLAYLLISTS].items.slice(0, 2));
+   }
+   if (textResults) {
+      transformedTextResults = textResults.map(({ id, name }) => {
+         // console.log(id, name);
+         return (
+            <li
+               className="search-result__item"
+               key={id}
+               onClick={() => navigateToDetailResult(name)}>
+               <i className="icon ic-search"></i>
+               <div className="search-result__name line-clamp--1">
+                  {id === -1 ? `Tìm kiếm "${name}"` : name}
+               </div>
+            </li>
+         );
+      });
    }
 
    return (
