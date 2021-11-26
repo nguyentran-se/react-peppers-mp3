@@ -61,7 +61,9 @@ const SearchAll = ({ query, allResult }) => {
             {listSection[0].cards && (
                <ListCategory
                   listCategory={listSection.filter(
-                     (section) => section.cards.length
+                     (section) =>
+                        section.cards.length &&
+                        section.cards.filter((c) => c !== null).length
                   )}
                />
             )}

@@ -16,9 +16,9 @@ const SearchShow = ({ query }) => {
       <div className="search-playlist">
          <CategoryHeader categoryName={"Show/Episode"} cardLength={1} />
          <ListCard
-            cards={result?.shows?.items.concat(
-               result?.episodes?.items.filter((item) => item !== null)
-            )}
+            cards={result?.shows?.items
+               .filter((item) => item !== null)
+               .concat(result?.episodes?.items.filter((item) => item !== null))}
             wrapItems
          />
       </div>

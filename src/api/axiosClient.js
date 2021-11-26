@@ -1,8 +1,9 @@
 import axios from "axios";
-import { getLocalStorage } from "helper";
+import { getLocalStorage, setLocalStorage } from "helper";
 import { PEPPERS, USER } from "constant/localStorage";
 import camelize from "camelize";
 import queryString from "query-string";
+import credentialApi from "./credentialApi";
 const axiosClient = axios.create({
    headers: {
       "Content-Type": "application/json",
@@ -11,14 +12,28 @@ const axiosClient = axios.create({
    paramsSerializer: (params) => queryString.stringify(params),
 });
 
+const getClientCredentialToken = async () => {
+   try {
+      let { data } = await credentialApi.getClientCredential();
+      // console.log(response?.data.access_token);
+      data = camelize(data);
+      setLocalStorage(PEPPERS, data);
+      return data.accessToken;
+   } catch (error) {
+      console.log(error);
+      return null;
+   }
+};
+
 axiosClient.interceptors.request.use(
-   (config) => {
+   async (config) => {
       //using 2 token, one for not login, and one when login success
-      const token =
+      let token =
          getLocalStorage(USER)?.accessToken ||
-         getLocalStorage(PEPPERS).accessToken;
-      // console.log(token);
-      if (token) config.headers.Authorization = `Bearer ${token}`;
+         getLocalStorage(PEPPERS)?.accessToken;
+      if (!token) token = await getClientCredentialToken();
+      // if (token)
+      config.headers.Authorization = `Bearer ${token}`;
       return config;
    },
    (error) => {}
