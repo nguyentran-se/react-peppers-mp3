@@ -6,8 +6,8 @@ const useSearch = (query, params) => {
 
    useEffect(() => {
       const requestSearchAll = async () => {
-         const searchData = await musicApi.search(params);
-         console.log(searchData);
+         const searchData = await musicApi.search({ ...params, q: query });
+         // console.log(searchData);
          setResult(searchData);
       };
       requestSearchAll();

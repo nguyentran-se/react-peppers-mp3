@@ -29,7 +29,7 @@ const Search = () => {
          return { ...acc, [currentKey]: allResult[currentKey].total };
       }, {});
    // console.log(allTotalOfResult);
-
+   // console.log(allResult);
    return (
       <div className="search">
          <SearchHeader query={query} allTotalOfResult={allTotalOfResult} />

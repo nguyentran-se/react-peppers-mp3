@@ -1,14 +1,13 @@
 import authorizeApi from "api/authorizeApi";
-import credentialApi from "api/credentialApi";
 import userApi from "api/userApi";
 import camelize from "camelize";
-import { PEPPERS, USER } from "constant/localStorage";
+import { USER } from "constant/localStorage";
 import { getLocalStorage, setLocalStorage } from "helper";
 import { useScrollTop } from "hooks";
 import PublicLayout from "layout/PublicLayout/PublicLayout";
 import PublicRoute from "layout/PublicRoute/PublicRoute";
 import queryString from "query-string";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch } from "react-router";
 import { useHistory } from "react-router-dom";
@@ -31,19 +30,21 @@ const App = () => {
 
    /**
     * @implements client_crediential to get data when user not login
+    * @deprecated move into config axios to get token directly. Because of
+    * getLocalstorage is invalid in first load app
     */
-   useEffect(() => {
-      const requestGetClientCredential = async () => {
-         try {
-            const response = await credentialApi.getClientCredential();
-            // console.log(response?.data.access_token);
-            setLocalStorage(PEPPERS, camelize(response?.data));
-         } catch (error) {
-            console.log(error);
-         }
-      };
-      requestGetClientCredential();
-   }, []);
+   // useEffect(() => {
+   //    const requestGetClientCredential = async () => {
+   //       try {
+   //          const response = await credentialApi.getClientCredential();
+   //          // console.log(response?.data.access_token);
+   //          setLocalStorage(PEPPERS, camelize(response?.data));
+   //       } catch (error) {
+   //          console.log(error);
+   //       }
+   //    };
+   //    requestGetClientCredential();
+   // }, []);
 
    /**
     * @implements call api refreshToken
@@ -133,17 +134,24 @@ const App = () => {
    }, [dispatch, history.location.search]);
 
    // console.log(getLocalStorage(USER)?.accessToken);
-
+   // useEffect(() => {
+   //    const token =
+   //       getLocalStorage(USER)?.accessToken ||
+   //       getLocalStorage(PEPPERS).accessToken;
+   //    console.log(token);
+   // }, []);
    return (
       <PublicLayout>
-         <Switch>
-            {routes.map(
-               (route, index) =>
-                  route.layout === "PublicLayout" && (
-                     <PublicRoute {...route} key={index} />
-                  )
-            )}
-         </Switch>
+         <Suspense fallback={<div></div>}>
+            <Switch>
+               {routes.map(
+                  (route, index) =>
+                     route.layout === "PublicLayout" && (
+                        <PublicRoute {...route} key={index} />
+                     )
+               )}
+            </Switch>
+         </Suspense>
       </PublicLayout>
    );
 };
