@@ -1,84 +1,116 @@
+import musicApi from "api/musicApi";
 import Button from "common/UI/Button/Button";
+import { HISTORY_SEARCH } from "constant";
+import { getLocalStorage } from "helper";
 import { useClickOutSide } from "hooks";
 import debounce from "lodash/debounce";
-import React, { memo, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useReducer, useRef } from "react";
 import "./SearchBar.scss";
-import musicApi from "api/musicApi";
 import SearchResult from "./SearchResult/SearchResult";
-import { getLocalStorage } from "helper";
-import { HISTORY_SEARCH } from "constant";
+function searchReducer(state, action) {
+  switch (action.type) {
+    case "NOT_HAVE_QUERY":
+      return {
+        ...state,
+        query: "",
+        searchResults: getLocalStorage(HISTORY_SEARCH)?.reverse(),
+      };
+    case "FETCH_SEARCH_RESULT":
+      return {
+        ...state,
+        query: action.payload.query,
+        searchResults: action.payload.searchResults,
+      };
+    default:
+      break;
+  }
+}
+function initSearchState(initState) {
+  return {
+    ...initState,
+    searchResults: getLocalStorage(HISTORY_SEARCH)?.reverse(),
+  };
+}
+
 const SearchBar = () => {
-   const searchBarRef = useRef(null);
-   const [query, setQuery] = useState("");
-   const [searchResults, setSearchResults] = useState(
-      getLocalStorage(HISTORY_SEARCH)?.reverse()
-   );
+  const searchBarRef = useRef(null);
 
-   const onChangeHandler = async (e) => {
-      const value = e.target.value.trim();
+  const [state, dispatch] = useReducer(
+    searchReducer,
+    {
+      query: "",
+      searchResults: "",
+    },
+    initSearchState
+  );
 
-      if (!value) {
-         setQuery("");
-         setSearchResults(getLocalStorage(HISTORY_SEARCH)?.reverse());
-         return;
-      }
+  const { query, searchResults } = state;
 
-      const params = {
-         q: value,
-         type: "album,artist,playlist,track", //show,episode",
-         limit: 10,
-         offset: 0,
-      };
-      setSearchResults(null);
-      const searchData = await musicApi.search(params);
-      setSearchResults(searchData);
-      setQuery(value);
-      // console.log(searchData);
-   };
+  const onChangeHandler = async (e) => {
+    const value = e.target.value.trim();
 
-   //after milis call onchange
-   const debounceOnChangeHandler = useMemo(
-      () => debounce(onChangeHandler, 300),
-      []
-   );
+    if (!value) {
+      dispatch({ type: "NOT_HAVE_QUERY" });
+      return;
+    }
 
-   //unsubcribe debounce
-   useEffect(() => {
-      return () => {
-         debounceOnChangeHandler.cancel();
-      };
-   }, [debounceOnChangeHandler]);
+    const params = {
+      q: value,
+      type: "album,artist,playlist,track", //show,episode",
+      limit: 10,
+      offset: 0,
+    };
+    const searchData = await musicApi.search(params);
+    dispatch({
+      type: "FETCH_SEARCH_RESULT",
+      payload: { query: value, searchResults: searchData },
+    });
+    // console.log(searchData);
+  };
 
-   //clickoutside search to hide search-result
-   useClickOutSide(searchBarRef);
+  //after milis call onchange
+  const debounceOnChangeHandler = useMemo(
+    () => debounce(onChangeHandler, 300),
+    []
+  );
 
-   return (
-      <div className="search-bar hide" ref={searchBarRef}>
-         <div className="search-bar__wrapper">
-            <Button icon="ic-search icon--large-size icon--search-custom" />
-            <div style={{ width: "10px" }}></div>
-            <div className="search-input__wrapper">
-               <input
-                  defaultValue={""}
-                  className="search-input"
-                  type="text"
-                  placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV…"
-                  onChange={debounceOnChangeHandler}
-                  onFocus={() => {
-                     searchBarRef.current.classList.remove("hide");
-                     searchBarRef.current.classList.add("show");
-                  }}
-                  // onKeyDown={(e) => console.log(e.keyCode)}
-               />
-               <SearchResult
-                  searchResults={searchResults}
-                  query={query}
-                  searchBarRef={searchBarRef}
-               />
-            </div>
-         </div>
+  //unsubcribe debounce
+  useEffect(() => {
+    return () => {
+      debounceOnChangeHandler.cancel();
+    };
+  }, [debounceOnChangeHandler]);
+
+  //clickoutside search to hide search-result
+  useClickOutSide(searchBarRef);
+
+  return (
+    <div className="search-bar hide" ref={searchBarRef}>
+      <div className="search-bar__wrapper">
+        <Button icon="ic-search icon--large-size icon--search-custom" />
+        <div style={{ width: "10px" }}></div>
+        <div className="search-input__wrapper">
+          <input
+            defaultValue={""}
+            className="search-input"
+            type="text"
+            placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV…"
+            onChange={debounceOnChangeHandler}
+            onFocus={() => {
+              searchBarRef.current.classList.remove("hide");
+              searchBarRef.current.classList.add("show");
+            }}
+            // onKeyDown={(e) => console.log(e.keyCode)}
+          />
+          <SearchResult
+            searchResults={searchResults}
+            query={query}
+            searchBarRef={searchBarRef}
+          />
+        </div>
       </div>
-   );
+    </div>
+  );
 };
 
 export default memo(SearchBar);
