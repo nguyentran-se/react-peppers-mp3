@@ -106,7 +106,7 @@ const Artist = () => {
     <div className="artist">
       <GeneralHelmet
         page={{
-          title: SEO.artist.title,
+          title: `${SEO.artist.title} - ${artist?.name ? artist.name : "..."}`,
           description: SEO.artist.description,
         }}></GeneralHelmet>
       <div

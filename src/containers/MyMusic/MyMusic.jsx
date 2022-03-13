@@ -23,7 +23,7 @@ const MyMusic = () => {
     <div className="mymusic">
       <GeneralHelmet
         page={{
-          title: SEO.myMusic.title,
+          title: `${SEO.myMusic.title} - ${name}`,
           description: SEO.myMusic.description,
         }}></GeneralHelmet>
       <div className="container mymusic-container">

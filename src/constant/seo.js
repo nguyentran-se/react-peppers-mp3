@@ -23,6 +23,10 @@ export const SEO = {
     title: "Peppers | Playlist",
     description: "Peppers Playlist - Save Your Playlist.",
   },
+  album: {
+    title: "Peppers | Album",
+    description: "Peppers Album - Save Your Album.",
+  },
   artist: {
     title: "Peppers | Artist",
     description:

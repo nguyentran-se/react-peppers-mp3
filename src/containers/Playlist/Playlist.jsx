@@ -50,8 +50,14 @@ const Playlist = () => {
     <div className="playlist">
       <GeneralHelmet
         page={{
-          title: SEO.playlist.title,
-          description: SEO.playlist.description,
+          title: `${
+            matchPath.includes("playlist")
+              ? SEO.playlist.title
+              : SEO.album.title
+          } - ${playlist?.name ? playlist.name : "..."}`,
+          description: matchPath.includes("playlist")
+            ? SEO.playlist.description
+            : SEO.album.description,
         }}></GeneralHelmet>
       <div className="container playlist-container">
         <div className="playlist-main">
