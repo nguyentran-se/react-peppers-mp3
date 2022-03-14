@@ -1,0 +1,8 @@
+https://peppersmp3.netlify.app/
+https://peppersmp3.netlify.app/categories
+https://peppersmp3.netlify.app/new-releases
+https://peppersmp3.netlify.app/my-music
+https://peppersmp3.netlify.app/search
+https://peppersmp3.netlify.app/album
+https://peppersmp3.netlify.app/playlist
+https://peppersmp3.netlify.app/artist

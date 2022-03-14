@@ -6,81 +6,85 @@ import PlaylistThumbnail from "containers/Playlist/components/PlaylistThumbnail/
 import { useParams } from "react-router-dom";
 import "./Cate.scss";
 import { useCheckMounted, useScrollLoadMore } from "hooks";
+import { SEO } from "constant";
+import GeneralHelmet from "common/GeneralHelmet/GeneralHelmet";
 const Cate = () => {
-   const { slug } = useParams();
-   const [cate, setCate] = useState();
-   const [playlistsOfCate, setPlaylistsOfCate] = useState({
-      items: [],
-      next: null,
-      previous: null,
-   });
-   const [loadMore, setLoadMore] = useScrollLoadMore(playlistsOfCate.next);
-   const isMounted = useCheckMounted();
+  const { slug } = useParams();
+  const [cate, setCate] = useState();
+  const [playlistsOfCate, setPlaylistsOfCate] = useState({
+    items: [],
+    next: null,
+    previous: null,
+  });
+  const [loadMore, setLoadMore] = useScrollLoadMore(playlistsOfCate.next);
+  const isMounted = useCheckMounted();
 
-   useEffect(() => {
-      const requestGetData = async () => {
-         const cateParams = {
-            country: "VN",
-            locale: "en_us",
-         };
-         const playlistsParams = {
-            country: "VN",
-            locale: "en_us",
-            limit: 20,
-            offset: 0,
-         };
-         // category
-         let data;
-         if (playlistsOfCate?.next) {
-            data = await musicApi.getNext(playlistsOfCate.next);
-         } else {
-            const cate = await musicApi.getSpecificCategory(slug, cateParams);
-            isMounted && setCate(cate);
-            data = await musicApi.getPlaylistsOfCategory(slug, playlistsParams);
-         }
-
-         const { playlists } = data;
-         // add more playlists
-         const updatedPlaylists = {
-            items: [...playlistsOfCate.items, ...playlists.items],
-            next: playlists.next,
-            previous: playlists.previous,
-         };
-         // console.log(cate);
-         isMounted && setPlaylistsOfCate(updatedPlaylists);
+  useEffect(() => {
+    const requestGetData = async () => {
+      const cateParams = {
+        country: "VN",
+        locale: "en_us",
       };
-      if (loadMore) {
-         requestGetData();
-         setLoadMore(false);
+      const playlistsParams = {
+        country: "VN",
+        locale: "en_us",
+        limit: 20,
+        offset: 0,
+      };
+      // category
+      let data;
+      if (playlistsOfCate?.next) {
+        data = await musicApi.getNext(playlistsOfCate.next);
+      } else {
+        const cate = await musicApi.getSpecificCategory(slug, cateParams);
+        isMounted && setCate(cate);
+        data = await musicApi.getPlaylistsOfCategory(slug, playlistsParams);
       }
-   }, [slug, playlistsOfCate, loadMore, setLoadMore, isMounted]);
 
-   return (
-      <div className="cate">
-         <div className="container cate-container">
-            <div className="cate-intro">
-               <PlaylistThumbnail
-                  image={cate?.icons[0].url}
-                  custom="cate-img"
-               />
-               <div className="cate-right">
-                  <h2 className="cate-intro__title">{cate?.name}</h2>
-                  <div className="cate-buttons">
-                     <Button icon="ic-play" custom="button--normal">
-                        PHÁT NHẠC
-                     </Button>
-                     <Button icon="ic-addfriend" custom="button--normal">
-                        QUAN TÂM
-                     </Button>
-                  </div>
-               </div>
+      const { playlists } = data;
+      // add more playlists
+      const updatedPlaylists = {
+        items: [...playlistsOfCate.items, ...playlists.items],
+        next: playlists.next,
+        previous: playlists.previous,
+      };
+      // console.log(cate);
+      isMounted && setPlaylistsOfCate(updatedPlaylists);
+    };
+    if (loadMore) {
+      requestGetData();
+      setLoadMore(false);
+    }
+  }, [slug, playlistsOfCate, loadMore, setLoadMore, isMounted]);
+
+  return (
+    <div className="cate">
+      <GeneralHelmet
+        page={{
+          title: `${SEO.cates.title} - ${cate?.name ? cate.name : "..."}`,
+          description: SEO.cates.description,
+        }}></GeneralHelmet>
+      <div className="container cate-container">
+        <div className="cate-intro">
+          <PlaylistThumbnail image={cate?.icons[0].url} custom="cate-img" />
+          <div className="cate-right">
+            <h2 className="cate-intro__title">{cate?.name}</h2>
+            <div className="cate-buttons">
+              <Button icon="ic-play" custom="button--normal">
+                PHÁT NHẠC
+              </Button>
+              <Button icon="ic-addfriend" custom="button--normal">
+                QUAN TÂM
+              </Button>
             </div>
-            <div className="cate-playlists">
-               <ListCard cards={playlistsOfCate?.items} wrapItems />
-            </div>
-         </div>
+          </div>
+        </div>
+        <div className="cate-playlists">
+          <ListCard cards={playlistsOfCate?.items} wrapItems />
+        </div>
       </div>
-   );
+    </div>
+  );
 };
 
 export default Cate;
