@@ -1,5 +1,6 @@
 const url = new URL("https://accounts.spotify.com/authorize");
-
+const PRODUCTION_URL = "https://peppersmp3.netlify.app/";
+const DEVELOPMENT_URL = "http://localhost:3000/";
 const scopes = [
   "streaming",
   "user-read-email",
@@ -21,7 +22,8 @@ const scopes = [
 const params = {
   client_id: process.env.REACT_APP_CLIENT_ID,
   response_type: "code",
-  redirect_uri: "http://localhost:3000/",
+  redirect_uri:
+    process.env.NODE_ENV === "production" ? PRODUCTION_URL : DEVELOPMENT_URL,
   scope: scopes.join(" "),
   state: "34fFs29kd09",
   show_dialog: true,

@@ -52,21 +52,20 @@ const Cates = (props) => {
         // const results = await Promise.all(requests); SLOWER
         // handle all promises in Promise.all and update into state playlists
         // update Playlists (add more)
-        Promise.all(requests).then((results) =>
-          results.map(
+        Promise.all(requests).then((results) => {
+          const nextPlaylist = [];
+          results.forEach(
             ({ playlists }) =>
               isMounted &&
               playlists.items.length > 0 &&
-              setPlaylists((prevPlaylists) => [
-                ...prevPlaylists,
-                {
-                  items: playlists.items,
-                  next: playlists.next,
-                  previous: playlists.previous,
-                },
-              ])
-          )
-        );
+              nextPlaylist.push({
+                items: playlists.items,
+                next: playlists.next,
+                previous: playlists.previous,
+              })
+          );
+          setPlaylists((prevPlaylists) => [...prevPlaylists, ...nextPlaylist]);
+        });
         const updatedListCategory = {
           items: [...listCategory.items, ...categories.items],
           next: categories.next,
